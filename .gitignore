@@ -1,45 +1,101 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
+*.tmp
 *.swp
+*.class
+*.jar
+*.dex
+*.pyc
+*.cc
+*.cmake
+*.swift
 .DS_Store
 .atom/
 .build/
-.buildlog/
-.history
-.svn/
+	@@ -14,50 +17,83 @@
 .swiftpm/
 migrate_working_dir/
 
-# IntelliJ related
+# ------------------------------
+# Generated Dart files
+# ------------------------------
+*.g.dart
+*.freezed.dart
+*.gen.dart
+*.mocks.dart
+*.config.dart
+*.gr.dart
+
+# ------------------------------
+# IDE / Editor settings
+# ------------------------------
 *.iml
 *.ipr
 *.iws
 .idea/
+/.vscode/        # if you don’t want to share launch/tasks configs
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
+# ------------------------------
+# Flutter / Dart
+# ------------------------------
 .dart_tool/
+.packages
+.flutter-plugins
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
+
+# Docs
+**/doc/api/
+
+# Build outputs
 /build/
-/coverage/
 
-# Symbolication related
+# ------------------------------
+# Android
+# ------------------------------
+android/.gradle/
+android/app/build/
+android/local.properties
+android/key.properties   # 🔐 keep your signing keys out of Git
+
+# Android Studio build artifacts
+android/app/debug/
+android/app/profile/
+android/app/release/
+
+# ------------------------------
+# iOS & macOS
+# ------------------------------
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/.last_build_id
+
+macos/Flutter/ephemeral/
+
+# ------------------------------
+# Windows & Linux
+# ------------------------------
+windows/flutter/ephemeral/
+linux/flutter/ephemeral/
+
+# ------------------------------
+# Symbolication & Obfuscation
+# ------------------------------
 app.*.symbols
-
-# Obfuscation related
 app.*.map.json
 
 # Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Ignore intl generated files
+lib/generated/intl/messages_*.dart
+lib/generated/intl/messages_all.dart
+lib/generated/l10n.dart
+
+# Ignore dependency lock file
+*.lock
