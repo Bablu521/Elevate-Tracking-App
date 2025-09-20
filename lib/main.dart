@@ -26,12 +26,11 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
+        return MaterialApp.router(
           title: 'Tracking App',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
-          onGenerateRoute: AppRouter.onGenerateRoute,
-          initialRoute: RouteNames.login,
+          routerConfig: AppRouter.router,
           localizationsDelegates: [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

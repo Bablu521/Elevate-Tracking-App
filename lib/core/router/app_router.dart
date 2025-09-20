@@ -1,12 +1,15 @@
+import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
-  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      
-
-      default:
-        return MaterialPageRoute(builder: (_) => const SizedBox());
-    }
-  }
+  static final router = GoRouter(
+    initialLocation: '/',
+    routes: [
+      GoRoute(
+        path: RouteNames.splash,
+        builder: (context, state) => const SizedBox(),
+      ),
+    ],
+  );
 }
