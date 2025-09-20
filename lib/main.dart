@@ -1,7 +1,6 @@
 import 'package:elevate_tracking_app/core/constants/app_theme.dart';
 import 'package:elevate_tracking_app/core/di/di.dart';
 import 'package:elevate_tracking_app/core/router/app_router.dart';
-import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/my_bloc_observer.dart';
 import 'package:flutter/material.dart';
@@ -44,4 +43,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
