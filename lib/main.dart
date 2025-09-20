@@ -29,10 +29,10 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Tracking App',
           debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme, 
+          theme: AppTheme.lightTheme,
           onGenerateRoute: AppRouter.onGenerateRoute,
           initialRoute: RouteNames.onboarding,
-          localizationsDelegates: const [
+          localizationsDelegates: [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
@@ -40,10 +40,8 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: AppLocalizations.delegate.supportedLocales,
           locale: const Locale("en"),
-          home: child,
         );
       },
-      child: const SizedBox.shrink(), // child افتراضي
     );
   }
 }

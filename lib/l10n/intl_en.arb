@@ -27,5 +27,8 @@
   "ok": "Ok",
   "no": "No",
   "yes": "Yes",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "welcomeToFloweryRiderApp": "Welcome to \nFlowery rider app",
+  "login": "Login",
+  "applyNow": "Apply now"
 }
