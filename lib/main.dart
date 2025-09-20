@@ -25,21 +25,24 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MaterialApp(
-        title: 'Tracking App',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.lightTheme,
-        onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: RouteNames.login,
-        localizationsDelegates: [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.delegate.supportedLocales,
-        locale: const Locale("en"),
-      ),
+      builder: (context, child) {
+        return MaterialApp(
+          title: 'Tracking App',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.lightTheme,
+          onGenerateRoute: AppRouter.onGenerateRoute,
+          initialRoute: RouteNames.login,
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.delegate.supportedLocales,
+          locale: const Locale("en"),
+        );
+      },
     );
   }
 }
+
