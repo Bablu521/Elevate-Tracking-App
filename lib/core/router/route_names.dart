@@ -7,4 +7,6 @@ abstract class RouteNames {
   static const String forgetPassword = "/forgetPassword";
   static const String resetPassword = "/resetPassword";
   static const String logout = "/logout";
+  static const String onBoarding = "/onBoarding";
+  static const String applicationApproved = "/applicationApproved";
 }
