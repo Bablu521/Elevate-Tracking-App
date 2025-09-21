@@ -1,8 +1,10 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_images.dart';
+import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class OnboardingViewBody extends StatelessWidget {
   const OnboardingViewBody({super.key});
@@ -39,7 +41,7 @@ class OnboardingViewBody extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                // navigate to login
+                context.push(RouteNames.login);
               },
               child: Text(AppLocalizations.of(context).login),
             ),
@@ -59,7 +61,7 @@ class OnboardingViewBody extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                // navigate to apply
+                context.push(RouteNames.apply);
               },
               child: Text(
                 AppLocalizations.of(context).applyNow,
