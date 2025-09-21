@@ -4,10 +4,10 @@ import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(
-    initialLocation: '/',
+    initialLocation: RouteNames.onboarding,
     routes: [
       GoRoute(
-        path: RouteNames.splash,
+        path: RouteNames.onboarding,
         builder: (context, state) => const SizedBox(),
       ),
     ],
