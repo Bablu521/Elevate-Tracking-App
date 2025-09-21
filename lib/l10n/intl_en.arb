@@ -30,5 +30,7 @@
   "loading": "Loading...",
   "welcomeToFloweryRiderApp": "Welcome to \nFlowery rider app",
   "login": "Login",
-  "applyNow": "Apply now"
+  "applyNow": "Apply now",
+  "yourApplicationHasBeenSubmitted": "Your application has been \n submitted!",
+  "thankYouForProvidingYourApplicationWeWillReviewYourApplicationAndWillGetBackToYouSoon": "Thank you for providing your application,  \n we will review your application and will \n get back to you soon."
 }

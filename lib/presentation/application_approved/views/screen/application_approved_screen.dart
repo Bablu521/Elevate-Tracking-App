@@ -1,4 +1,4 @@
-import 'package:elevate_tracking_app/presentation/auth/apply/views/widgets/application_approved_view_body.dart';
+import 'package:elevate_tracking_app/presentation/application_approved/views/widgets/application_approved_view_body.dart';
 import 'package:flutter/material.dart';
 
 class ApplicationApprovedScreen extends StatelessWidget {
