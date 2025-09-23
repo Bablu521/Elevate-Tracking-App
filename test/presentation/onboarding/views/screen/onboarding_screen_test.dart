@@ -1,3 +1,4 @@
+import 'package:elevate_tracking_app/core/constants/app_images.dart';
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/custom_widget/test_app_wrapper.dart';
 import 'package:elevate_tracking_app/presentation/onboarding/views/screen/onboarding_screen.dart';
@@ -12,18 +13,38 @@ void main() {
       //Assert
       expect(find.byType(ElevatedButton), findsNWidgets(2));
       expect(find.byType(Text), findsNWidgets(3));
-      expect(find.text("Login"), findsNWidgets(1));
-      expect(find.text("Apply now"), findsNWidgets(1));
-      expect(find.text("Welcome to \nFlowery rider app"), findsNWidgets(1));
+      expect(find.text("Login"), findsOneWidget);
+      expect(find.text("Apply now"), findsOneWidget);
+      expect(find.text("Welcome to \nFlowery rider app"), findsOneWidget);
       expect(find.widgetWithText(ElevatedButton, "Login"), findsOneWidget);
       expect(find.widgetWithText(ElevatedButton, "Apply now"), findsOneWidget);
-      
+      expect(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is Center &&
+              widget.child is Container &&
+              (widget.child as Container).decoration is BoxDecoration &&
+              ((widget.child as Container).decoration as BoxDecoration).image !=
+                  null &&
+              ((widget.child as Container).decoration as BoxDecoration)
+                      .image!
+                      .image
+                  is AssetImage &&
+              (((widget.child as Container).decoration as BoxDecoration)
+                              .image!
+                              .image
+                          as AssetImage)
+                      .assetName ==
+                  AppImages.imageOnboarding,
+        ),
+        findsOneWidget,
+      );
     });
     testWidgets("Verify login elevatedButton behaviour", (
       WidgetTester tester,
     ) async {
       //Arrange
-      await tester.pumpWidget(const TestAppWrapper(child: OnboardingScreen(),));
+      await tester.pumpWidget(const TestAppWrapper(child: OnboardingScreen()));
       final loginButtonFinder = find.byKey(
         const Key(WidgetsKeys.kOnboardingScreenLoginButton),
       );
@@ -51,7 +72,4 @@ void main() {
       expect(find.text("Apply"), findsOneWidget);
     });
   });
-
-  
-  
 }
