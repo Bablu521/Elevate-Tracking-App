@@ -1,6 +1,5 @@
 import 'package:elevate_tracking_app/core/router/route_names.dart';
-// import 'package:elevate_tracking_app/presentation/application_approved/views/screen/application_approved_screen.dart';
-// import 'package:elevate_tracking_app/presentation/onboarding/views/screen/onboarding_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {

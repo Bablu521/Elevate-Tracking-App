@@ -27,5 +27,14 @@
   "ok": "Ok",
   "no": "No",
   "yes": "Yes",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "rememberMe": "Remember me",
+  "forgotPasswordWithQuestionMark": "Forgot password?",
+  "enterYourEmail": "Enter your email",
+  "enterYourPassword": "Enter your password",
+  "continueWord": "Continue",
+  "error": "Error"
 }

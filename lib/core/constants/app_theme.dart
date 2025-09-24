@@ -3,7 +3,6 @@ import 'package:elevate_tracking_app/core/constants/const_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 abstract class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
@@ -103,6 +102,14 @@ abstract class AppTheme {
         fontSize: 16.sp,
         fontWeight: FontWeight.w500,
       ),
+    ),
+
+    listTileTheme: const ListTileThemeData(
+      contentPadding: EdgeInsets.zero,
+      horizontalTitleGap: 0,
+      minLeadingWidth: 0,
+      minVerticalPadding: 0,
+      minTileHeight: 0,
     ),
   );
 
