@@ -27,5 +27,20 @@
   "ok": "Ok",
   "no": "No",
   "yes": "Yes",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "password": "Password",
+  "forgetPassword": "Forget password",
+  "enterYouEmail": "Enter your email",
+  "email": "Email",
+  "confirm": "Confirm",
+  "emailAddress": "email address ",
+  "emailVerification": "Email verification ",
+  "pleaseenteryourcodethatsendtoyour": "Please enter your code that send to your",
+  "emailIsCorrect": "email is correct",
+  "error": "error",
+  "success": "success",
+  "passwordResetSuccessfully": "passwordResetSuccessfully",
+  "invalidCode": "invalidCode",
+  "pleaseenteryouremailassociatedto": "Please enter your email associated to",
+  "yourAccount": "your account"
 }
