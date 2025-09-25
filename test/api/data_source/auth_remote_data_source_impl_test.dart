@@ -51,7 +51,7 @@ void main() {
         "when call forgetPassword it should return ForgetPasswordEntity from Api with correct parameters",
             () async {
           //Arrange
-          var expectedResult = ForgetPasswordResponseDto(
+          final expectedResult = ForgetPasswordResponseDto(
             message: "fake-message",
             info: "fake-info",
           );
@@ -59,7 +59,7 @@ void main() {
             mockApiClient.forgetPassword(forgetPasswordRequest),
           ).thenAnswer((_) async => expectedResult);
           //Act
-          var result = await authRemoteDataSourceImpl.forgetPassword(
+          final result = await authRemoteDataSourceImpl.forgetPassword(
             forgetPasswordRequestEntity,
           );
           //Assert
@@ -78,12 +78,12 @@ void main() {
         "when forgetPassword failed it should return an error result",
             () async {
           //Arrange
-          var expectedError = "Server Error";
+          final expectedError = "Server Error";
           when(
             mockApiClient.forgetPassword(forgetPasswordRequest),
           ).thenThrow(Exception(expectedError));
           //Act
-          var result = await authRemoteDataSourceImpl.forgetPassword(
+          final result = await authRemoteDataSourceImpl.forgetPassword(
             forgetPasswordRequestEntity,
           );
           //Assert
@@ -110,12 +110,12 @@ void main() {
         "when call verifyResetCode it should return VerifyResetEntity from Api with correct parameters",
             () async {
           //Arrange
-          var expectedResult = EmailVerificationDto(status: "fake-status");
+          final expectedResult = EmailVerificationDto(status: "fake-status");
           when(
             mockApiClient.emailVerification(verifyResetRequest),
           ).thenAnswer((_) async => expectedResult);
           //Act
-          var result = await authRemoteDataSourceImpl.verifyResetCode(
+          final result = await authRemoteDataSourceImpl.verifyResetCode(
             verifyResetRequestEntity,
           );
           //Assert
