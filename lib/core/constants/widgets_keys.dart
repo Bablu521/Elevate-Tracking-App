@@ -45,4 +45,15 @@ abstract final class WidgetsKeys {
   static const String kApplyScreenTextGender = "k_apply_screen_text_gender";
   static const String kApplyScreenTextMale = "k_apply_screen_text_male";
   static const String kApplyScreenTextFemale = "k_apply_screen_text_female";
+    static const String kLoginScreenAppBarButton = "login_screen_app_bar_button";
+  static const String kLoginScreenEmailField = "login_screen_email_field";
+  static const String kLoginScreenPasswordField = "login_screen_password_field";
+  static const String kLoginScreenPasswordVisibilityButton =
+      "login_screen_password_visibility_button";
+  static const String kLoginScreenRememberMeCheckbox =
+      "login_screen_remember_me_checkbox";
+  static const String kLoginScreenForgotPasswordButton =
+      "login_screen_forgot_password_button";
+  static const String kLoginScreenContinueButton =
+      "login_screen_continue_button";
 }

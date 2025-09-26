@@ -1,4 +1,5 @@
 {
+  "appName": "Tracking App",
   "connectionTimeout": "Connection timeout. Please try again later.",
   "sendTimeout": "Request timed out. Please try again.",
   "receiveTimeout": "Server took too long to respond.",
@@ -27,6 +28,11 @@
   "ok": "Ok",
   "no": "No",
   "yes": "Yes",
+  "rememberMe": "Remember me",
+  "forgotPasswordWithQuestionMark": "Forgot password?",
+  "enterYourPassword": "Enter your password",
+  "continueWord": "Continue",
+  "error": "Error",
   "welcomeToFloweryRiderApp": "Welcome to \nFlowery rider app",
   "login": "Login",
   "applyNow": "Apply now",

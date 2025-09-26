@@ -2,6 +2,7 @@ import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_icons.dart';
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/custom_widget/custom_dialog.dart';
+import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/core/utils/validations.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/auth/apply/view/widgets/custom_apply_radio.dart';
@@ -30,8 +31,10 @@ class ApplyBody extends StatelessWidget {
         } else if (state.applyFun?.data != null) {
           context.pop();
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("success")),
-          ); // when success must be navigate to apply success
+            const SnackBar(content: Center(child: Text("success"))),
+          ); 
+          context.go(RouteNames.applicationApproved);
+          // when success must be navigate to apply success
         } else if (state.applyFun?.errorMessage != null) {
           context.pop();
           CustomDialog.positiveButton(

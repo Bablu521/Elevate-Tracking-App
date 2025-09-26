@@ -1,13 +1,12 @@
 import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/presentation/application_approved/views/screen/application_approved_screen.dart';
 import 'package:elevate_tracking_app/presentation/auth/apply/view/screen/apply_view.dart';
+import 'package:elevate_tracking_app/presentation/auth/login/view/screen/login_screen.dart';
 import 'package:elevate_tracking_app/presentation/home/views/screen/home_screen.dart';
 import 'package:elevate_tracking_app/presentation/main_home/views/screen/main_home_screen.dart';
 import 'package:elevate_tracking_app/presentation/onboarding/views/screen/onboarding_screen.dart';
 import 'package:elevate_tracking_app/presentation/orders/views/screen/orders_screen.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/screen/profile_screen.dart';
-// import 'package:elevate_tracking_app/presentation/application_approved/views/screen/application_approved_screen.dart';
-// import 'package:elevate_tracking_app/presentation/onboarding/views/screen/onboarding_screen.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -40,10 +39,16 @@ abstract class AppRouter {
       path: RouteNames.apply,
       builder: (context, state) => const ApplyView(),
     ),
+    GoRoute(
+      path: RouteNames.login,
+      builder: (context, state) => const LoginScreen(),
+    ),
   ];
 
-  static final router = GoRouter(
-    initialLocation: RouteNames.onboarding,
-    routes: routes,
-  );
+  static GoRouter router(String? token) {
+    return GoRouter(
+      initialLocation: token == null ? RouteNames.onboarding : RouteNames.home,
+      routes: routes,
+    );
+  }
 }
