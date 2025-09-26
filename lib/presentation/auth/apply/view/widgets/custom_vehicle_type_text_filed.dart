@@ -5,7 +5,7 @@ import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/utils/validations.dart';
 import 'package:elevate_tracking_app/domain/entites/vehicles_entity.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
-import 'package:elevate_tracking_app/presentation/apply/view_model/apply_view_model.dart';
+import 'package:elevate_tracking_app/presentation/auth/apply/view_model/apply_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

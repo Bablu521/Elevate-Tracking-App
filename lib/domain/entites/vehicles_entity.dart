@@ -1,4 +1,6 @@
-class VehicleEntity {
+import 'package:equatable/equatable.dart';
+
+class VehicleEntity extends Equatable{
   final String id;
   final String type;
   final String image;
@@ -8,4 +10,7 @@ class VehicleEntity {
     required this.type,
     required this.image,
   });
+  
+  @override
+  List<Object?> get props => [id,type,image];
 }

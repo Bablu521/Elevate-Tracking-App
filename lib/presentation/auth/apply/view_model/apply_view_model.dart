@@ -9,7 +9,7 @@ import 'package:elevate_tracking_app/domain/entites/vehicles_entity.dart';
 import 'package:elevate_tracking_app/domain/use_cases/apply_use_case.dart';
 import 'package:elevate_tracking_app/domain/use_cases/get_all_country_use_case.dart';
 import 'package:elevate_tracking_app/domain/use_cases/get_all_vehicles_use_case.dart';
-import 'package:elevate_tracking_app/presentation/apply/view_model/apply_event.dart';
+import 'package:elevate_tracking_app/presentation/auth/apply/view_model/apply_event.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
