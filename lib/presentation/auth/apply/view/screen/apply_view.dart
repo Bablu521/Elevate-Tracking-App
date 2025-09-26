@@ -1,6 +1,5 @@
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/di/di.dart';
-import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/auth/apply/view/widgets/apply_body.dart';
 import 'package:elevate_tracking_app/presentation/auth/apply/view_model/apply_event.dart';
