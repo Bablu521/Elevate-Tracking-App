@@ -33,7 +33,7 @@ class LoginViewModel extends Cubit<LoginState> {
       case RequestLoginEvent():
         _login();
       case RememberMeEvent():
-        _changeRememberMeState(events.isRememberMe);
+        _changeRememberMeState();
       case LoadSavedUserDataEvent():
         _loadSavedUserData();
       case LoginButtonStatusEvent():
@@ -75,12 +75,12 @@ class LoginViewModel extends Cubit<LoginState> {
     }
   }
 
-  Future<void> _changeRememberMeState(bool value) async {
+  Future<void> _changeRememberMeState() async {
+    isRememberMe.value = !isRememberMe.value;
     await _secureStorage.write(
       key: ConstKeys.keyRememberMe,
-      value: value.toString(),
+      value: isRememberMe.value.toString(),
     );
-    isRememberMe.value = value;
   }
 
   void _togglePasswordVisibility() {

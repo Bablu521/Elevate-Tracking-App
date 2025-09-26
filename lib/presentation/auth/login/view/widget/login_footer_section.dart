@@ -37,8 +37,8 @@ class LoginFooterSection extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     value: value,
-                    onChanged: (val) {
-                      loginViewModel.doIntent(RememberMeEvent(val!));
+                    onChanged: (_) {
+                      loginViewModel.doIntent(RememberMeEvent());
                     },
                   ),
                 );

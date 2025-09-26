@@ -87,7 +87,8 @@ void main() {
         "call doIntent with RememberMeEvent then should update isRememberMe and write to storage",
         build: () => loginViewModel,
         act: (bloc) {
-          return bloc.doIntent(RememberMeEvent(expectedResult));
+          bloc.isRememberMe.value = expectedResult;
+          return bloc.doIntent(RememberMeEvent());
         },
         expect: () => <LoginState>[],
         verify: (viewModel) {

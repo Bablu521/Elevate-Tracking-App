@@ -1,4 +1,5 @@
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
+import 'package:elevate_tracking_app/core/constants/const_keys.dart';
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/custom_widget/test_app_wrapper.dart';
 import 'package:elevate_tracking_app/core/di/di.dart';
@@ -8,6 +9,7 @@ import 'package:elevate_tracking_app/domain/use_cases/login_use_case.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view/screen/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -15,10 +17,11 @@ import 'package:mockito/mockito.dart';
 import '../../../../../dummy/login_dummy_data.dart';
 import 'login_screen_test.mocks.dart';
 
-@GenerateMocks([LoginUseCase])
+@GenerateMocks([LoginUseCase, FlutterSecureStorage])
 void main() {
   group("widget test LoginScreen", () {
     late MockLoginUseCase mockLoginUseCase;
+    late MockFlutterSecureStorage mockFlutterSecureStorage;
 
     final appBarButton = find.byKey(
       const Key(WidgetsKeys.kLoginScreenAppBarButton),
@@ -45,8 +48,14 @@ void main() {
     setUpAll(() async {
       configureDependencies();
       await getIt.unregister<LoginUseCase>();
+      await getIt.unregister<FlutterSecureStorage>();
       mockLoginUseCase = MockLoginUseCase();
+      mockFlutterSecureStorage = MockFlutterSecureStorage();
       getIt.registerSingleton<LoginUseCase>(mockLoginUseCase);
+      getIt.registerSingleton<FlutterSecureStorage>(mockFlutterSecureStorage);
+      when(
+        mockFlutterSecureStorage.read(key: ConstKeys.keyRememberMe),
+      ).thenAnswer((_) async => ConstKeys.falseKey);
     });
 
     testWidgets("Verify structure", (tester) async {
@@ -110,11 +119,6 @@ void main() {
       expect(passwordField, findsOneWidget);
       expect(passwordVisibilityButton, findsOneWidget);
 
-      /*final textFieldFinder = find.descendant(
-        of: passwordField,
-        matching: find.byType(TextField),
-      );*/
-
       expect(
         tester
             .getSemantics(passwordField)
@@ -156,7 +160,7 @@ void main() {
             .getSemanticsData()
             .flagsCollection
             .isChecked,
-        isFalse,
+        isTrue,
       );
     });
 
@@ -235,9 +239,7 @@ void main() {
         password: "test123654A#",
       );
       final expectedResponse = "errorMessage";
-      final expectedResult = ApiErrorResult<LoginEntity>(
-        expectedResponse,
-      );
+      final expectedResult = ApiErrorResult<LoginEntity>(expectedResponse);
       provideDummy<ApiResult<LoginEntity>>(expectedResult);
       when(
         mockLoginUseCase(expectedRequestEntity),
