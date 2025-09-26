@@ -1,5 +1,8 @@
 import 'package:elevate_tracking_app/api/mapper/apply_mapper.dart';
 import 'package:elevate_tracking_app/api/models/responses/apply_response_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/country_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/vehicle.dart';
+import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/request/apply_request_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -27,7 +30,6 @@ void main() {
     test("toEntity should map correctly", () {
       // ARRANGE: Fake DTO
       final ApplyResponseDto dto = ApplyFixture.fakeResponseDto();
-
       // ACT:
       final entity = dto.toEntity();
       // ASSERT:
@@ -41,6 +43,27 @@ void main() {
       expect(entity.role, equals(dto.driver.role));
       expect(entity.vehicleLicense, equals(dto.driver.vehicleLicense));
       expect(entity.vehicleType, equals(dto.driver.vehicleType));
+    });
+    test("vehicle toEntity should map correctly", () {
+      // ARRANGE: Fake DTO
+      final Vehicle dto = ApplyFixture.fakeVehicleDto();
+
+      // ACT:
+      final entity = dto.toEntity();
+      // ASSERT:
+      expect(entity.id, equals(dto.id));
+      expect(entity.image, equals(dto.image));
+      expect(entity.type, equals(dto.type));
+    });
+    test("country toEntity should map correctly", () {
+      //ARRANGE:
+      final CountryDto dto = ApplyFixture.fakeCountryDto();
+      //ACT:
+      final CountryEntity entity = dto.toEntity();
+      //ASSERT:
+      expect(entity.currency, equals(dto.currency));
+      expect(entity.name, equals(dto.name));
+      expect(entity.flag, equals(dto.flag));
     });
   });
 }

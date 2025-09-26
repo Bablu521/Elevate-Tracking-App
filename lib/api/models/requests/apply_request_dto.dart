@@ -12,6 +12,7 @@ class ApplyRequestDto extends Equatable {
   final String lastName;
   final String vehicleType;
   final String vehicleNumber;
+  @JsonKey(name: "NID")
   final String nid;
   final String email;
   final String password;
@@ -22,7 +23,7 @@ class ApplyRequestDto extends Equatable {
   @JsonKey(includeToJson: false, includeFromJson: false)
   final File? vehicleLicense;
 
-  @JsonKey(includeToJson: false, includeFromJson: false)
+  @JsonKey(includeToJson: false, includeFromJson: false , name: "NIDImg")
   final File? nidImg;
 
   const ApplyRequestDto({

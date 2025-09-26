@@ -7,7 +7,6 @@ import 'package:injectable/injectable.dart';
 @injectable
 class ApplyUseCase {
   final AuthRepo _authRepo;
-
   ApplyUseCase(this._authRepo);
   Future<ApiResult<ApplyResponseEntity>> call(
     ApplyRequestEntity request,

@@ -1,11 +1,20 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:elevate_tracking_app/api/mapper/apply_mapper.dart';
 import 'package:elevate_tracking_app/api/models/requests/apply_request_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/apply_response_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/country_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/driver_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/vehicle.dart';
+import 'package:elevate_tracking_app/api/models/responses/vehicles_response.dart';
+import 'package:elevate_tracking_app/core/constants/end_points.dart';
 import 'package:elevate_tracking_app/domain/entites/apply_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/request/apply_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/vehicles_entity.dart';
 
+import 'fake_file_json.dart';
 import 'fake_image_file.dart';
 
 class ApplyFixture {
@@ -114,4 +123,128 @@ class ApplyFixture {
       createdAt: "2025-09-21T05:26:21.346Z",
     );
   }
+
+  static VehiclesResponse fakeVehiclesResponse() {
+    return VehiclesResponse(
+      message: "success",
+      metadata: Metadata(
+        currentPage: 1,
+        totalPages: 1,
+        limit: 40,
+        totalItems: 7,
+      ),
+      vehicles: [
+        Vehicle(
+          id: "fake-id-122",
+          type: "Motor Cycle",
+          image: "https://fakeimg.pl/250x100/?text=MotorCycle",
+          createdAt: "2024-12-25T01:45:45.397Z",
+          updatedAt: "2024-12-25T01:45:45.397Z",
+          v: 0,
+        ),
+        Vehicle(
+          id: "fake-id-123",
+          type: "SUV",
+          image: "https://fakeimg.pl/250x100/?text=SUV",
+          createdAt: "2024-12-25T01:47:19.749Z",
+          updatedAt: "2024-12-25T01:47:19.749Z",
+          v: 0,
+        ),
+        Vehicle(
+          id: "fake-id-124",
+          type: "SUV",
+          image: "https://fakeimg.pl/250x100/?text=SUV",
+          createdAt: "2024-12-25T01:47:19.749Z",
+          updatedAt: "2024-12-25T01:47:19.749Z",
+          v: 0,
+        ),
+      ],
+    );
+  }
+
+  static List<VehicleEntity> fakeVehicleEntity() {
+    return fakeVehiclesResponse().vehicles!
+        .map((entity) => entity.toEntity())
+        .toList();
+  }
+
+  static Vehicle fakeVehicleDto() {
+    return Vehicle(
+      id: "fake-id-123",
+      type: "SUV",
+      image: "https://fakeimg.pl/250x100/?text=SUV",
+      createdAt: "2024-12-25T01:47:19.749Z",
+      updatedAt: "2024-12-25T01:47:19.749Z",
+      v: 0,
+    );
+  }
+
+  static CountryDto fakeCountryDto() {
+    return const CountryDto(
+      isoCode: "EG",
+      name: "Egypt",
+      phoneCode: "20",
+      flag: "🇪🇬",
+      currency: "EGP",
+      latitude: "26.8206",
+      longitude: "30.8025",
+      timezones: [
+        Timezone(
+          zoneName: "Africa/Cairo",
+          gmtOffset: 7200,
+          gmtOffsetName: "UTC+02:00",
+          abbreviation: "EET",
+          tzName: "Eastern European Time",
+        ),
+      ],
+    );
+  }
+
+  static CountryEntity fakeCountryEntity() {
+    return fakeCountryDto().toEntity();
+  }
+
+  static List<CountryDto> fakeCountryDtoList() {
+    return [
+      fakeCountryDto(),
+      const CountryDto(
+        isoCode: "SA",
+        name: "Saudi Arabia",
+        phoneCode: "966",
+        flag: "🇸🇦",
+        currency: "SAR",
+        latitude: "23.8859",
+        longitude: "45.0792",
+        timezones: [
+          Timezone(
+            zoneName: "Asia/Riyadh",
+            gmtOffset: 10800,
+            gmtOffsetName: "UTC+03:00",
+            abbreviation: "AST",
+            tzName: "Arabian Standard Time",
+          ),
+        ],
+      ),
+    ];
+  }
+
+  /// Fake List of Country Entities
+  static List<CountryEntity> fakeCountryEntityList() {
+    return fakeCountryDtoList().map((c) => c.toEntity()).toList();
+  }
+
+  static FakeAssetBundle fakeBundle = FakeAssetBundle({
+    Endpoints.countryLocalData: jsonEncode([
+      {
+        "isoCode": "TR",
+        "name": "Turkey",
+        "phoneCode": "90",
+        "flag": "🇹🇷",
+        "flagUrl": "https://flagcdn.com/w320/tr.png",
+        "currency": "TRY",
+        "latitude": "39.00000000",
+        "longitude": "35.00000000",
+      },
+    ]),
+  });
 }

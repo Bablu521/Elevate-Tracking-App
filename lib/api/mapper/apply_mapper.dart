@@ -1,7 +1,12 @@
 import 'package:elevate_tracking_app/api/models/responses/apply_response_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/country_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/vehicle.dart';
 import 'package:elevate_tracking_app/domain/entites/apply_response_entity.dart';
 import 'package:elevate_tracking_app/api/models/requests/apply_request_dto.dart';
+import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/request/apply_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/vehicles_entity.dart';
+
 extension ApplyResponseMapper on ApplyResponseDto {
   ApplyResponseEntity toEntity() {
     return ApplyResponseEntity(
@@ -25,6 +30,7 @@ extension ApplyResponseMapper on ApplyResponseDto {
     );
   }
 }
+
 extension ApplyRequestMapper on ApplyRequestEntity {
   ApplyRequestDto toDto() {
     return ApplyRequestDto(
@@ -41,6 +47,23 @@ extension ApplyRequestMapper on ApplyRequestEntity {
       phone: phone,
       vehicleLicense: vehicleLicense,
       nidImg: nidImg,
+    );
+  }
+}
+
+extension VehicleMapper on Vehicle {
+  VehicleEntity toEntity() {
+    return VehicleEntity(id: id ?? '', type: type ?? '', image: image ?? '');
+  }
+}
+
+extension CountryMapper on CountryDto {
+  CountryEntity toEntity() {
+    return CountryEntity(
+      name: name ?? '',
+      flag: flag ?? '',
+      currency: currency ?? '',
+      flagImage: flagUrl ?? '',
     );
   }
 }
