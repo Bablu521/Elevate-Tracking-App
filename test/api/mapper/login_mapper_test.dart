@@ -1,5 +1,4 @@
 import 'package:elevate_tracking_app/api/mapper/login_mapper.dart';
-import 'package:elevate_tracking_app/domain/entites/requests/login_request_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../dummy/login_dummy_data.dart';

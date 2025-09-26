@@ -8,7 +8,6 @@ abstract final class ConstKeys {
   static const String keyUserToken = "user_token";
   static const String trueKey = "true";
   static const String falseKey = "false";
-
   static const String robotoFont = "Roboto";
   static const String outfitFont = "Outfit";
   static const String interFont = "Inter";

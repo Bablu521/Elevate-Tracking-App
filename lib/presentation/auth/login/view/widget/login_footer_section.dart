@@ -1,8 +1,11 @@
+import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view_model/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/constants/app_colors.dart';
+import '../../../../../core/constants/widgets_keys.dart';
 import '../../../../../generated/l10n.dart';
 import '../../view_model/login_events.dart';
 
@@ -25,6 +28,7 @@ class LoginFooterSection extends StatelessWidget {
               builder: (context, value, child) {
                 return Expanded(
                   child: CheckboxListTile(
+                    key: const Key(WidgetsKeys.kLoginScreenRememberMeCheckbox),
                     side: BorderSide(color: AppColors.black),
                     controlAffinity: ListTileControlAffinity.leading,
                     dense: true,
@@ -33,15 +37,18 @@ class LoginFooterSection extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     value: value,
-                    onChanged: (value) {
-                      loginViewModel.doIntent(RememberMeEvent(value!));
+                    onChanged: (val) {
+                      loginViewModel.doIntent(RememberMeEvent(val!));
                     },
                   ),
                 );
               },
             ),
             InkWell(
-              onTap: () {},
+              key: const Key(WidgetsKeys.kLoginScreenForgotPasswordButton),
+              onTap: () {
+                context.push(RouteNames.forgetPassword);
+              },
               child: Text(
                 AppLocalizations.of(context).forgotPasswordWithQuestionMark,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -57,6 +64,7 @@ class LoginFooterSection extends StatelessWidget {
           valueListenable: loginViewModel.isButtonEnabled,
           builder: (context, value, child) {
             return ElevatedButton(
+              key: const Key(WidgetsKeys.kLoginScreenContinueButton),
               onPressed: value == true
                   ? () {
                       if (loginViewModel.formKey.currentState!.validate()) {

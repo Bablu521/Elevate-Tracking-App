@@ -7,7 +7,7 @@ abstract class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.white,
-    fontFamily: "Inter",
+    fontFamily: ConstKeys.interFont,
     colorScheme: ColorScheme(
       brightness: Brightness.light,
       primary: AppColors.mainColor,
@@ -38,6 +38,8 @@ abstract class AppTheme {
       backgroundColor: AppColors.white,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
+      titleSpacing: 8.w,
+      leadingWidth: 30.sp,
       titleTextStyle: getTextStyle(
         fontSize: 20.sp,
         fontWeight: FontWeight.w500,

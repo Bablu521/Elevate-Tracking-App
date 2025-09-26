@@ -1,9 +1,11 @@
+import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/di/di.dart';
 import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view/widget/login_body_section.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view_model/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/custom_widget/custom_dialog.dart';
@@ -30,13 +32,23 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
+  void dispose() {
+    _loginViewModel.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).login),
-        leading: IconButton(
-          onPressed: () => context.pop(),
-          icon: const Icon(Icons.arrow_back_ios),
+        leading: Padding(
+          padding: EdgeInsets.only(left: 8.w),
+          child: IconButton(
+            key: const Key(WidgetsKeys.kLoginScreenAppBarButton),
+            onPressed: () => context.pop(),
+            icon: const Icon(Icons.arrow_back_ios),
+          ),
         ),
       ),
       body: BlocListener<LoginViewModel, LoginState>(

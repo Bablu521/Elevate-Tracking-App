@@ -10,7 +10,7 @@ class LoginRequest extends Equatable {
   @JsonKey(name: "password")
   final String? password;
 
-  LoginRequest({
+  const LoginRequest({
     this.email,
     this.password,
   });

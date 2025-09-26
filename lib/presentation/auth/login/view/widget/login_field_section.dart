@@ -1,3 +1,4 @@
+import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view_model/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,7 @@ class LoginFieldSection extends StatelessWidget {
       spacing: 16.h,
       children: [
         TextFormField(
+          key: const Key(WidgetsKeys.kLoginScreenEmailField),
           controller: loginViewModel.emailController,
           style: Theme.of(context).textTheme.bodySmall,
           validator: Validations.validateEmail,
@@ -25,12 +27,15 @@ class LoginFieldSection extends StatelessWidget {
             labelText: AppLocalizations.of(context).email,
             hintText: AppLocalizations.of(context).enterYourEmail,
           ),
+          keyboardType: TextInputType.emailAddress,
+          textInputAction: TextInputAction.next,
           onChanged: textFormFieldChanged,
         ),
         ValueListenableBuilder(
           valueListenable: loginViewModel.isPasswordVisible,
           builder: (context, value, child) {
             return TextFormField(
+              key: const Key(WidgetsKeys.kLoginScreenPasswordField),
               obscureText: !value,
               controller: loginViewModel.passwordController,
               style: Theme.of(context).textTheme.bodySmall,
@@ -39,6 +44,9 @@ class LoginFieldSection extends StatelessWidget {
                 labelText: AppLocalizations.of(context).password,
                 hintText: AppLocalizations.of(context).enterYourPassword,
                 suffixIcon: IconButton(
+                  key: const Key(
+                    WidgetsKeys.kLoginScreenPasswordVisibilityButton,
+                  ),
                   onPressed: () {
                     loginViewModel.doIntent(TogglePasswordVisibilityEvent());
                   },
@@ -48,6 +56,8 @@ class LoginFieldSection extends StatelessWidget {
                   ),
                 ),
               ),
+              keyboardType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
               onChanged: textFormFieldChanged,
             );
           },
