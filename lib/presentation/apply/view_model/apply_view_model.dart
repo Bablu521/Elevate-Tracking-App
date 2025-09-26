@@ -54,11 +54,11 @@ class ApplyViewModel extends Cubit<ApplyViewModelState> {
   TextEditingController controllerIdImage = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
   TextEditingController controllerConfirmPassword = TextEditingController();
+
   ValueNotifier<String?> gender = ValueNotifier<String?>(null);
   final ValueNotifier<bool> isUserAuthenticated = ValueNotifier(false);
   String? vehicleImagePath;
   String? idImagePath;
-  GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   ValueNotifier<VehicleEntity?> selectedVehicle = ValueNotifier<VehicleEntity?>(
     null,
   );
@@ -74,8 +74,8 @@ class ApplyViewModel extends Cubit<ApplyViewModelState> {
         _getIdImage();
       case ApplyEventGetAllData():
         _getAllData();
-      case ApplyValidationField():
-        _validateFiled();
+      case ApplySendDataEvent():
+        _apply();
       case ApplyPasswordVisibilityEvent():
         _passwordVisibility();
     }
@@ -85,42 +85,38 @@ class ApplyViewModel extends Cubit<ApplyViewModelState> {
     isPasswordVisible.value = !isPasswordVisible.value;
   }
 
-  Future<void> _validateFiled() async {
-    if (globalKey.currentState!.validate()) {
-      emit(state.copyWith(applyFun: BaseState<ApplyResponseEntity>.loading()));
-      final result = await _applyUseCase.call(
-        ApplyRequestEntity(
-          country: controllerCountry.text,
-          firstName: controllerFirstName.text,
-          lastName: controllerSecondName.text,
-          vehicleType: selectedVehicle.value?.id ?? "",
-          vehicleNumber: controllerVehicleNumber.text,
-          nid: controllerIdNumber.text,
-          email: controllerEmail.text,
-          password: controllerPassword.text,
-          rePassword: controllerConfirmPassword.text,
-          gender: gender.value ?? ConstKeys.kMale,
-          phone: controllerPhoneNumber.text,
-          nidImg: File(idImagePath!),
-          vehicleLicense: File(vehicleImagePath!),
-        ),
-      );
-      switch (result) {
-        case ApiSuccessResult<ApplyResponseEntity>():
-          emit(
-            state.copyWith(
-              applyFun: BaseState<ApplyResponseEntity>.success(result.data),
-            ),
-          );
-        case ApiErrorResult<ApplyResponseEntity>():
-          emit(
-            state.copyWith(
-              applyFun: BaseState<ApplyResponseEntity>.error(
-                result.errorMessage,
-              ),
-            ),
-          );
-      }
+  Future<void> _apply() async {
+    emit(state.copyWith(applyFun: BaseState<ApplyResponseEntity>.loading()));
+    final result = await _applyUseCase.call(
+      ApplyRequestEntity(
+        country: controllerCountry.text,
+        firstName: controllerFirstName.text,
+        lastName: controllerSecondName.text,
+        vehicleType: selectedVehicle.value?.id ?? "",
+        vehicleNumber: controllerVehicleNumber.text,
+        nid: controllerIdNumber.text,
+        email: controllerEmail.text,
+        password: controllerPassword.text,
+        rePassword: controllerConfirmPassword.text,
+        gender: gender.value ?? ConstKeys.kMale,
+        phone: controllerPhoneNumber.text,
+        nidImg: File(idImagePath ?? ''),
+        vehicleLicense: File(vehicleImagePath ?? ''),
+      ),
+    );
+    switch (result) {
+      case ApiSuccessResult<ApplyResponseEntity>():
+        emit(
+          state.copyWith(
+            applyFun: BaseState<ApplyResponseEntity>.success(result.data),
+          ),
+        );
+      case ApiErrorResult<ApplyResponseEntity>():
+        emit(
+          state.copyWith(
+            applyFun: BaseState<ApplyResponseEntity>.error(result.errorMessage),
+          ),
+        );
     }
   }
 

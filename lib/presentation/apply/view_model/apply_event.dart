@@ -6,6 +6,6 @@ class ApplyEventPickIDImage extends ApplyEvent {}
 
 class ApplyEventGetAllData extends ApplyEvent {}
 
-class ApplyValidationField extends ApplyEvent {}
+class ApplySendDataEvent extends ApplyEvent {}
 
 class ApplyPasswordVisibilityEvent extends ApplyEvent {}
