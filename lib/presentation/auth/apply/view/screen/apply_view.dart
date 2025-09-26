@@ -24,7 +24,7 @@ class ApplyView extends StatelessWidget {
         ),
         leading: GestureDetector(
           onTap: () {
-            context.go(RouteNames.login);
+            context.pop();
           },
           child: const Icon(
             key: Key(WidgetsKeys.kApplyScreenIconArrowBack),
