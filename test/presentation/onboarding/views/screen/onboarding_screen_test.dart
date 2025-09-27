@@ -1,12 +1,16 @@
 import 'package:elevate_tracking_app/core/constants/app_images.dart';
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/custom_widget/test_app_wrapper.dart';
+import 'package:elevate_tracking_app/core/di/di.dart';
 import 'package:elevate_tracking_app/presentation/onboarding/views/screen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group("Onboarding screen Widget Test", () {
+    setUpAll(() {
+      configureDependencies();
+    });
     testWidgets('Verify Structure', (WidgetTester tester) async {
       //Arrange
       await tester.pumpWidget(const TestAppWrapper(child: OnboardingScreen()));
