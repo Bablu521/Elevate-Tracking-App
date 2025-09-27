@@ -16,7 +16,7 @@ class AuthRepoImpl implements AuthRepo {
   final AuthLocalDataSource _authLocalDataSource;
 
   AuthRepoImpl(this._authRemoteDataSource, this._authLocalDataSource);
-  
+
   @override
   Future<ApiResult<ApplyResponseEntity>> apply({
     required ApplyRequestEntity request,
@@ -38,8 +38,8 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<ApiResult<LoginEntity>> login(
-    LoginRequestEntity loginRequestEntity,
-  ) async {
+      LoginRequestEntity loginRequestEntity,
+      ) async {
     final result = await _authRemoteDataSource.login(loginRequestEntity);
     switch (result) {
       case ApiSuccessResult<LoginEntity>():
@@ -55,5 +55,26 @@ class AuthRepoImpl implements AuthRepo {
         break;
     }
     return result;
+  }
+
+  @override
+  Future<ApiResult<ForgetPasswordEntity>> forgetPassword(
+      ForgetPasswordRequestEntity request,
+      ) {
+    return _authRemoteDataSource.forgetPassword(request);
+  }
+
+  @override
+  Future<ApiResult<ResetPasswordEntity>> resetPassword(
+      ResetPasswordRequestEntity request,
+      ) {
+    return _authRemoteDataSource.resetPassword(request);
+  }
+
+  @override
+  Future<ApiResult<EmailVerificationEntity>> emailVerification(
+      EmailVerificationRequestEntity request,
+      ) {
+    return _authRemoteDataSource.emailVerification(request);
   }
 }

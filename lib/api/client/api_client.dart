@@ -14,7 +14,7 @@ part 'api_client.g.dart';
 abstract class ApiClient {
   @factoryMethod
   factory ApiClient(Dio dio) = _ApiClient;
-  
+
   @POST(Endpoints.apply)
   Future<ApplyResponseDto> apply(@Body() FormData request);
 
@@ -23,4 +23,19 @@ abstract class ApiClient {
 
   @POST(Endpoints.login)
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
+
+  @POST(Endpoints.forgetPassword)
+  Future<ForgetPasswordResponse> forgetPassword(
+      @Body() ForgetPasswordRequest body,
+      );
+
+  @POST(Endpoints.verifyReset)
+  Future<EmailVerificationResponse> emailVerification(
+      @Body() EmailVerificationRequest body,
+      );
+
+  @PUT(Endpoints.resetPassword)
+  Future<ResetPasswordResponse> resetPassword(
+      @Body() ResetPasswordRequest body,
+      );
 }

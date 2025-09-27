@@ -34,16 +34,46 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<ApiResult<List<VehicleEntity>>> getAllVehicles() async {
     return safeApiCall<VehiclesResponse, List<VehicleEntity>>(
-      () => _apiClient.getAllVehicles(),
-      (dto) => dto.vehicles?.map((v) => v.toEntity()).toList() ?? [],
+          () => _apiClient.getAllVehicles(),
+          (dto) => dto.vehicles?.map((v) => v.toEntity()).toList() ?? [],
     );
   }
 
   @override
   Future<ApiResult<LoginEntity>> login(LoginRequestEntity loginRequestEntity) {
     return safeApiCall(
-      () => _apiClient.login(loginRequestEntity.toRequest()),
-      (response) => response.toEntity(),
+          () => _apiClient.login(loginRequestEntity.toRequest()),
+          (response) => response.toEntity(),
+    );
+  }
+
+  @override
+  Future<ApiResult<ForgetPasswordEntity>> forgetPassword(
+      ForgetPasswordRequestEntity request,
+      ) async {
+    return safeApiCall(
+          () => _apiClient.forgetPassword(request.toRequest()),
+          (response) => response.toEntity(),
+    );
+  }
+
+  @override
+  Future<ApiResult<ResetPasswordEntity>> resetPassword(
+      ResetPasswordRequestEntity request,
+      ) async {
+    return safeApiCall(
+          () => _apiClient.resetPassword(request.toRequest()),
+          (response) => response.toEntity(),
+    );
+  }
+
+  @override
+  Future<ApiResult<EmailVerificationEntity>> emailVerification(
+      EmailVerificationRequestEntity request,
+      ) async {
+    return safeApiCall(
+          () => _apiClient.emailVerification(request.toRequest()),
+          (response) => response.toEntity(),
     );
   }
 }

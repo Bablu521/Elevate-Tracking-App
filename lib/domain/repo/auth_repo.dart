@@ -14,7 +14,18 @@ abstract interface class AuthRepo {
   Future<ApiResult<List<VehicleEntity>>> getAllVehicles();
 
   Future<ApiResult<List<CountryEntity>>> getAllCountries();
-  
+
   Future<ApiResult<LoginEntity>> login(LoginRequestEntity loginRequestEntity);
 
+  Future<ApiResult<ForgetPasswordEntity>> forgetPassword(
+      ForgetPasswordRequestEntity request,
+      );
+
+  Future<ApiResult<EmailVerificationEntity>> emailVerification(
+      EmailVerificationRequestEntity request,
+      );
+
+  Future<ApiResult<ResetPasswordEntity>> resetPassword(
+      ResetPasswordRequestEntity request,
+      );
 }

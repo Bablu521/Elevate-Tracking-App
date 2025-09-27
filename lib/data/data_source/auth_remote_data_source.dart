@@ -9,9 +9,20 @@ abstract interface class AuthRemoteDataSource {
   Future<ApiResult<ApplyResponseEntity>> apply({
     required ApplyRequestEntity request,
   });
-  
+
   Future<ApiResult<List<VehicleEntity>>> getAllVehicles();
 
   Future<ApiResult<LoginEntity>> login(LoginRequestEntity loginRequestEntity);
-  
+
+  Future<ApiResult<ForgetPasswordEntity>> forgetPassword(
+      ForgetPasswordRequestEntity request,
+      );
+
+  Future<ApiResult<EmailVerificationEntity>> emailVerification(
+      EmailVerificationRequestEntity request,
+      );
+
+  Future<ApiResult<ResetPasswordEntity>> resetPassword(
+      ResetPasswordRequestEntity request,
+      );
 }

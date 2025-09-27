@@ -43,6 +43,10 @@ abstract class AppRouter {
       path: RouteNames.login,
       builder: (context, state) => const LoginScreen(),
     ),
+    GoRoute(
+      path: RouteNames.forgetPassword,
+      builder: (context, state) =>  const ForgetPasswordScreen(),
+    ),
   ];
 
   static GoRouter router(String? token) {
