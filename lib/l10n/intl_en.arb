@@ -1,4 +1,5 @@
 {
+  "appName": "Tracking App",
   "connectionTimeout": "Connection timeout. Please try again later.",
   "sendTimeout": "Request timed out. Please try again.",
   "receiveTimeout": "Server took too long to respond.",
@@ -29,11 +30,19 @@
   "yes": "Yes",
   "loading": "Loading...",
   "welcomeToFloweryRiderApp": "Welcome to \nFlowery rider app",
-  "login": "Login",
   "applyNow": "Apply now",
   "yourApplicationHasBeenSubmitted": "Your application has been \n submitted!",
   "thankYouForProvidingYourApplicationWeWillReviewYourApplicationAndWillGetBackToYouSoon": "Thank you for providing your application,  \n we will review your application and will \n get back to you soon.",
   "home": "Home",
   "orders": "Orders",
-  "profile": "Profile"
+  "profile": "Profile",
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "rememberMe": "Remember me",
+  "forgotPasswordWithQuestionMark": "Forgot password?",
+  "enterYourEmail": "Enter your email",
+  "enterYourPassword": "Enter your password",
+  "continueWord": "Continue",
+  "error": "Error"
 }

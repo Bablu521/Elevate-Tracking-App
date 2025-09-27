@@ -5,11 +5,15 @@ import 'package:elevate_tracking_app/presentation/main_home/views/screen/main_ho
 import 'package:elevate_tracking_app/presentation/onboarding/views/screen/onboarding_screen.dart';
 import 'package:elevate_tracking_app/presentation/orders/views/screen/orders_screen.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/screen/profile_screen.dart';
+import 'package:elevate_tracking_app/presentation/auth/login/view/screen/login_screen.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
-
   static final List<GoRoute> routes = [
+    GoRoute(
+      path: RouteNames.login,
+      builder: (context, state) => const LoginScreen(),
+    ),
     GoRoute(
       path: RouteNames.onboarding,
       builder: (context, state) => const OnboardingScreen(),
@@ -34,10 +38,13 @@ abstract class AppRouter {
       path: RouteNames.profile,
       builder: (context, state) => const ProfileScreen(),
     ),
+
   ];
 
-  static final router = GoRouter(
-    initialLocation: RouteNames.onboarding,
-    routes: routes,
-  );
+  static GoRouter router(String? token) {
+    return GoRouter(
+      initialLocation: token == null ? RouteNames.onboarding : RouteNames.home,
+      routes: routes,
+    );
+  }
 }
