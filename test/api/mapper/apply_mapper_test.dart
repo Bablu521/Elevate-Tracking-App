@@ -2,8 +2,8 @@ import 'package:elevate_tracking_app/api/mapper/apply_mapper.dart';
 import 'package:elevate_tracking_app/api/models/responses/apply_response_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/country_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicle.dart';
-import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/request/apply_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/country_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/request/apply_request_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../fixture/apply_fixture.dart';

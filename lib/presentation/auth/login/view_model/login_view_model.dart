@@ -8,8 +8,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/constants/const_keys.dart';
-import '../../../../domain/entites/login_entity.dart';
-import '../../../../domain/entites/requests/login_request_entity.dart';
+import '../../../../domain/entities/login_entity.dart';
+import '../../../../domain/entities/requests/login_request_entity.dart';
 
 part 'login_state.dart';
 

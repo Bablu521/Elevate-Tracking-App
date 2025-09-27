@@ -1,22 +1,24 @@
 import 'dart:convert';
+
 import 'package:elevate_tracking_app/api/mapper/apply_mapper.dart';
 import 'package:elevate_tracking_app/api/models/responses/country_dto.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
+import 'package:elevate_tracking_app/core/constants/const_keys.dart';
 import 'package:elevate_tracking_app/core/constants/end_points.dart';
 import 'package:elevate_tracking_app/data/data_source/auth_local_data_source.dart';
-import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
 import 'package:flutter/services.dart';
-import 'package:elevate_tracking_app/core/constants/const_keys.dart';
-import 'package:elevate_tracking_app/domain/entites/requests/login_request_entity.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/entities/country_entity.dart';
+import '../../domain/entities/requests/login_request_entity.dart';
+
 @Injectable(as: AuthLocalDataSource)
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
-
   final AssetBundle bundle;
   final FlutterSecureStorage _secureStorage;
-  AuthLocalDataSourceImpl(this._secureStorage,{AssetBundle? testBundle})
+
+  AuthLocalDataSourceImpl(this._secureStorage, {AssetBundle? testBundle})
     : bundle = testBundle ?? rootBundle;
 
   @override
@@ -50,7 +52,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
         key: ConstKeys.kUserPassword,
         value: loginRequestEntity.password,
       );
-    }else{
+    } else {
       await _secureStorage.delete(key: ConstKeys.kUserLogin);
       await _secureStorage.delete(key: ConstKeys.kUserPassword);
     }

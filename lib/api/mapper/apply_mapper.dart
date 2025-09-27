@@ -1,11 +1,12 @@
+import 'package:elevate_tracking_app/api/models/requests/apply_request_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/apply_response_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/country_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicle.dart';
-import 'package:elevate_tracking_app/domain/entites/apply_response_entity.dart';
-import 'package:elevate_tracking_app/api/models/requests/apply_request_dto.dart';
-import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/request/apply_request_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/vehicles_entity.dart';
+
+import '../../domain/entities/apply_response_entity.dart';
+import '../../domain/entities/country_entity.dart';
+import '../../domain/entities/request/apply_request_entity.dart';
+import '../../domain/entities/vehicles_entity.dart';
 
 extension ApplyResponseMapper on ApplyResponseDto {
   ApplyResponseEntity toEntity() {

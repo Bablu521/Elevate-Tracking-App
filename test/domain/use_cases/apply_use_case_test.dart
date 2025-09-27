@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/data/repo/auth_repo_impl.dart';
-import 'package:elevate_tracking_app/domain/entites/apply_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/apply_response_entity.dart';
 import 'package:elevate_tracking_app/domain/use_cases/apply_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

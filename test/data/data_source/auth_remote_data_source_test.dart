@@ -4,8 +4,8 @@ import 'package:elevate_tracking_app/api/data_source/auth_remote_data_source_imp
 import 'package:elevate_tracking_app/api/models/responses/apply_response_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicles_response.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
-import 'package:elevate_tracking_app/domain/entites/apply_response_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/vehicles_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/apply_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/vehicles_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

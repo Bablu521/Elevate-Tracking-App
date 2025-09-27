@@ -2,10 +2,6 @@ import 'dart:io';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/base_state/base_state.dart';
 import 'package:elevate_tracking_app/core/constants/const_keys.dart';
-import 'package:elevate_tracking_app/domain/entites/apply_response_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/request/apply_request_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/vehicles_entity.dart';
 import 'package:elevate_tracking_app/domain/use_cases/apply_use_case.dart';
 import 'package:elevate_tracking_app/domain/use_cases/get_all_country_use_case.dart';
 import 'package:elevate_tracking_app/domain/use_cases/get_all_vehicles_use_case.dart';
@@ -17,6 +13,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart' as p;
+
+import '../../../../domain/entities/apply_response_entity.dart';
+import '../../../../domain/entities/country_entity.dart';
+import '../../../../domain/entities/request/apply_request_entity.dart';
+import '../../../../domain/entities/vehicles_entity.dart';
 part 'apply_view_model_state.dart';
 
 @injectable

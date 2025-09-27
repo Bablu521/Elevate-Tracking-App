@@ -1,6 +1,6 @@
 import 'package:elevate_tracking_app/api/data_source/auth_local_data_source_impl.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
-import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/country_entity.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

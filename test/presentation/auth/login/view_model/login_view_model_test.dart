@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/constants/const_keys.dart';
-import 'package:elevate_tracking_app/domain/entites/login_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/login_entity.dart';
 import 'package:elevate_tracking_app/domain/use_cases/login_use_case.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view_model/login_events.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view_model/login_view_model.dart';

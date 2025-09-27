@@ -2,8 +2,8 @@ import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/api_result/api_result.dart';
-import '../entites/login_entity.dart';
-import '../entites/requests/login_request_entity.dart';
+import '../entities/login_entity.dart';
+import '../entities/requests/login_request_entity.dart';
 
 @injectable
 class LoginUseCase {

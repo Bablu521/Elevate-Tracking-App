@@ -9,6 +9,8 @@ import 'package:elevate_tracking_app/presentation/orders/views/screen/orders_scr
 import 'package:elevate_tracking_app/presentation/profile/views/screen/profile_screen.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../presentation/auth/forget_password/views/screen/forget_password_screen.dart';
+
 abstract class AppRouter {
   static final List<GoRoute> routes = [
     GoRoute(

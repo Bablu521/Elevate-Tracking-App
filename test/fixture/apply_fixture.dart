@@ -9,10 +9,10 @@ import 'package:elevate_tracking_app/api/models/responses/driver_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicle.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicles_response.dart';
 import 'package:elevate_tracking_app/core/constants/end_points.dart';
-import 'package:elevate_tracking_app/domain/entites/apply_response_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/request/apply_request_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/vehicles_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/apply_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/country_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/request/apply_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/vehicles_entity.dart';
 
 import 'fake_file_json.dart';
 import 'fake_image_file.dart';

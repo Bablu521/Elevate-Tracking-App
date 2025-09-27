@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/data/repo/auth_repo_impl.dart';
-import 'package:elevate_tracking_app/domain/entites/vehicles_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/vehicles_entity.dart';
 import 'package:elevate_tracking_app/domain/use_cases/get_all_vehicles_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
