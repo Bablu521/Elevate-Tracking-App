@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../generated/l10n.dart';
 import '../constants/app_colors.dart';
@@ -61,7 +62,7 @@ class CustomDialog {
                   if (positiveOnClick != null) {
                     positiveOnClick!();
                   } else {
-                    Navigator.of(ctx).pop();
+                    ctx.pop();
                   }
                 },
                 child: Text(
@@ -109,15 +110,13 @@ class CustomDialog {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.white,
-                        side: BorderSide(
-                          color: AppColors.black,
-                        )
+                        side: BorderSide(color: AppColors.black),
                       ),
                       onPressed: () {
                         if (negativeOnClick != null) {
                           negativeOnClick!();
                         } else {
-                          Navigator.of(ctx).pop();
+                          ctx.pop();
                         }
                       },
                       child: Text(
@@ -135,7 +134,7 @@ class CustomDialog {
                         if (positiveOnClick != null) {
                           positiveOnClick!();
                         } else {
-                          Navigator.of(ctx).pop();
+                          ctx.pop();
                         }
                       },
                       child: Text(
