@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:elevate_tracking_app/api/data_source/auth_local_data_source_impl.dart';
-import 'package:elevate_tracking_app/api/data_source/auth_remote_data_source_impl.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
+import 'package:elevate_tracking_app/data/data_source/auth_local_data_source.dart';
+import 'package:elevate_tracking_app/data/data_source/auth_remote_data_source.dart';
 import 'package:elevate_tracking_app/data/repo/auth_repo_impl.dart';
 import 'package:elevate_tracking_app/domain/entites/apply_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
@@ -10,10 +10,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../fixture/apply_fixture.dart';
+import '../../dummy/apply_fixture.dart';
 import 'auth_repo_impl_test.mocks.dart';
 
-@GenerateMocks([AuthRemoteDataSourceImpl, AuthLocalDataSourceImpl])
+@GenerateMocks([AuthRemoteDataSource, AuthLocalDataSource])
 void main() {
   group("Test Apply", () {
     final fakeApplyRequestEntity = ApplyFixture.fakeRequestEntity();
@@ -21,17 +21,17 @@ void main() {
     final fakeAllCountry = ApplyFixture.fakeCountryEntityList();
     final List<VehicleEntity> fakeListVehicles =
         ApplyFixture.fakeVehicleEntity();
-    late MockAuthRemoteDataSourceImpl mockAuthRemoteDataSourceImpl;
-    late MockAuthLocalDataSourceImpl mockAuthLocalDataSourceImpl;
+    late MockAuthRemoteDataSource mockAuthRemoteDataSourceImpl;
+    late MockAuthLocalDataSource mockAuthLocalDataSourceImpl;
     late AuthRepoImpl authRepoImpl;
     final DioException dioException = DioException(
       requestOptions: RequestOptions(),
       message: "fake_dio_message",
     );
     final Exception fakeException = Exception();
-    setUp(() {
-      mockAuthRemoteDataSourceImpl = MockAuthRemoteDataSourceImpl();
-      mockAuthLocalDataSourceImpl = MockAuthLocalDataSourceImpl();
+    setUpAll(() {
+      mockAuthRemoteDataSourceImpl = MockAuthRemoteDataSource();
+      mockAuthLocalDataSourceImpl = MockAuthLocalDataSource();
       authRepoImpl = AuthRepoImpl(
         mockAuthRemoteDataSourceImpl,
         mockAuthLocalDataSourceImpl,

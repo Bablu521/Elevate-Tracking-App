@@ -6,7 +6,7 @@ import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/request/apply_request_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../fixture/apply_fixture.dart';
+import '../../dummy/apply_fixture.dart';
 
 void main() {
   group("Apply Mapper", () {

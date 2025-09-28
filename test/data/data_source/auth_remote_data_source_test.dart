@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../fixture/apply_fixture.dart';
+import '../../dummy/apply_fixture.dart';
 import 'auth_remote_data_source_test.mocks.dart';
 
 @GenerateMocks([ApiClient])

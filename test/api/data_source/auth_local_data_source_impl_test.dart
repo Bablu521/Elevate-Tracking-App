@@ -5,8 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 
-import '../../fixture/apply_fixture.dart';
-import '../../fixture/fake_file_json.dart';
+import '../../dummy/apply_fixture.dart';
+import '../../dummy/fake_file_json.dart';
 
 @GenerateMocks([AssetBundle])
 void main() {

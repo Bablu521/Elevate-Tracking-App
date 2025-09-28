@@ -140,7 +140,8 @@ class ApplyViewModel extends Cubit<ApplyViewModelState> {
   }
 
   Future<void> _getAllData() async {
-    await Future.wait([_getAllCountry(), _getAllVehicles()]);
+    await _getAllCountry();
+    await _getAllVehicles();
   }
 
   Future<void> _getVehicleLicense() async {
