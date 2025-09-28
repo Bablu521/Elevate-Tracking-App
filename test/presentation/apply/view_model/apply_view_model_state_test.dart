@@ -11,21 +11,13 @@ import 'package:elevate_tracking_app/domain/use_cases/get_all_vehicles_use_case.
 import 'package:elevate_tracking_app/presentation/apply/view_model/apply_event.dart';
 import 'package:elevate_tracking_app/presentation/apply/view_model/apply_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../dummy/apply_fixture.dart';
-import '../../../dummy/fake_image_file.dart';
 import 'apply_view_model_state_test.mocks.dart';
 
-@GenerateMocks([
-  GetAllCountryUseCase,
-  ApplyUseCase,
-  GetAllVehiclesUseCase,
-  ImagePicker,
-  XFile,
-])
+@GenerateMocks([GetAllCountryUseCase, ApplyUseCase, GetAllVehiclesUseCase])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late MockGetAllCountryUseCase mockGetAllCountryUseCase;
@@ -33,7 +25,6 @@ void main() {
   late MockApplyUseCase mockApplyUseCase;
   late ApplyViewModelState state;
   late ApplyViewModel viewModel;
-  late MockImagePicker mockPicker;
   final ApplyResponseEntity applyResponseEntity =
       ApplyFixture.fakeResponseEntity();
   final List<VehicleEntity> vehicleResponseEntity =
@@ -47,7 +38,6 @@ void main() {
   );
 
   setUp(() {
-    mockPicker = MockImagePicker();
     mockApplyUseCase = MockApplyUseCase();
     mockGetAllVehiclesUseCase = MockGetAllVehiclesUseCase();
     mockGetAllCountryUseCase = MockGetAllCountryUseCase();
