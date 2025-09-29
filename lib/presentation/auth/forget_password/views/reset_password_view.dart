@@ -98,12 +98,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                   SizedBox(height: 32.h),
                   Text(
                     textAlign: TextAlign.center,
-                    "AppLocalizations.of(context).resetPassword",
+                    AppLocalizations.of(context).resetPassword,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   Text(
                     textAlign: TextAlign.center,
-                    "AppLocalizations.of(context).passwordMustNotEmpty",
+                    AppLocalizations.of(context).passwordMustNotEmpty,
                     style: Theme.of(
                       context,
                     ).textTheme.bodySmall!.copyWith(color: AppColors.gray),
@@ -114,9 +114,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                     controller: _forgetPasswordViewModel.newPasswordController,
                     style: Theme.of(context).textTheme.bodySmall,
                     validator: Validations.validatePassword,
-                    decoration: const InputDecoration(
-                      labelText: "AppLocalizations.of(context).newPassword",
-                      hintText: "AppLocalizations.of(context).enterYourPassword",
+                    decoration:  InputDecoration(
+                      labelText: AppLocalizations.of(context).newPassword,
+                      hintText: AppLocalizations.of(context).enterYourPassword,
                     ),
                   ),
                   SizedBox(height: 8.h),
@@ -130,9 +130,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                         _forgetPasswordViewModel.newPasswordController.text,
                       );
                     },
-                    decoration: const InputDecoration(
-                      labelText: "AppLocalizations.of(context).confirmPassword",
-                      hintText: "AppLocalizations.of(context).confirmPassword",
+                    decoration:  InputDecoration(
+                      labelText: AppLocalizations.of(context).confirmPassword,
+                      hintText: AppLocalizations.of(context).confirmPassword,
                     ),
                   ),
                   SizedBox(height: 32.h),

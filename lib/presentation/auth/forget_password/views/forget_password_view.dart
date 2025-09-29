@@ -1,4 +1,5 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
+import 'package:elevate_tracking_app/core/router/app_router.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +21,8 @@ class ForgetPassword extends StatefulWidget {
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   late final ForgetPasswordViewModel _forgetPasswordViewModel;
-  bool isDialogVisible = false;
+
+  bool isDialogShow = false;
 
   @override
   void initState() {
@@ -52,38 +54,31 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           bloc: _forgetPasswordViewModel,
 
           listener: (context, state) {
-            if (!state.isLoading && isDialogVisible) {
-             context.go(RouteNames.emailVerification);
-              isDialogVisible = false;
-              CustomDialog.positiveButton(
-                context: context,
-                title: AppLocalizations.of(context).emailIsCorrect,
-                message: state.errorMessage,
-              );
-            }
-            if (state.isLoading && !isDialogVisible) {
-              isDialogVisible = true;
+           if (isDialogShow == true){
+             context.pop();
+             isDialogShow = false;
+           }
+            if (state.isLoading) {
+              isDialogShow=true;
               CustomDialog.loading(context: context);
-            } else if (state.errorMessage != null) {
+            }
+            else if(state.errorMessage!=null ) {
               CustomDialog.positiveButton(
                 context: context,
                 title: AppLocalizations.of(context).error,
                 message: state.errorMessage,
               );
             }
-
-            if (state.isSuccess) {
+          else {
               CustomDialog.positiveButton(
                 context: context,
                 title: AppLocalizations.of(context).success,
                 message:
-                    AppLocalizations.of(context).passwordResetSuccessfully,
+                AppLocalizations.of(context).passwordResetSuccessfully,
                 cancelable: false,
-                positiveOnClick: () => Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  RouteNames.login,
-                  (route) => false,
-                ),
+
+                positiveOnClick: (){
+                  context.go(RouteNames.emailVerification);},
               );
             }
           },

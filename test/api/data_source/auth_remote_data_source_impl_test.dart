@@ -1,5 +1,3 @@
-
-
 import 'package:elevate_tracking_app/api/client/api_client.dart';
 import 'package:elevate_tracking_app/api/data_source/auth_remote_data_source_impl.dart';
 import 'package:elevate_tracking_app/api/models/email_verification_dto.dart';
