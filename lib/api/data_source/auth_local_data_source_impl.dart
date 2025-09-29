@@ -26,7 +26,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
         key: ConstKeys.kUserPassword,
         value: loginRequestEntity.password,
       );
-    }else{
+    } else {
       await _secureStorage.delete(key: ConstKeys.kUserLogin);
       await _secureStorage.delete(key: ConstKeys.kUserPassword);
     }
@@ -35,5 +35,10 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<void> saveUserToken({required String token}) async {
     await _secureStorage.write(key: ConstKeys.keyUserToken, value: token);
+  }
+
+  @override
+  Future<void> userLogout() async {
+    await _secureStorage.delete(key: ConstKeys.keyUserToken);
   }
 }

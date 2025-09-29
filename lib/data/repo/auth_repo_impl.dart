@@ -1,5 +1,6 @@
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/domain/entites/login_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/requests/login_request_entity.dart';
 import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
@@ -33,5 +34,12 @@ class AuthRepoImpl implements AuthRepo {
         break;
     }
     return result;
+  }
+
+  @override
+  Future<ApiResult<LogoutResponseEntity>> logout() async {
+    final response = await _authRemoteDataSource.logout();
+    await _authLocalDataSource.userLogout();
+    return response;
   }
 }

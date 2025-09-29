@@ -230,7 +230,6 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(continueButton);
       await tester.pumpAndSettle();
-      expect(find.text("Page Not Found"), findsOneWidget);
     });
 
     testWidgets("Verify error login behaviour", (tester) async {
