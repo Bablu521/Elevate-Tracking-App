@@ -1,21 +1,27 @@
 import 'package:elevate_tracking_app/api/data_source/auth_local_data_source_impl.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
+import 'package:elevate_tracking_app/core/constants/const_keys.dart';
 import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
 import '../../dummy/apply_fixture.dart';
 import '../../dummy/fake_file_json.dart';
+import '../../dummy/login_dummy_data.dart';
+import '../../presentation/auth/login/view/screen/login_screen_test.mocks.dart';
 
 @GenerateMocks([AssetBundle])
 void main() {
   group("test get all country", () {
     late AuthLocalDataSourceImpl dataSource;
     late FakeAssetBundle fakeBundle;
+    late MockFlutterSecureStorage mockStorage;
     setUp(() {
+      mockStorage = MockFlutterSecureStorage();
       fakeBundle = ApplyFixture.fakeBundle;
-      dataSource = AuthLocalDataSourceImpl(testBundle: fakeBundle);
+      dataSource = AuthLocalDataSourceImpl(mockStorage, fakeBundle);
     });
 
     test('returns List<CountryEntity> when fixture is valid', () async {
@@ -33,11 +39,79 @@ void main() {
 
     test('returns error when asset is missing', () async {
       final emptyBundle = FakeAssetBundle({});
-      final ds = AuthLocalDataSourceImpl(testBundle: emptyBundle);
+      final ds = AuthLocalDataSourceImpl(mockStorage, emptyBundle);
 
       final result = await ds.getAllCountry();
 
       expect(result, isA<ApiErrorResult>());
+    });
+  });
+  group("test AuthLocalDataSourceImpl", () {
+    late FakeAssetBundle fakeBundle;
+    late MockFlutterSecureStorage mockStorage;
+    late AuthLocalDataSourceImpl dataSource;
+
+    setUp(() {
+      fakeBundle = ApplyFixture.fakeBundle;
+      mockStorage = MockFlutterSecureStorage();
+      dataSource = AuthLocalDataSourceImpl(mockStorage, fakeBundle);
+    });
+
+    group("saveUserRememberMe", () {
+      final loginRequestEntity = LoginDummyData().fakeLoginRequestEntity;
+
+      test("should save email & password when remember me is true", () async {
+        when(
+          mockStorage.read(key: ConstKeys.keyRememberMe),
+        ).thenAnswer((_) async => ConstKeys.trueKey);
+
+        await dataSource.saveUserRememberMe(
+          loginRequestEntity: loginRequestEntity,
+        );
+
+        verify(mockStorage.read(key: ConstKeys.keyRememberMe)).called(1);
+        verify(
+          mockStorage.write(
+            key: ConstKeys.kUserLogin,
+            value: loginRequestEntity.email,
+          ),
+        ).called(1);
+        verify(
+          mockStorage.write(
+            key: ConstKeys.kUserPassword,
+            value: loginRequestEntity.password,
+          ),
+        ).called(1);
+      });
+
+      test(
+        "should delete email & password when remember me is not true",
+        () async {
+          when(
+            mockStorage.read(key: ConstKeys.keyRememberMe),
+          ).thenAnswer((_) async => "false");
+
+          await dataSource.saveUserRememberMe(
+            loginRequestEntity: loginRequestEntity,
+          );
+
+          verify(mockStorage.read(key: ConstKeys.keyRememberMe)).called(1);
+          verify(mockStorage.delete(key: ConstKeys.kUserLogin)).called(1);
+          verify(mockStorage.delete(key: ConstKeys.kUserPassword)).called(1);
+        },
+      );
+    });
+
+    group("saveUserToken", () {
+      test("should write token to storage", () async {
+        const token = "fake-token";
+
+        await dataSource.saveUserToken(token: token);
+
+        verify(
+          mockStorage.write(key: ConstKeys.keyUserToken, value: token),
+        ).called(1);
+      });
     });
   });
 }

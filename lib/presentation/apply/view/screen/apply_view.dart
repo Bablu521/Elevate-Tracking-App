@@ -1,6 +1,5 @@
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/di/di.dart';
-import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/apply/view/widgets/apply_body.dart';
 import 'package:elevate_tracking_app/presentation/apply/view_model/apply_event.dart';
@@ -24,7 +23,7 @@ class ApplyView extends StatelessWidget {
         ),
         leading: GestureDetector(
           onTap: () {
-            context.go(RouteNames.login);
+            context.pop();
           },
           child: const Icon(
             key: Key(WidgetsKeys.kApplyScreenIconArrowBack),

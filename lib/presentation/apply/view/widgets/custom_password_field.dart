@@ -33,7 +33,7 @@ class CustomPasswordField extends StatelessWidget {
                 suffixIcon: GestureDetector(
                   onTap: () => cubit.doIntent(ApplyPasswordVisibilityEvent()),
                   child: Icon(
-                    value ? Icons.visibility_off : Icons.visibility,
+                    value ? Icons.visibility : Icons.visibility_off,
                     color: AppColors.gray,
                     size: 25.sp,
                   ),

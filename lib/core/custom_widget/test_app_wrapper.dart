@@ -6,6 +6,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../router/route_names.dart';
+
 class TestAppWrapper extends StatelessWidget {
   final Widget child;
 
@@ -15,10 +17,10 @@ class TestAppWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final router = GoRouter(
-      initialLocation: '/test',
+      initialLocation: RouteNames.test,
       routes: [
         GoRoute(
-          path: '/test',
+          path: RouteNames.test,
           builder: (context, state) => child, 
         ),
         ...AppRouter.routes, 

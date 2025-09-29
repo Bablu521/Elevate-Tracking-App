@@ -65,7 +65,7 @@ class ApplyViewModel extends Cubit<ApplyViewModelState> {
   ValueNotifier<CountryEntity?> selectedCountry = ValueNotifier<CountryEntity?>(
     null,
   );
-  ValueNotifier<bool> isPasswordVisible = ValueNotifier<bool>(false);
+  ValueNotifier<bool> isPasswordVisible = ValueNotifier<bool>(true);
   Future<void> doIntent(ApplyEvent event) async {
     switch (event) {
       case ApplyEventPickVehicleLicensePhoto():

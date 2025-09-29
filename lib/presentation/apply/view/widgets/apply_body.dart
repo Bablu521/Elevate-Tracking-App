@@ -1,4 +1,5 @@
 import 'package:elevate_tracking_app/core/custom_widget/custom_dialog.dart';
+import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/presentation/apply/view/widgets/apply_body_builder.dart';
 import 'package:elevate_tracking_app/presentation/apply/view_model/apply_view_model.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,7 @@ class ApplyBody extends StatelessWidget {
           CustomDialog.loading(context: context);
         } else if (state.applyFun?.data != null) {
           context.pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("success")),
-          ); // when success must be navigate to apply success
+          context.go(RouteNames.applicationApproved);
         } else if (state.applyFun?.errorMessage != null) {
           context.pop();
           CustomDialog.positiveButton(
