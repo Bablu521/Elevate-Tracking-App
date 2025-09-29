@@ -36,14 +36,15 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: RouteNames.profile,
-      builder: (context, state) => const ProfileScreen(),
+      builder: (context, state) => ProfileScreen(),
     ),
 
   ];
 
   static GoRouter router(String? token) {
     return GoRouter(
-      initialLocation: token == null ? RouteNames.onboarding : RouteNames.home,
+      initialLocation: token == null ? RouteNames.onboarding : RouteNames.mainHome,
+      // initialLocation: RouteNames.profile,
       routes: routes,
     );
   }
