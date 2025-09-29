@@ -8,13 +8,13 @@ abstract final class WidgetsKeys {
       "k_apply_screen_icon_arrow_back";
   static const String kApplyScreenWelcome = "k_apply_screen_welcome";
   static const String kApplyScreenDescription = "k_apply_screen_description";
-  static const String kApplyScreenCountryFormField =
-      "k_apply_screen_country_form_field";
   static const String kApplyScreenPadding = "k_apply_screen_padding";
   static const String kApplyScreenSingleChildScrollView =
       "k_apply_screen_single_child_scroll_view";
   static const String kApplyScreenArrowDown = "k_apply_screen_arrow_down";
   static const String kApplyScreenIconUpload = "k_apply_screen_icon_upload";
+  static const String kApplyScreenCountryFormField =
+      "k_apply_screen_country_form_field";
   static const String kApplyScreenFirstNamedFormField =
       "k_apply_screen_first_name_form_filed";
   static const String kApplyScreenSecondNamedFormField =

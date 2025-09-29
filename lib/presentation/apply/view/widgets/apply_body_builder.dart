@@ -39,7 +39,7 @@ class _ApplyBodyBuilderState extends State<ApplyBodyBuilder> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                key: const Key(WidgetsKeys.kApplyScreenPadding),
+                key: const Key(WidgetsKeys.kApplyScreenWelcome),
                 local.welcome,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.w500,
@@ -61,7 +61,6 @@ class _ApplyBodyBuilderState extends State<ApplyBodyBuilder> {
                 controller: cubit.controllerFirstName,
                 validator: Validations.validateText,
                 style: theme.textTheme.bodyMedium,
-
                 key: const Key(WidgetsKeys.kApplyScreenFirstNamedFormField),
                 decoration: InputDecoration(
                   label: Text(local.firstLegalName),
