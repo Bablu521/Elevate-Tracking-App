@@ -1,0 +1,26 @@
+import 'package:elevate_tracking_app/generated/l10n.dart';
+import 'package:elevate_tracking_app/presentation/profile/views/widgets/edit_profile_info_view_body.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+class EditProfileInfoScreen extends StatelessWidget {
+  const EditProfileInfoScreen({super.key});
+
+    @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context).editProfile , style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w500),),
+        leading: Padding(
+          padding: EdgeInsets.only(left: 8.w),
+          child: IconButton(
+            onPressed: () => context.canPop() ? context.pop() : null,
+            icon: const Icon(Icons.arrow_back_ios , size: 20,),
+          ),
+        ),
+      ),
+      body: const SafeArea(child: EditProfileInfoViewBody()),
+    );
+  }
+}

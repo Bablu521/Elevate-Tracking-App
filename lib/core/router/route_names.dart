@@ -6,7 +6,8 @@ abstract class RouteNames {
   static const String home = "/home";
   static const String orders = "/orders";
   static const String profile = "/profile";
-  static const String editProfile = "/editProfile";
+  static const String editProfileInfo = "/editProfileInfo";
+  static const String editVehicleInfo = "/editVehicleInfo";
   static const String changePassword = "/changePassword";
   static const String forgetPassword = "/forgetPassword";
   static const String resetPassword = "/resetPassword";

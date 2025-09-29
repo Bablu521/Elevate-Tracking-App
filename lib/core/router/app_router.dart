@@ -4,6 +4,8 @@ import 'package:elevate_tracking_app/presentation/home/views/screen/home_screen.
 import 'package:elevate_tracking_app/presentation/main_home/views/screen/main_home_screen.dart';
 import 'package:elevate_tracking_app/presentation/onboarding/views/screen/onboarding_screen.dart';
 import 'package:elevate_tracking_app/presentation/orders/views/screen/orders_screen.dart';
+import 'package:elevate_tracking_app/presentation/profile/views/screen/edit_profile_info_screen.dart';
+import 'package:elevate_tracking_app/presentation/profile/views/screen/edit_vehicle_info_screen.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/screen/profile_screen.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view/screen/login_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -38,13 +40,21 @@ abstract class AppRouter {
       path: RouteNames.profile,
       builder: (context, state) => ProfileScreen(),
     ),
+    GoRoute(
+      path: RouteNames.editProfileInfo,
+      builder: (context, state) => const EditProfileInfoScreen(),
+    ),
+    GoRoute(
+      path: RouteNames.editVehicleInfo,
+      builder: (context, state) => const EditVehicleInfoScreen(),
+    ),
+
 
   ];
 
   static GoRouter router(String? token) {
     return GoRouter(
       initialLocation: token == null ? RouteNames.onboarding : RouteNames.mainHome,
-      // initialLocation: RouteNames.profile,
       routes: routes,
     );
   }

@@ -50,5 +50,15 @@
   "logout": "Logout",
   "logoutDialogTitle": "LOGOUT",
   "confirmLogout": "Confirm logout!!",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "editProfile": "Edit profile",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "phoneNumber": "Phone number",
+  "change": "Change",
+  "gender": "Gender",
+  "male": "Male",
+  "female": "Female",
+  "update": "Update"
+  
 }
