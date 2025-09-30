@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
               message: state.errorMessage,
             );
           } else if (state.isLoggedIn) {
-            context.go(RouteNames.home);
+            context.go(RouteNames.mainHome);
           }
         },
         child: LoginBodySection(loginViewModel: _loginViewModel),

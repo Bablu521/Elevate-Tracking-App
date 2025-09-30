@@ -11,6 +11,8 @@ class ProfileStates extends Equatable {
   final VehicleEntity? vehicleData;
   final bool isFormChanged;
   final File? localPickedImage;
+  final bool isLogoutState;
+
 
   const ProfileStates({
     this.isLoading = false,
@@ -18,7 +20,8 @@ class ProfileStates extends Equatable {
     this.errorMessage,
     this.vehicleData,
     this.isFormChanged = false,
-    this.localPickedImage
+    this.localPickedImage,
+    this.isLogoutState = false
   });
 
   ProfileStates copyWith({
@@ -27,7 +30,8 @@ class ProfileStates extends Equatable {
     String? errorMessage,
     VehicleEntity? vehicleData,
     bool? isFormChanged,
-    File? localPickedImage
+    File? localPickedImage,
+    bool? isLogoutState
   }) {
     return ProfileStates(
       isLoading: isLoading ?? this.isLoading,
@@ -35,7 +39,8 @@ class ProfileStates extends Equatable {
       errorMessage: errorMessage ?? this.errorMessage,
       vehicleData: vehicleData ?? this.vehicleData,
       isFormChanged: isFormChanged ?? this.isFormChanged,
-      localPickedImage: localPickedImage ?? this.localPickedImage
+      localPickedImage: localPickedImage ?? this.localPickedImage,
+      isLogoutState: isLogoutState ?? this.isLogoutState
     );
   }
 

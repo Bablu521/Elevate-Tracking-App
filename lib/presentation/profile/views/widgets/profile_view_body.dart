@@ -1,6 +1,7 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_icons.dart';
 import 'package:elevate_tracking_app/core/di/di.dart';
+import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
@@ -13,6 +14,7 @@ import 'package:elevate_tracking_app/presentation/profile/views/widgets/vehicle_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileViewBody extends StatefulWidget {
   const ProfileViewBody({super.key});
@@ -55,7 +57,10 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                 SizedBox(height: 31.h),
                 ProfileDetailsCard(driverEntity: driverEntity),
                 SizedBox(height: 24.h),
-                VehicleInfoCard(driverEntity: driverEntity,vehicleEntity: vehicleEntity,),
+                VehicleInfoCard(
+                  driverEntity: driverEntity,
+                  vehicleEntity: vehicleEntity,
+                ),
                 SizedBox(height: 24.h),
                 Container(
                   height: 38.h,
@@ -127,7 +132,8 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                             barrierDismissible: false,
                             builder: (context) => LogoutDialog(
                               onLogout: () {
-                                // your logout logic here
+                                profileViewModel.doIntent(OnLogoutEvent());
+                                context.go(RouteNames.login);
                               },
                             ),
                           );

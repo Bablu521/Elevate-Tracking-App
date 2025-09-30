@@ -15,3 +15,5 @@ class OnUploadProfileImageEvent extends ProfileEvents {
   final File file;
   OnUploadProfileImageEvent({required this.file});
 }
+
+class OnLogoutEvent extends ProfileEvents {}

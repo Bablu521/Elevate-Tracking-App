@@ -1,14 +1,15 @@
 import 'dart:io';
-
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/enums/gender_enum.dart';
 import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/requests/update_profile_info_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
 import 'package:elevate_tracking_app/domain/use_cases/edit_profile_use_case.dart';
 import 'package:elevate_tracking_app/domain/use_cases/get_logged_driver_data_use_case.dart';
 import 'package:elevate_tracking_app/domain/use_cases/get_vehicle_use_case.dart';
+import 'package:elevate_tracking_app/domain/use_cases/logout_use_case.dart';
 import 'package:elevate_tracking_app/domain/use_cases/upload_profile_photo_use_case.dart';
 import 'package:elevate_tracking_app/presentation/profile/view_models/profile_events.dart';
 import 'package:elevate_tracking_app/presentation/profile/view_models/profile_states.dart';
@@ -23,12 +24,14 @@ class ProfileViewModel extends Cubit<ProfileStates> {
   final EditProfileUseCase _editProfileUseCase;
   final GetVehicleUseCase _getVehicleUseCase;
   final UploadProfilePhotoUseCase _uploadProfilePhotoUseCase;
+  final LogoutUseCase _logoutUseCase;
 
   ProfileViewModel(
     this._getLoggedDriverDataUseCase,
     this._editProfileUseCase,
     this._getVehicleUseCase,
     this._uploadProfilePhotoUseCase,
+    this._logoutUseCase,
   ) : super(const ProfileStates()) {
     firstNameController.addListener(_onFormChanged);
     lastNameController.addListener(_onFormChanged);
@@ -62,6 +65,9 @@ class ProfileViewModel extends Cubit<ProfileStates> {
       case OnUploadProfileImageEvent():
         _uploadProfilePhoto(event.file);
         break;
+      case OnLogoutEvent():
+        _logout();
+        break;
     }
   }
 
@@ -80,16 +86,18 @@ class ProfileViewModel extends Cubit<ProfileStates> {
     final result = await _getLoggedDriverDataUseCase.call();
     switch (result) {
       case ApiSuccessResult<DriverEntity>():
-        emit(state.copyWith(isLoading: false, driverData: result.data));
+      _initialFirstName = result.data.firstName;
+        _initialLastName = result.data.lastName;
+        _initialEmail = result.data.email;
+        _initialPhone = result.data.phone;
         firstNameController.text = result.data.firstName!;
         lastNameController.text = result.data.lastName!;
         emailController.text = result.data.email!;
         phoneNumberController.text = result.data.phone!;
         selectedGender = genderFromString(result.data.gender!);
-        _initialFirstName = result.data.firstName;
-        _initialLastName = result.data.lastName;
-        _initialEmail = result.data.email;
-        _initialPhone = result.data.phone;
+        emit(state.copyWith(isLoading: false, driverData: result.data,isFormChanged: false));
+        
+        
         break;
       case ApiErrorResult<DriverEntity>():
         emit(
@@ -147,8 +155,24 @@ class ProfileViewModel extends Cubit<ProfileStates> {
         await _getLoggedDriverData();
         emit(state.copyWith(localPickedImage: null));
       case ApiErrorResult<UploadProfileImageResponseEntity>():
-      emit(
-          state.copyWith(localPickedImage: null, errorMessage: result.errorMessage),
+        emit(
+          state.copyWith(
+            localPickedImage: null,
+            errorMessage: result.errorMessage,
+          ),
+        );
+    }
+  }
+
+  Future<void> _logout() async {
+    emit(state.copyWith(isLoading: true));
+    final result = await _logoutUseCase.call();
+    switch (result) {
+      case ApiSuccessResult<LogoutResponseEntity>():
+        emit(state.copyWith(isLoading: false, isLogoutState: true));
+      case ApiErrorResult<LogoutResponseEntity>():
+        emit(
+          state.copyWith(isLoading: false, errorMessage: result.errorMessage),
         );
     }
   }
