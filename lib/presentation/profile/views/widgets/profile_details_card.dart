@@ -1,12 +1,15 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_images.dart';
 import 'package:elevate_tracking_app/core/router/route_names.dart';
+import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
+import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfileDetailsCard extends StatelessWidget {
-  const ProfileDetailsCard({super.key});
+  final DriverEntity driverEntity;
+  const ProfileDetailsCard({super.key, required this.driverEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +30,11 @@ class ProfileDetailsCard extends StatelessWidget {
             Container(
               height: 50.h,
               width: 50.w,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage(AppImages.imagePhotoProfile),
+                  image: driverEntity.photo != null ?
+                  NetworkImage(driverEntity.photo.toString()): const AssetImage(AppImages.imagePhotoProfile)
                 ),
               ),
             ),
@@ -41,19 +45,20 @@ class ProfileDetailsCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "John Doe",
+                    "${driverEntity.firstName ?? AppLocalizations.of(context).firstName} ${driverEntity.lastName ?? AppLocalizations.of(context).lastName}",
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   SizedBox(height: 8.h),
                   Text(
-                    "JohnDoe@gmail.com",
+                    driverEntity.email ?? AppLocalizations.of(context).email,
                     style: Theme.of(
                       context,
                     ).textTheme.bodySmall!.copyWith(fontSize: 13),
                   ),
                   SizedBox(height: 8.h),
                   Text(
-                    "012113456789",
+                    driverEntity.phone ??
+                        AppLocalizations.of(context).phoneNumber,
                     style: Theme.of(
                       context,
                     ).textTheme.bodySmall!.copyWith(fontSize: 13),

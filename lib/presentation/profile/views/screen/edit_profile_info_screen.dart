@@ -20,7 +20,7 @@ class EditProfileInfoScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: const SafeArea(child: EditProfileInfoViewBody()),
+      body: SafeArea(child: EditProfileInfoViewBody()),
     );
   }
 }

@@ -3,20 +3,19 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/enums/gender_enum.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
+import 'package:elevate_tracking_app/presentation/profile/view_models/profile_view_model.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class GenderRadioListTile extends StatefulWidget {
-  const GenderRadioListTile({super.key});
-
-  
+  final ProfileViewModel profileViewModel;
+  const GenderRadioListTile({super.key,required this.profileViewModel});
 
   @override
   State<GenderRadioListTile> createState() => _GenderRadioListTileState();
 }
 
 class _GenderRadioListTileState extends State<GenderRadioListTile> {
-  Gender? selectedGender = Gender.male;
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +34,7 @@ class _GenderRadioListTileState extends State<GenderRadioListTile> {
               style: Theme.of(context).textTheme.bodySmall!.copyWith(),
             ),
             value: Gender.female,
-            groupValue: selectedGender,
-            onChanged: (value) {
-              setState(() {
-                selectedGender = value;
-              });
-            },
+            groupValue: widget.profileViewModel.selectedGender,
             activeColor: AppColors.mainColor,
             fillColor: MaterialStateProperty.resolveWith<Color>((states) {
               if (states.contains(MaterialState.selected)) {
@@ -57,12 +51,7 @@ class _GenderRadioListTileState extends State<GenderRadioListTile> {
               style: Theme.of(context).textTheme.bodySmall,
             ),
             value: Gender.male,
-            groupValue: selectedGender,
-            onChanged: (value) {
-              setState(() {
-                selectedGender = value;
-              });
-            },
+            groupValue: widget.profileViewModel.selectedGender,
             activeColor: AppColors.mainColor,
             fillColor: MaterialStateProperty.resolveWith<Color>((states) {
               if (states.contains(MaterialState.selected)) {

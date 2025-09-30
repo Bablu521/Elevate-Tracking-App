@@ -1,11 +1,16 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/router/route_names.dart';
+import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
+import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class VehicleInfoCard extends StatelessWidget {
-  const VehicleInfoCard({super.key});
+  final DriverEntity driverEntity;
+  final VehicleEntity vehicleEntity;
+  const VehicleInfoCard({super.key, required this.driverEntity,required this.vehicleEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +36,20 @@ class VehicleInfoCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Vehicle info",
+                      AppLocalizations.of(context).vehicleInfo,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      "Bike",
+                      vehicleEntity.type ?? AppLocalizations.of(context).vehicleType,
                       style: Theme.of(
                         context,
                       ).textTheme.bodySmall!.copyWith(fontSize: 13),
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      "UP16DL0007",
+                      driverEntity.vehicleNumber ??
+                          AppLocalizations.of(context).vehicleNumber,
                       style: Theme.of(
                         context,
                       ).textTheme.bodySmall!.copyWith(fontSize: 13),

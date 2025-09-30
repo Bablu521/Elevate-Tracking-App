@@ -59,6 +59,8 @@
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
-  "update": "Update"
-  
+  "update": "Update",
+  "vehicleInfo": "Vehicle info",
+  "vehicleNumber": "Vehicle number",
+  "vehicleType": "Vehicle type"
 }

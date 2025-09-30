@@ -11,24 +11,28 @@ class ProfileScreen extends StatelessWidget {
 
   int notificationCount = 3;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).profile , style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w500),),
+        title: Text(
+          AppLocalizations.of(context).profile,
+          style: Theme.of(
+            context,
+          ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w500),
+        ),
         leading: Padding(
           padding: EdgeInsets.only(left: 8.w),
           child: IconButton(
             onPressed: () => context.canPop() ? context.pop() : null,
-            icon: const Icon(Icons.arrow_back_ios , size: 20,),
+            icon: const Icon(Icons.arrow_back_ios, size: 20),
           ),
         ),
         actions: [
           Stack(
             children: [
               IconButton(
-                icon: const Icon(Icons.notifications_none,size: 24,),
+                icon: const Icon(Icons.notifications_none, size: 24),
                 onPressed: () {},
               ),
               Positioned(
