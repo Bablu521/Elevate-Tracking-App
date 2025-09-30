@@ -6,9 +6,9 @@ import 'package:elevate_tracking_app/api/models/responses/profile_info_response_
 import 'package:elevate_tracking_app/api/models/responses/upload_profile_image_response_dto/upload_profile_image_response_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicle_response_dto/vehicle_response_dto.dart';
 import 'package:elevate_tracking_app/core/constants/const_keys.dart';
+import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
-
 import '../../core/constants/end_points.dart';
 
 part 'api_client.g.dart';
@@ -38,4 +38,8 @@ abstract class ApiClient {
 
   @GET('${EndPoints.vehicle}/{id}')
   Future<VehicleResponseDto> getVehicle(@Path("id") String id);
+
+  @GET(EndPoints.logout)
+  Future<LogoutResponseDto> logout();
+
 }

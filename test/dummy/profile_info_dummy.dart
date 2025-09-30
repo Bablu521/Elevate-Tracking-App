@@ -7,6 +7,9 @@ import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/requests/update_profile_info_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
+import 'package:elevate_tracking_app/api/mapper/profile_info_mapper.dart';
+import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
+import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
 
 class ProfileInfoDummy {
   static DriverDto dummyDriverDtoNull = const DriverDto(
@@ -129,4 +132,13 @@ class ProfileInfoDummy {
     message: "Profile fetched successfully",
     driver: ProfileInfoDummy.dummyDriverDtoFake, 
   );
+
+  static LogoutResponseDto fakeLogoutResponseDto() {
+    return const LogoutResponseDto(message: "success");
+  }
+
+  static LogoutResponseEntity fakeLogoutResponseEntity() {
+    return fakeLogoutResponseDto().toEntity();
+  }
+
 }

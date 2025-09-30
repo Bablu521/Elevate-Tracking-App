@@ -6,4 +6,5 @@ abstract interface class AuthLocalDataSource {
   Future<void> saveUserRememberMe({
     required LoginRequestEntity loginRequestEntity,
   });
+  Future<void> userLogout();
 }

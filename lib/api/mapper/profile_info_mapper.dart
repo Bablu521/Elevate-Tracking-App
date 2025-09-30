@@ -6,6 +6,8 @@ import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/requests/update_profile_info_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
+import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
+import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
 
 extension DriverMapper on DriverDto {
   DriverEntity toEntity() {
@@ -54,7 +56,13 @@ extension VehicleMapper on VehicleDto {
       image: image,
       createdAt: createdAt,
       updatedAt: updatedAt,
-      v: v
+      v: v,
     );
+  }
+}
+
+extension LogoutResponseMapper on LogoutResponseDto {
+  LogoutResponseEntity toEntity() {
+    return LogoutResponseEntity(message: message);
   }
 }

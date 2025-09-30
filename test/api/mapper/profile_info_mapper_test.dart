@@ -158,5 +158,11 @@ void main() {
         },
       );
     });
+
+    test("logout mapper", () {
+      final dto = ProfileInfoDummy.fakeLogoutResponseDto();
+      final entity = dto.toEntity();
+      expect(dto.message, equals(entity.message));
+    });
   });
 }

@@ -4,5 +4,5 @@ abstract class EndPoints {
   static const String editProfile = "api/v1/drivers/editProfile";
   static const String uploadProfilePhoto = "api/v1/drivers/upload-photo";
   static const String vehicle = "api/v1/vehicles";
-  
+  static const String logout = "api/v1/drivers/logout";
 }

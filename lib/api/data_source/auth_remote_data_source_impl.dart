@@ -3,11 +3,13 @@ import 'package:dio/dio.dart';
 import 'package:elevate_tracking_app/api/client/api_client.dart';
 import 'package:elevate_tracking_app/api/mapper/login_mapper.dart';
 import 'package:elevate_tracking_app/api/mapper/profile_info_mapper.dart';
+import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/api_result/safe_api_call.dart';
 import 'package:elevate_tracking_app/data/data_source/auth_remote_data_source.dart';
 import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/login_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/requests/login_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/requests/update_profile_info_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/upload_profile_image_response_entity.dart';
@@ -50,7 +52,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<ApiResult<UploadProfileImageResponseEntity>> uploadProfilePhoto(
     File file,
   ) async {
-     final multipartFile = await MultipartFile.fromFile(
+    final multipartFile = await MultipartFile.fromFile(
       file.path,
       filename: file.uri.pathSegments.last,
     );
@@ -65,6 +67,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     return safeApiCall(
       () => _apiClient.getVehicle(id),
       (response) => response.vehicle!.toEntity(),
+    );
+  }
+
+   @override
+  Future<ApiResult<LogoutResponseEntity>> logout() async {
+    return safeApiCall<LogoutResponseDto, LogoutResponseEntity>(
+      () => _apiClient.logout(),
+      (dto) => dto.toEntity(),
     );
   }
 }
