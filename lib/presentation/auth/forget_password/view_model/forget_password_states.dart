@@ -10,11 +10,10 @@ class ForgetPasswordState extends Equatable {
  final bool isLoading;
  final ForgetPasswordResponseEntity? forgetPasswordResponse;
  final EmailVerificationEntity? emailVerificationEntity;
-   final ResetPasswordResponseEntity? resetPasswordResponse;
+ final ResetPasswordResponseEntity? resetPasswordResponse;
  final String? errorMessage;
- final int pageNumber;
  final bool isSuccess;
-  final bool validateResetCode;
+ final bool validateResetCode;
 
   const ForgetPasswordState({
     this.isLoading = false,
@@ -22,7 +21,6 @@ class ForgetPasswordState extends Equatable {
      this.emailVerificationEntity,
     this.resetPasswordResponse,
     this.errorMessage,
-    this.pageNumber = 0,
     this.isSuccess = false,
     this.validateResetCode = false,
   });
@@ -43,7 +41,6 @@ class ForgetPasswordState extends Equatable {
       emailVerificationEntity: emailVerificationEntity ?? this.emailVerificationEntity,
       resetPasswordResponse: resetPasswordResponse ?? this.resetPasswordResponse,
       errorMessage: errorMessage,
-      pageNumber: pageNumber ?? this.pageNumber,
       isSuccess: isSuccess ?? this.isSuccess,
       validateResetCode: validateResetCode ?? this.validateResetCode,
     );
@@ -56,7 +53,6 @@ class ForgetPasswordState extends Equatable {
     emailVerificationEntity,
     resetPasswordResponse,
     errorMessage,
-    pageNumber,
     isSuccess,
     validateResetCode,
   ];

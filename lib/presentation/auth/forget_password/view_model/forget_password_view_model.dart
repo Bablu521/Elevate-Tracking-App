@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/api_result/api_result.dart';
 import '../../../../domain/entites/email_verification_entity.dart';
@@ -34,13 +34,15 @@ final ResetPasswordUseCase _resetPasswordUseCase;
   final TextEditingController resetCodeController = TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
   final GlobalKey<FormState> resetPasswordFormKey = GlobalKey<FormState>();
+  String? savedEmail;
 
 
 
 
   void doIntent(ForgetPasswordEvents events) {
     switch (events) {
-      case ForgetPasswordEvent():
+      case ForgetPasswordEvent(:final email):
+        savedEmail = email ?? emailController.text;
         _forgetPassword();
       case VerifyResetCodeEvent():
         _verifyResetCode();
@@ -53,7 +55,7 @@ final ResetPasswordUseCase _resetPasswordUseCase;
   Future<void> _forgetPassword() async {
     emit(state.copyWith(isLoading: true));
     final result = await _forgetPasswordUseCase(
-      ForgetPasswordRequestEntity(email: emailController.text),
+      ForgetPasswordRequestEntity(email: savedEmail! ),
     );
     switch (result) {
       case ApiSuccessResult<ForgetPasswordResponseEntity>():
@@ -61,7 +63,7 @@ final ResetPasswordUseCase _resetPasswordUseCase;
           state.copyWith(
             isLoading: false,
             forgetPasswordResponse: result.data,
-            pageNumber: 1,
+
           ),
         );
       case ApiErrorResult<ForgetPasswordResponseEntity>():
@@ -82,11 +84,15 @@ final ResetPasswordUseCase _resetPasswordUseCase;
           state.copyWith(
             isLoading: false,
             emailVerificationEntity: result.data,
-            pageNumber: 2,
+
           ),
         );
       case ApiErrorResult< EmailVerificationEntity>():
-        emit(state.copyWith(isLoading: false, validateResetCode: true));
+        emit(state.copyWith(
+          errorMessage: result.errorMessage,
+            isLoading: false,
+          forgetPasswordResponse: null,
+            ));
     }
   }
   Future<void> _resetPassword() async {
@@ -114,11 +120,11 @@ final ResetPasswordUseCase _resetPasswordUseCase;
   }
 
 
-  // @override
-  // Future<void> close() {
-  //   emailController.dispose();
-  //   newPasswordController.dispose();
-  //   confirmPasswordController.dispose();
-  //   return super.close();
-  // }
+  @override
+  Future<void> close() {
+    emailController.dispose();
+    newPasswordController.dispose();
+    confirmPasswordController.dispose();
+    return super.close();
+  }
 }

@@ -1,5 +1,4 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
-import 'package:elevate_tracking_app/core/router/app_router.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +12,7 @@ import '../view_model/forget_password_states.dart';
 import '../view_model/forget_password_view_model.dart';
 
 class ForgetPassword extends StatefulWidget {
+
   const ForgetPassword({super.key});
 
   @override
@@ -74,11 +74,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 context: context,
                 title: AppLocalizations.of(context).success,
                 message:
-                AppLocalizations.of(context).passwordResetSuccessfully,
+                AppLocalizations.of(context).codeIsSentSuccessfully,
                 cancelable: false,
-
                 positiveOnClick: (){
-                  context.go(RouteNames.emailVerification);},
+                  context.go(RouteNames.emailVerification ,extra: _forgetPasswordViewModel.emailController.text);},
               );
             }
           },
@@ -130,7 +129,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       onPressed: () {
                         if (_forgetPasswordViewModel.forgetPasswordFormKey.currentState!.validate()) {
                           _forgetPasswordViewModel.doIntent(
-                            ForgetPasswordEvent(),
+                              ForgetPasswordEvent(email: _forgetPasswordViewModel.emailController.text)
                           );
                         }
                       },

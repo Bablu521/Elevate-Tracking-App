@@ -22,7 +22,7 @@ class ResetPassword extends StatefulWidget {
 
 class _ResetPasswordState extends State<ResetPassword> {
   late final ForgetPasswordViewModel _forgetPasswordViewModel;
-  bool isDialogVisible = false;
+  bool isDialogShow = false;
 
   @override
   void initState() {
@@ -51,45 +51,36 @@ class _ResetPasswordState extends State<ResetPassword> {
           bloc: _forgetPasswordViewModel,
 
           listener: (context, state) {
-            if (!state.isLoading && isDialogVisible) {
-              isDialogVisible = false;
-              CustomDialog.positiveButton(
-                context: context,
-                title: AppLocalizations.of(context).emailIsCorrect,
-                message: state.errorMessage,
-              );
-              context.go(RouteNames.emailVerification);
+            if (isDialogShow == true){
+              context.pop();
+              isDialogShow = false;
             }
-            if (state.isLoading && !isDialogVisible) {
-              isDialogVisible = true;
+            if (state.isLoading) {
+              isDialogShow=true;
               CustomDialog.loading(context: context);
-            } else if (state.errorMessage != null) {
+            }
+            else if(state.errorMessage!=null ) {
               CustomDialog.positiveButton(
                 context: context,
                 title: AppLocalizations.of(context).error,
                 message: state.errorMessage,
               );
             }
-
-            if (state.isSuccess) {
+            else {
               CustomDialog.positiveButton(
                 context: context,
                 title: AppLocalizations.of(context).success,
-                message:
-                AppLocalizations.of(context).passwordResetSuccessfully,
+                message: AppLocalizations.of(context).codeVerifiedSuccessfully,
                 cancelable: false,
-                positiveOnClick: () => Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  RouteNames.login,
-                      (route) => false,
-                ),
+                positiveOnClick: (){
+                  context.go(RouteNames.resetPassword);},
               );
             }
           },
 
           builder: (BuildContext context, state) {
             return Form(
-              key: _forgetPasswordViewModel.resetPasswordFormKey,
+              key: _forgetPasswordViewModel.forgetPasswordFormKey,
               child:
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -110,35 +101,30 @@ class _ResetPasswordState extends State<ResetPassword> {
                   ),
                   SizedBox(height: 16.h),
                   TextFormField(
+                    obscureText: false,
+                    controller: _forgetPasswordViewModel.emailController,
+                    style: Theme.of(context).textTheme.bodySmall,
+                    validator: Validations.validateEmail,
+                    decoration:  InputDecoration(
+                      labelText: AppLocalizations.of(context).email,
+                      hintText: AppLocalizations.of(context).enterYouEmail,
+                    ),
+                  ),
+                  SizedBox(height: 8.h),
+                  TextFormField(
                     obscureText: true,
                     controller: _forgetPasswordViewModel.newPasswordController,
                     style: Theme.of(context).textTheme.bodySmall,
                     validator: Validations.validatePassword,
                     decoration:  InputDecoration(
                       labelText: AppLocalizations.of(context).newPassword,
-                      hintText: AppLocalizations.of(context).enterYourPassword,
-                    ),
-                  ),
-                  SizedBox(height: 8.h),
-                  TextFormField(
-                    obscureText: true,
-                    controller: _forgetPasswordViewModel.confirmPasswordController,
-                    style: Theme.of(context).textTheme.bodySmall,
-                    validator: (value) {
-                      return Validations.validateConfirmPassword(
-                        value,
-                        _forgetPasswordViewModel.newPasswordController.text,
-                      );
-                    },
-                    decoration:  InputDecoration(
-                      labelText: AppLocalizations.of(context).confirmPassword,
-                      hintText: AppLocalizations.of(context).confirmPassword,
+                      hintText: AppLocalizations.of(context).newPassword,
                     ),
                   ),
                   SizedBox(height: 32.h),
                   ElevatedButton(
                     onPressed: () {
-                      if (_forgetPasswordViewModel.resetPasswordFormKey.currentState!
+                      if (_forgetPasswordViewModel.forgetPasswordFormKey.currentState!
                           .validate()) {
                         _forgetPasswordViewModel.doIntent(ResetPasswordEvent());
                       }

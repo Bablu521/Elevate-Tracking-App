@@ -13,7 +13,8 @@ import '../view_model/forget_password_states.dart';
 import '../view_model/forget_password_view_model.dart';
 
 class EmailVerification extends StatefulWidget {
-  const EmailVerification({super.key});
+  final String? email;
+  const EmailVerification({super.key, this.email});
 
   @override
   State<EmailVerification> createState() => _EmailVerificationState();
@@ -21,12 +22,13 @@ class EmailVerification extends StatefulWidget {
 
 class _EmailVerificationState extends State<EmailVerification> {
   late final ForgetPasswordViewModel _forgetPasswordViewModel;
-  bool isDialogVisible = false;
+  bool isDialogShow = false;
 
   @override
   void initState() {
     super.initState();
     _forgetPasswordViewModel = getIt<ForgetPasswordViewModel>();
+    _forgetPasswordViewModel.savedEmail = widget.email;
   }
 
   @override
@@ -52,19 +54,12 @@ class _EmailVerificationState extends State<EmailVerification> {
         child: BlocConsumer<ForgetPasswordViewModel, ForgetPasswordState>(
           bloc: _forgetPasswordViewModel,
           listener: (context, state) {
-            if (!state.isLoading && isDialogVisible) {
-              isDialogVisible = false;
-              CustomDialog.positiveButton(
-                context: context,
-                title:AppLocalizations.of(context).emailIsCorrect,
-                message: state.errorMessage,
-              );
-              context.go(RouteNames.resetPassword);
-
+            if (isDialogShow == true) {
+              context.pop();
+              isDialogShow = false;
             }
-
-            if (state.isLoading && !isDialogVisible) {
-              isDialogVisible = true;
+            if (state.isLoading) {
+              isDialogShow = true;
               CustomDialog.loading(context: context);
             } else if (state.errorMessage != null) {
               CustomDialog.positiveButton(
@@ -72,20 +67,15 @@ class _EmailVerificationState extends State<EmailVerification> {
                 title: AppLocalizations.of(context).error,
                 message: state.errorMessage,
               );
-            }
-
-            if (state.isSuccess) {
+            } else {
               CustomDialog.positiveButton(
                 context: context,
                 title: AppLocalizations.of(context).success,
-                message:
-                    AppLocalizations.of(context).passwordResetSuccessfully,
+                message: AppLocalizations.of(context).codeVerifiedSuccessfully,
                 cancelable: false,
-                positiveOnClick: () => Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  RouteNames.login,
-                  (route) => false,
-                ),
+                positiveOnClick: () {
+                  context.go(RouteNames.resetPassword);
+                },
               );
             }
           },
@@ -132,12 +122,21 @@ class _EmailVerificationState extends State<EmailVerification> {
                     length: 6,
                     controller: _forgetPasswordViewModel.resetCodeController,
                     onSubmitted: (_) {
-                      if (_forgetPasswordViewModel.resetCodeController.text.length < 6) {
-                        _forgetPasswordViewModel.verifyResetCodeFormKey.currentState
+                      if (_forgetPasswordViewModel
+                              .resetCodeController
+                              .text
+                              .length <
+                          6) {
+                        _forgetPasswordViewModel
+                            .verifyResetCodeFormKey
+                            .currentState
                             ?.validate();
                       } else {
-                        _forgetPasswordViewModel.doIntent(VerifyResetCodeEvent());
-                      }},
+                        _forgetPasswordViewModel.doIntent(
+                          VerifyResetCodeEvent(),
+                        );
+                      }
+                    },
                     defaultPinTheme: PinTheme(
                       width: MediaQuery.of(context).size.width / 6,
                       height: 70.h,
@@ -157,9 +156,38 @@ class _EmailVerificationState extends State<EmailVerification> {
                         border: Border.all(color: AppColors.red),
                       ),
                     ),
-                    validator: (_) {
-                      return AppLocalizations.of(context).invalidCode;
+                    validator: (value) {
+                      if (value == null || value.length < 6) {
+                        return AppLocalizations.of(context).invalidCode;
+                      }
+                      return null;
                     },
+                  ),
+                  SizedBox(height: 0.1 * height),
+                  InkWell(
+                    onTap: () {
+                      _forgetPasswordViewModel.doIntent(ForgetPasswordEvent(email: _forgetPasswordViewModel.savedEmail));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          textAlign: TextAlign.center,
+                          AppLocalizations.of(context).didnotReceiveCode,
+                          style: Theme.of(context).textTheme.bodyMedium!
+                              .copyWith(color: AppColors.black),
+                        ),
+                        Text(
+                          textAlign: TextAlign.center,
+                          AppLocalizations.of(context).resend,
+                          style: Theme.of(context).textTheme.bodyMedium!
+                              .copyWith(
+                                color: AppColors.mainColor,
+                                decoration: TextDecoration.underline,
+                              ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
