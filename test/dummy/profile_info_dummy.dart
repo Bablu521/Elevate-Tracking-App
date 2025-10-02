@@ -5,11 +5,14 @@ import 'package:elevate_tracking_app/api/models/responses/vehicle_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicle_response_dto/vehicle_response_dto.dart';
 import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/requests/update_profile_info_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/requests/update_vehicle_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
 import 'package:elevate_tracking_app/api/mapper/profile_info_mapper.dart';
 import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
 import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
+
+import 'fake_image_file.dart';
 
 class ProfileInfoDummy {
   static DriverDto dummyDriverDtoNull = const DriverDto(
@@ -66,7 +69,8 @@ class ProfileInfoDummy {
     createdAt: DateTime.parse("2025-01-01T12:00:00Z"),
   );
 
-  static UpdateProfileInfoRequestEntity dummyUpdateProfileInfoRequestEntityNull =
+  static UpdateProfileInfoRequestEntity
+  dummyUpdateProfileInfoRequestEntityNull =
       const UpdateProfileInfoRequestEntity(
         firstName: null,
         lastName: null,
@@ -74,7 +78,8 @@ class ProfileInfoDummy {
         phone: null,
       );
 
-  static  UpdateProfileInfoRequestEntity dummyUpdateProfileInfoRequestEntityFake =
+  static UpdateProfileInfoRequestEntity
+  dummyUpdateProfileInfoRequestEntityFake =
       const UpdateProfileInfoRequestEntity(
         firstName: "Ahmed",
         lastName: "Mahmoud",
@@ -90,11 +95,12 @@ class ProfileInfoDummy {
         message: "Profile image uploaded successfully",
       );
 
-  static UploadProfileImageResponseEntity dummyUploadProfileImageResponseEntityFake =
+  static UploadProfileImageResponseEntity
+  dummyUploadProfileImageResponseEntityFake =
       const UploadProfileImageResponseEntity(
         message: "Profile image uploaded successfully",
       );
-  
+
   static VehicleDto dummyVehicleDtoNull = const VehicleDto(
     id: null,
     type: null,
@@ -122,16 +128,17 @@ class ProfileInfoDummy {
     v: 1,
   );
 
-   static final VehicleResponseDto dummyVehicleResponseDtoFake = VehicleResponseDto(
-    message: "Success",
-    vehicle: ProfileInfoDummy.dummyVehicleDtoFake
-  );
+  static final VehicleResponseDto dummyVehicleResponseDtoFake =
+      VehicleResponseDto(
+        message: "Success",
+        vehicle: ProfileInfoDummy.dummyVehicleDtoFake,
+      );
 
   static final ProfileInfoResponseDto dummyProfileInfoResponseDtoFake =
       ProfileInfoResponseDto(
-    message: "Profile fetched successfully",
-    driver: ProfileInfoDummy.dummyDriverDtoFake, 
-  );
+        message: "Profile fetched successfully",
+        driver: ProfileInfoDummy.dummyDriverDtoFake,
+      );
 
   static LogoutResponseDto fakeLogoutResponseDto() {
     return const LogoutResponseDto(message: "success");
@@ -141,4 +148,12 @@ class ProfileInfoDummy {
     return fakeLogoutResponseDto().toEntity();
   }
 
+  static Future<UpdateVehicleRequestEntity> fakeUpdateVehicleRequest() async {
+    final fakeImage = await createTempFile("fake_license.png");
+    return UpdateVehicleRequestEntity(
+      vehicleType: "Car",
+      vehicleNumber: "ABC-1234",
+      vehicleLicense: fakeImage,
+    );
+  }
 }

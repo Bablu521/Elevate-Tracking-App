@@ -3,7 +3,10 @@ import 'package:dio/dio.dart';
 import 'package:elevate_tracking_app/api/client/api_client.dart';
 import 'package:elevate_tracking_app/api/mapper/login_mapper.dart';
 import 'package:elevate_tracking_app/api/mapper/profile_info_mapper.dart';
+import 'package:elevate_tracking_app/api/models/requests/auth/update_vehicle_request_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/profile_info_response_dto/profile_info_response_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/vehicles_response.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/api_result/safe_api_call.dart';
 import 'package:elevate_tracking_app/data/data_source/auth_remote_data_source.dart';
@@ -12,6 +15,7 @@ import 'package:elevate_tracking_app/domain/entites/login_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/requests/login_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/requests/update_profile_info_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/requests/update_vehicle_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
 import 'package:injectable/injectable.dart';
@@ -70,11 +74,30 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
   }
 
-   @override
+  @override
   Future<ApiResult<LogoutResponseEntity>> logout() async {
     return safeApiCall<LogoutResponseDto, LogoutResponseEntity>(
       () => _apiClient.logout(),
       (dto) => dto.toEntity(),
     );
+  }
+
+  @override
+  Future<ApiResult<List<VehicleEntity>>> getAllVehicles() async {
+    return safeApiCall<VehiclesResponse, List<VehicleEntity>>(
+      () => _apiClient.getAllVehicles(),
+      (dto) => dto.vehicles?.map((v) => v.toEntity()).toList() ?? [],
+    );
+  }
+
+  @override
+  Future<ApiResult<DriverEntity>> updateVehicleInfo(
+    UpdateVehicleRequestEntity request,
+  ) async {
+    return safeApiCall<ProfileInfoResponseDto, DriverEntity>(() async {
+      final UpdateVehicleRequestDto dto = request.toDto();
+      final formData = await dto.toFormData();
+      return await _apiClient.updateVehicleInfo(formData);
+    }, (dto) => dto.driver!.toEntity());
   }
 }

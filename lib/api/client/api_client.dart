@@ -5,6 +5,7 @@ import 'package:elevate_tracking_app/api/models/responses/login_response.dart';
 import 'package:elevate_tracking_app/api/models/responses/profile_info_response_dto/profile_info_response_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/upload_profile_image_response_dto/upload_profile_image_response_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicle_response_dto/vehicle_response_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/vehicles_response.dart';
 import 'package:elevate_tracking_app/core/constants/const_keys.dart';
 import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
 import 'package:injectable/injectable.dart';
@@ -41,5 +42,8 @@ abstract class ApiClient {
 
   @GET(EndPoints.logout)
   Future<LogoutResponseDto> logout();
-
+  @GET(EndPoints.vehicle)
+  Future<VehiclesResponse> getAllVehicles();
+  @PUT(EndPoints.editProfile)
+  Future<ProfileInfoResponseDto> updateVehicleInfo(@Body() FormData request);
 }

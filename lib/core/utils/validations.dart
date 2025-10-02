@@ -1,5 +1,3 @@
-
-
 import 'package:elevate_tracking_app/generated/l10n.dart';
 
 class Validations {
@@ -66,8 +64,16 @@ class Validations {
     }
   }
 
+  static String? validateText(String? val) {
+    if (val == null || val.isEmpty) {
+      return AppLocalizations().thisFieldIsRequired;
+    } else {
+      return null;
+    }
+  }
+
   static String? validatePhoneNumber(String? val) {
-    final regex = RegExp(r'^(?:\+2)?01[0125][0-9]{8}$'); 
+    final regex = RegExp(r'^(?:\+2)?01[0125][0-9]{8}$');
 
     if (val == null || val.trim().isEmpty) {
       return AppLocalizations().thisFieldIsRequired;
@@ -78,6 +84,17 @@ class Validations {
     } else {
       return null;
     }
+  }
+
+  static String? validateFourteenDigitNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return AppLocalizations().numberRequired;
+    }
+    final regex = RegExp(r'^[0-9]{14}$');
+    if (!regex.hasMatch(value)) {
+      return AppLocalizations().numberMustBeFourteenDigit;
+    }
+    return null;
   }
 
   static String? validateAddress(String? val) {

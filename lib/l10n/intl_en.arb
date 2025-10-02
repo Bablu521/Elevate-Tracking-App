@@ -62,5 +62,12 @@
   "update": "Update",
   "vehicleInfo": "Vehicle info",
   "vehicleNumber": "Vehicle number",
-  "vehicleType": "Vehicle type"
+  "vehicleType": "Vehicle type",
+  "numberRequired": "Number is required",
+  "numberMustBeFourteenDigit": "Number must be 14 digit",
+  "enterVehicleNumber": "Enter Vehicle number",
+  "vehicleLicense": "Vehicle license",
+  "uploadLicensePhoto": "Upload license photo",
+  "vehicleNotFound": "Vehicle not found select new vehicle",
+  "successUpdatedData" : "Success updated data"
 }
