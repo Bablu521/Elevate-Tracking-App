@@ -45,5 +45,7 @@ class ProfileStates extends Equatable {
   }
 
   @override
-  List<Object?> get props => [isLoading, driverData, errorMessage, vehicleData, isFormChanged, localPickedImage];
+  List<Object?> get props => [isLoading, driverData, errorMessage, vehicleData, isFormChanged, localPickedImage,
+    isLogoutState,
+  ];
 }

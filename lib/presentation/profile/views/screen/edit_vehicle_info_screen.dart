@@ -1,3 +1,4 @@
+import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/widgets/edit_vehicle_info_view_body.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class EditVehicleInfoScreen extends StatelessWidget {
-  const EditVehicleInfoScreen({super.key});
+  const EditVehicleInfoScreen({super.key, required DriverEntity driverEntity});
 
   @override
   Widget build(BuildContext context) {

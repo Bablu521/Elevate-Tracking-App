@@ -87,67 +87,37 @@ void main() {
         result as ApiErrorResult<LoginEntity>;
         expect(result.errorMessage, expectedError);
       });
-    });
-  });
-  group("test logout", () {
-    late MockAuthRemoteDataSource mockAuthRemoteDataSource;
-    late MockAuthLocalDataSource mockAuthLocalDataSource;
-    late AuthRepoImpl authRepoImpl;
-    final fakeLogoutResponseEntity =
-        ProfileInfoDummy.fakeLogoutResponseEntity();
-    final DioException fakeDioException = DioException(
-      requestOptions: RequestOptions(),
-      message: "fake_message",
-    );
-    final Exception fakeException = Exception();
-    setUp(() {
-      mockAuthRemoteDataSource = MockAuthRemoteDataSource();
-      mockAuthLocalDataSource = MockAuthLocalDataSource();
-      authRepoImpl = AuthRepoImpl(
-        mockAuthRemoteDataSource,
-        mockAuthLocalDataSource,
-      );
-      provideDummy<ApiResult<LogoutResponseEntity>>(
-        ApiSuccessResult<LogoutResponseEntity>(fakeLogoutResponseEntity),
-      );
-      provideDummy<ApiResult<LogoutResponseEntity>>(
-        ApiErrorResult<LogoutResponseEntity>(fakeException),
-      );
-    });
-    test("logout success ApiResult LogoutResponseEntity", () async {
-      final expectResult = ApiSuccessResult<LogoutResponseEntity>(
-        fakeLogoutResponseEntity,
-      );
-      when(
-        mockAuthRemoteDataSource.logout(),
-      ).thenAnswer((_) async => expectResult);
-
-      final result = await authRepoImpl.logout();
-      expect(result, isA<ApiSuccessResult<LogoutResponseEntity>>());
-      expect(
-        (result as ApiSuccessResult<LogoutResponseEntity>).data.message,
-        equals(fakeLogoutResponseEntity.message),
-      );
-
-      verify(mockAuthRemoteDataSource.logout()).called(1);
-      verify(mockAuthLocalDataSource.userLogout()).called(1);
-    });
-    test("logout failure ApiResult DioError", () async {
-      final expectResult = ApiErrorResult<LogoutResponseEntity>(
-        fakeDioException,
-      );
-      when(
-        mockAuthRemoteDataSource.logout(),
-      ).thenAnswer((_) async => expectResult);
-
 
       group("test getLoggedDriverData", () {
-      test(
-        "when call it should return DriverEntity from data source with correct parameters",
-        () async {
+        test(
+          "when call it should return DriverEntity from data source with correct parameters",
+          () async {
+            //Arrange
+            final expectedEntity = ProfileInfoDummy.dummyDriverEntityFake;
+            final expectedResult = ApiSuccessResult<DriverEntity>(
+              expectedEntity,
+            );
+
+            provideDummy<ApiResult<DriverEntity>>(expectedResult);
+            when(
+              mockAuthRemoteDataSource.getLoggedDriverData(),
+            ).thenAnswer((_) async => expectedResult);
+
+            //Act
+            final result = await mockAuthRemoteDataSource.getLoggedDriverData();
+
+            //Assert
+            verify(mockAuthRemoteDataSource.getLoggedDriverData()).called(1);
+            expect(result, isA<ApiSuccessResult<DriverEntity>>());
+            result as ApiSuccessResult<DriverEntity>;
+            expect(result.data, expectedEntity);
+          },
+        );
+
+        test("when call failed it should return an error result", () async {
           //Arrange
-          final expectedEntity = ProfileInfoDummy.dummyDriverEntityFake;
-          final expectedResult = ApiSuccessResult<DriverEntity>(expectedEntity);
+          final expectedError = "Server-Error";
+          final expectedResult = ApiErrorResult<DriverEntity>(expectedError);
 
           provideDummy<ApiResult<DriverEntity>>(expectedResult);
           when(
@@ -159,49 +129,61 @@ void main() {
 
           //Assert
           verify(mockAuthRemoteDataSource.getLoggedDriverData()).called(1);
-          expect(result, isA<ApiSuccessResult<DriverEntity>>());
-          result as ApiSuccessResult<DriverEntity>;
-          expect(result.data, expectedEntity);
-        },
-      );
-
-      test("when call failed it should return an error result", () async {
-        //Arrange
-        final expectedError = "Server-Error";
-        final expectedResult = ApiErrorResult<DriverEntity>(expectedError);
-
-        provideDummy<ApiResult<DriverEntity>>(expectedResult);
-        when(
-          mockAuthRemoteDataSource.getLoggedDriverData(),
-        ).thenAnswer((_) async => expectedResult);
-
-        //Act
-        final result = await mockAuthRemoteDataSource.getLoggedDriverData();
-
-        //Assert
-        verify(mockAuthRemoteDataSource.getLoggedDriverData()).called(1);
-        expect(result, isA<ApiErrorResult<DriverEntity>>());
-        result as ApiErrorResult<DriverEntity>;
-        expect(result.errorMessage, expectedError);
+          expect(result, isA<ApiErrorResult<DriverEntity>>());
+          result as ApiErrorResult<DriverEntity>;
+          expect(result.errorMessage, expectedError);
+        });
       });
-    });
 
-    group("test editProfile", () {
-      late UpdateProfileInfoRequestEntity updateProfileInfoRequestEntity;
+      group("test editProfile", () {
+        late UpdateProfileInfoRequestEntity updateProfileInfoRequestEntity;
         setUp(() {
-        updateProfileInfoRequestEntity =
-            ProfileInfoDummy.dummyUpdateProfileInfoRequestEntityFake;
-      });
-      test(
-        "when call it should return DriverEntity from data source with correct parameters",
-        () async {
+          updateProfileInfoRequestEntity =
+              ProfileInfoDummy.dummyUpdateProfileInfoRequestEntityFake;
+        });
+        test(
+          "when call it should return DriverEntity from data source with correct parameters",
+          () async {
+            //Arrange
+            final expectedEntity = ProfileInfoDummy.dummyDriverEntityFake;
+            final expectedResult = ApiSuccessResult<DriverEntity>(
+              expectedEntity,
+            );
+
+            provideDummy<ApiResult<DriverEntity>>(expectedResult);
+            when(
+              mockAuthRemoteDataSource.editProfile(
+                updateProfileInfoRequestEntity,
+              ),
+            ).thenAnswer((_) async => expectedResult);
+
+            //Act
+            final result = await mockAuthRemoteDataSource.editProfile(
+              updateProfileInfoRequestEntity,
+            );
+
+            //Assert
+            verify(
+              mockAuthRemoteDataSource.editProfile(
+                updateProfileInfoRequestEntity,
+              ),
+            ).called(1);
+            expect(result, isA<ApiSuccessResult<DriverEntity>>());
+            result as ApiSuccessResult<DriverEntity>;
+            expect(result.data, expectedEntity);
+          },
+        );
+
+        test("when call failed it should return an error result", () async {
           //Arrange
-          final expectedEntity = ProfileInfoDummy.dummyDriverEntityFake;
-          final expectedResult = ApiSuccessResult<DriverEntity>(expectedEntity);
+          final expectedError = "Server-Error";
+          final expectedResult = ApiErrorResult<DriverEntity>(expectedError);
 
           provideDummy<ApiResult<DriverEntity>>(expectedResult);
           when(
-            mockAuthRemoteDataSource.editProfile(updateProfileInfoRequestEntity),
+            mockAuthRemoteDataSource.editProfile(
+              updateProfileInfoRequestEntity,
+            ),
           ).thenAnswer((_) async => expectedResult);
 
           //Act
@@ -211,56 +193,60 @@ void main() {
 
           //Assert
           verify(
-            mockAuthRemoteDataSource.editProfile(updateProfileInfoRequestEntity),
+            mockAuthRemoteDataSource.editProfile(
+              updateProfileInfoRequestEntity,
+            ),
           ).called(1);
-          expect(result, isA<ApiSuccessResult<DriverEntity>>());
-          result as ApiSuccessResult<DriverEntity>;
-          expect(result.data, expectedEntity);
-        },
-      );
+          expect(result, isA<ApiErrorResult<DriverEntity>>());
+          result as ApiErrorResult<DriverEntity>;
+          expect(result.errorMessage, expectedError);
+        });
+      });
 
-      test("when call failed it should return an error result", () async {
-        //Arrange
-        final expectedError = "Server-Error";
-        final expectedResult = ApiErrorResult<DriverEntity>(expectedError);
+      group("test uploadProfilePhoto", () {
+        final File file = File('path/to/file');
+        test(
+          "when call it should return UploadProfileImageResponseEntity from data source with correct parameters",
+          () async {
+            //Arrange
+            final expectedEntity =
+                ProfileInfoDummy.dummyUploadProfileImageResponseEntityFake;
+            final expectedResult =
+                ApiSuccessResult<UploadProfileImageResponseEntity>(
+                  expectedEntity,
+                );
 
-        provideDummy<ApiResult<DriverEntity>>(expectedResult);
-        when(
-          mockAuthRemoteDataSource.editProfile(updateProfileInfoRequestEntity),
-        ).thenAnswer((_) async => expectedResult);
+            provideDummy<ApiResult<UploadProfileImageResponseEntity>>(
+              expectedResult,
+            );
 
-        //Act
-        final result = await mockAuthRemoteDataSource.editProfile(
-          updateProfileInfoRequestEntity,
+            when(
+              mockAuthRemoteDataSource.uploadProfilePhoto(file),
+            ).thenAnswer((_) async => expectedResult);
+
+            //Act
+            final result = await authRepoImpl.uploadProfilePhoto(file);
+
+            //Assert
+            verify(mockAuthRemoteDataSource.uploadProfilePhoto(file)).called(1);
+            expect(
+              result,
+              isA<ApiSuccessResult<UploadProfileImageResponseEntity>>(),
+            );
+            result as ApiSuccessResult<UploadProfileImageResponseEntity>;
+            expect(result.data, expectedEntity);
+          },
         );
 
-        //Assert
-        verify(
-          mockAuthRemoteDataSource.editProfile(updateProfileInfoRequestEntity),
-        ).called(1);
-        expect(result, isA<ApiErrorResult<DriverEntity>>());
-        result as ApiErrorResult<DriverEntity>;
-        expect(result.errorMessage, expectedError);
-      });
-    });
-
-    group("test uploadProfilePhoto", () {
-      final File file = File('path/to/file');
-      test(
-        "when call it should return UploadProfileImageResponseEntity from data source with correct parameters",
-        () async {
+        test("when call failed it should return an error result", () async {
           //Arrange
-          final expectedEntity =
-              ProfileInfoDummy.dummyUploadProfileImageResponseEntityFake;
+          final expectedError = "Server-Error";
           final expectedResult =
-              ApiSuccessResult<UploadProfileImageResponseEntity>(
-                expectedEntity,
-              );
+              ApiErrorResult<UploadProfileImageResponseEntity>(expectedError);
 
           provideDummy<ApiResult<UploadProfileImageResponseEntity>>(
             expectedResult,
           );
-
           when(
             mockAuthRemoteDataSource.uploadProfilePhoto(file),
           ).thenAnswer((_) async => expectedResult);
@@ -272,48 +258,44 @@ void main() {
           verify(mockAuthRemoteDataSource.uploadProfilePhoto(file)).called(1);
           expect(
             result,
-            isA<ApiSuccessResult<UploadProfileImageResponseEntity>>(),
+            isA<ApiErrorResult<UploadProfileImageResponseEntity>>(),
           );
-          result as ApiSuccessResult<UploadProfileImageResponseEntity>;
-          expect(result.data, expectedEntity);
-        },
-      );
-
-      test("when call failed it should return an error result", () async {
-        //Arrange
-        final expectedError = "Server-Error";
-        final expectedResult = ApiErrorResult<UploadProfileImageResponseEntity>(
-          expectedError,
-        );
-
-        provideDummy<ApiResult<UploadProfileImageResponseEntity>>(
-          expectedResult,
-        );
-        when(
-          mockAuthRemoteDataSource.uploadProfilePhoto(file),
-        ).thenAnswer((_) async => expectedResult);
-
-        //Act
-        final result = await authRepoImpl.uploadProfilePhoto(file);
-
-        //Assert
-        verify(mockAuthRemoteDataSource.uploadProfilePhoto(file)).called(1);
-        expect(result, isA<ApiErrorResult<UploadProfileImageResponseEntity>>());
-        result as ApiErrorResult<UploadProfileImageResponseEntity>;
-        expect(result.errorMessage, expectedError);
+          result as ApiErrorResult<UploadProfileImageResponseEntity>;
+          expect(result.errorMessage, expectedError);
+        });
       });
-    });
 
       group("test getVehicle", () {
         const id = "fake-id";
-      test(
-        "when call it should return VehicleEntity from data source with correct parameters",
-        () async {
+        test(
+          "when call it should return VehicleEntity from data source with correct parameters",
+          () async {
+            //Arrange
+            final expectedEntity = ProfileInfoDummy.dummyVehicleEntityFake;
+            final expectedResult = ApiSuccessResult<VehicleEntity>(
+              expectedEntity,
+            );
+
+            provideDummy<ApiResult<VehicleEntity>>(expectedResult);
+            when(
+              mockAuthRemoteDataSource.getVehicle(id),
+            ).thenAnswer((_) async => expectedResult);
+
+            //Act
+            final result = await mockAuthRemoteDataSource.getVehicle(id);
+
+            //Assert
+            verify(mockAuthRemoteDataSource.getVehicle(id)).called(1);
+            expect(result, isA<ApiSuccessResult<VehicleEntity>>());
+            result as ApiSuccessResult<VehicleEntity>;
+            expect(result.data, expectedEntity);
+          },
+        );
+
+        test("when call failed it should return an error result", () async {
           //Arrange
-          final expectedEntity = ProfileInfoDummy.dummyVehicleEntityFake;
-          final expectedResult = ApiSuccessResult<VehicleEntity>(
-            expectedEntity,
-          );
+          final expectedError = "Server-Error";
+          final expectedResult = ApiErrorResult<VehicleEntity>(expectedError);
 
           provideDummy<ApiResult<VehicleEntity>>(expectedResult);
           when(
@@ -323,62 +305,94 @@ void main() {
           //Act
           final result = await mockAuthRemoteDataSource.getVehicle(id);
 
-
           //Assert
           verify(mockAuthRemoteDataSource.getVehicle(id)).called(1);
-          expect(result, isA<ApiSuccessResult<VehicleEntity>>());
-          result as ApiSuccessResult<VehicleEntity>;
-          expect(result.data, expectedEntity);
-        },
-      );
-
-      test("when call failed it should return an error result", () async {
-        //Arrange
-        final expectedError = "Server-Error";
-        final expectedResult = ApiErrorResult<VehicleEntity>(expectedError);
-
-        provideDummy<ApiResult<VehicleEntity>>(expectedResult);
-        when(
-          mockAuthRemoteDataSource.getVehicle(id),
-        ).thenAnswer((_) async => expectedResult);
-
-        //Act
-        final result = await mockAuthRemoteDataSource.getVehicle(id);
-
-
-        //Assert
-        verify(mockAuthRemoteDataSource.getVehicle(id)).called(1);
-        expect(result, isA<ApiErrorResult<VehicleEntity>>());
-        result as ApiErrorResult<VehicleEntity>;
-        expect(result.errorMessage, expectedError);
+          expect(result, isA<ApiErrorResult<VehicleEntity>>());
+          result as ApiErrorResult<VehicleEntity>;
+          expect(result.errorMessage, expectedError);
+        });
       });
-    });
 
-      final result = await authRepoImpl.logout();
-      expect(result, isA<ApiErrorResult<LogoutResponseEntity>>());
-      expect(
-        (result as ApiErrorResult<LogoutResponseEntity>).errorMessage,
-        contains(fakeDioException.message),
-      );
+      group("test logout", () {
+        late MockAuthRemoteDataSource mockAuthRemoteDataSource;
+        late MockAuthLocalDataSource mockAuthLocalDataSource;
+        late AuthRepoImpl authRepoImpl;
+        final fakeLogoutResponseEntity =
+            ProfileInfoDummy.fakeLogoutResponseEntity();
+        final DioException fakeDioException = DioException(
+          requestOptions: RequestOptions(),
+          message: "fake_message",
+        );
+        final Exception fakeException = Exception();
+        setUp(() {
+          mockAuthRemoteDataSource = MockAuthRemoteDataSource();
+          mockAuthLocalDataSource = MockAuthLocalDataSource();
+          authRepoImpl = AuthRepoImpl(
+            mockAuthRemoteDataSource,
+            mockAuthLocalDataSource,
+          );
+          provideDummy<ApiResult<LogoutResponseEntity>>(
+            ApiSuccessResult<LogoutResponseEntity>(fakeLogoutResponseEntity),
+          );
+          provideDummy<ApiResult<LogoutResponseEntity>>(
+            ApiErrorResult<LogoutResponseEntity>(fakeException),
+          );
+        });
+        test("logout success ApiResult LogoutResponseEntity", () async {
+          final expectResult = ApiSuccessResult<LogoutResponseEntity>(
+            fakeLogoutResponseEntity,
+          );
+          when(
+            mockAuthRemoteDataSource.logout(),
+          ).thenAnswer((_) async => expectResult);
 
-      verify(mockAuthRemoteDataSource.logout()).called(1);
-      verify(mockAuthLocalDataSource.userLogout()).called(1);
-    });
-    test("logout failure ApiResult Exception", () async {
-      final expectResult = ApiErrorResult<LogoutResponseEntity>(fakeException);
-      when(
-        mockAuthRemoteDataSource.logout(),
-      ).thenAnswer((_) async => expectResult);
+          final result = await authRepoImpl.logout();
+          expect(result, isA<ApiSuccessResult<LogoutResponseEntity>>());
+          expect(
+            (result as ApiSuccessResult<LogoutResponseEntity>).data.message,
+            equals(fakeLogoutResponseEntity.message),
+          );
 
-      final result = await authRepoImpl.logout();
-      expect(result, isA<ApiErrorResult<LogoutResponseEntity>>());
-      expect(
-        (result as ApiErrorResult<LogoutResponseEntity>).error,
-        equals(fakeException),
-      );
+          verify(mockAuthRemoteDataSource.logout()).called(1);
+          verify(mockAuthLocalDataSource.userLogout()).called(1);
+        });
+        test("logout failure ApiResult DioError", () async {
+          final expectResult = ApiErrorResult<LogoutResponseEntity>(
+            fakeDioException,
+          );
+          when(
+            mockAuthRemoteDataSource.logout(),
+          ).thenAnswer((_) async => expectResult);
 
-      verify(mockAuthRemoteDataSource.logout()).called(1);
-      verify(mockAuthLocalDataSource.userLogout()).called(1);
+          final result = await authRepoImpl.logout();
+          expect(result, isA<ApiErrorResult<LogoutResponseEntity>>());
+          expect(
+            (result as ApiErrorResult<LogoutResponseEntity>).errorMessage,
+            contains(fakeDioException.message),
+          );
+
+          verify(mockAuthRemoteDataSource.logout()).called(1);
+          verify(mockAuthLocalDataSource.userLogout()).called(1);
+        });
+        test("logout failure ApiResult Exception", () async {
+          final expectResult = ApiErrorResult<LogoutResponseEntity>(
+            fakeException,
+          );
+          when(
+            mockAuthRemoteDataSource.logout(),
+          ).thenAnswer((_) async => expectResult);
+
+          final result = await authRepoImpl.logout();
+          expect(result, isA<ApiErrorResult<LogoutResponseEntity>>());
+          expect(
+            (result as ApiErrorResult<LogoutResponseEntity>).error,
+            equals(fakeException),
+          );
+
+          verify(mockAuthRemoteDataSource.logout()).called(1);
+          verify(mockAuthLocalDataSource.userLogout()).called(1);
+        });
+      });
     });
   });
 }

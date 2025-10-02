@@ -62,7 +62,7 @@ class VehicleInfoCard extends StatelessWidget {
               padding: EdgeInsets.only(right: 16.w),
               child: InkWell(
                 onTap: () {
-                  context.push(RouteNames.editVehicleInfo);
+                  context.push(RouteNames.editVehicleInfo,extra: driverEntity);
                 },
                 child: const Icon(
                   Icons.arrow_forward_ios,

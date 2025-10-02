@@ -86,7 +86,7 @@ class ProfileViewModel extends Cubit<ProfileStates> {
     final result = await _getLoggedDriverDataUseCase.call();
     switch (result) {
       case ApiSuccessResult<DriverEntity>():
-      _initialFirstName = result.data.firstName;
+        _initialFirstName = result.data.firstName;
         _initialLastName = result.data.lastName;
         _initialEmail = result.data.email;
         _initialPhone = result.data.phone;
@@ -95,9 +95,14 @@ class ProfileViewModel extends Cubit<ProfileStates> {
         emailController.text = result.data.email!;
         phoneNumberController.text = result.data.phone!;
         selectedGender = genderFromString(result.data.gender!);
-        emit(state.copyWith(isLoading: false, driverData: result.data,isFormChanged: false));
-        
-        
+        emit(
+          state.copyWith(
+            isLoading: false,
+            driverData: result.data,
+            isFormChanged: false,
+          ),
+        );
+
         break;
       case ApiErrorResult<DriverEntity>():
         emit(
