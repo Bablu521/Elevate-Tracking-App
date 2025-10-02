@@ -37,5 +37,8 @@
   "enterYourEmail": "Enter your email",
   "enterYourPassword": "Enter your password",
   "continueWord": "Continue",
-  "error": "Error"
+  "error": "Error",
+  "home": "Home",
+  "orders": "Orders",
+  "profile": "Profile"
 }
