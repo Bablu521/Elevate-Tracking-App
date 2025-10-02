@@ -4,6 +4,8 @@ import 'package:elevate_tracking_app/domain/entites/requests/login_request_entit
 import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/entites/requests/change_password_request_entity.dart';
+import '../../domain/entites/response/change_password_response_entity.dart';
 import '../data_source/auth_local_data_source.dart';
 import '../data_source/auth_remote_data_source.dart';
 
@@ -34,4 +36,13 @@ class AuthRepoImpl implements AuthRepo {
     }
     return result;
   }
+
+  @override
+  Future<ApiResult<ChangePasswordResponseEntity>> changePassword(
+      ChangePasswordRequestEntity request,
+      ) {
+    return _authRemoteDataSource.changePassword(request);
+  }
+
+
 }
