@@ -166,7 +166,8 @@ class _EmailVerificationState extends State<EmailVerification> {
                   SizedBox(height: 0.1 * height),
                   InkWell(
                     onTap: () {
-                      _forgetPasswordViewModel.doIntent(ForgetPasswordEvent(email: _forgetPasswordViewModel.savedEmail));
+                      _forgetPasswordViewModel.
+                      doIntent(ForgetPasswordEvent(email: _forgetPasswordViewModel.emailController.text));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -14,7 +14,8 @@ import '../../../../domain/use_case/reset_passwoed_use_case.dart';
 import 'forget_password_event.dart';
 import 'forget_password_states.dart';
 
-@injectable
+@singleton
+
 class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   final ForgetPasswordUseCase _forgetPasswordUseCase;
 final EmailVerificationUseCase _emailVerificationUseCase;
@@ -41,8 +42,8 @@ final ResetPasswordUseCase _resetPasswordUseCase;
 
   void doIntent(ForgetPasswordEvents events) {
     switch (events) {
-      case ForgetPasswordEvent(:final email):
-        savedEmail = email ?? emailController.text;
+      case ForgetPasswordEvent():
+        savedEmail = events.email ?? emailController.text;
         _forgetPassword();
       case VerifyResetCodeEvent():
         _verifyResetCode();
@@ -55,7 +56,7 @@ final ResetPasswordUseCase _resetPasswordUseCase;
   Future<void> _forgetPassword() async {
     emit(state.copyWith(isLoading: true));
     final result = await _forgetPasswordUseCase(
-      ForgetPasswordRequestEntity(email: savedEmail! ),
+      ForgetPasswordRequestEntity(email: emailController.text ),
     );
     switch (result) {
       case ApiSuccessResult<ForgetPasswordResponseEntity>():
@@ -95,6 +96,7 @@ final ResetPasswordUseCase _resetPasswordUseCase;
             ));
     }
   }
+
   Future<void> _resetPassword() async {
     emit(state.copyWith(isLoading: true));
     final result = await _resetPasswordUseCase(
@@ -120,11 +122,11 @@ final ResetPasswordUseCase _resetPasswordUseCase;
   }
 
 
-  @override
-  Future<void> close() {
-    emailController.dispose();
-    newPasswordController.dispose();
-    confirmPasswordController.dispose();
-    return super.close();
-  }
+  // @override
+  // Future<void> close() {
+  //   emailController.dispose();
+  //   newPasswordController.dispose();
+  //   confirmPasswordController.dispose();
+  //   return super.close();
+  // }
 }

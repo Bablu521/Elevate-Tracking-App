@@ -77,7 +77,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 AppLocalizations.of(context).codeIsSentSuccessfully,
                 cancelable: false,
                 positiveOnClick: (){
-                  context.go(RouteNames.emailVerification ,extra: _forgetPasswordViewModel.emailController.text);},
+                  context.go(RouteNames.emailVerification ,
+                      extra: _forgetPasswordViewModel.emailController.text);},
               );
             }
           },
