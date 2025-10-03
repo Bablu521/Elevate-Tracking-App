@@ -5,6 +5,7 @@ import 'package:elevate_tracking_app/data/data_source/auth_remote_data_source.da
 import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/requests/update_profile_info_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/requests/update_vehicle_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
@@ -86,7 +87,6 @@ class AuthRepoImpl implements AuthRepo {
     EmailVerificationRequestEntity request,
   ) {
     return _authRemoteDataSource.emailVerification(request);
-
   }
 
   @override
@@ -118,5 +118,12 @@ class AuthRepoImpl implements AuthRepo {
     final response = await _authRemoteDataSource.logout();
     await _authLocalDataSource.userLogout();
     return response;
+  }
+
+   @override
+  Future<ApiResult<DriverEntity>> updateVehicleInfo(
+    UpdateVehicleRequestEntity request,
+  ) async {
+    return await _authRemoteDataSource.updateVehicleInfo(request);
   }
 }

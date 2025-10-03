@@ -38,7 +38,7 @@ class ProfileViewModel extends Cubit<ProfileStates> {
     emailController.addListener(_onFormChanged);
     phoneNumberController.addListener(_onFormChanged);
   }
-
+  DriverEntity? driverEntity;
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -90,6 +90,7 @@ class ProfileViewModel extends Cubit<ProfileStates> {
         initialLastName = result.data.lastName;
         initialEmail = result.data.email;
         initialPhone = result.data.phone;
+        driverEntity = result.data;
         firstNameController.text = result.data.firstName!;
         lastNameController.text = result.data.lastName!;
         emailController.text = result.data.email!;

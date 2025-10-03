@@ -9,11 +9,7 @@ class VehiclesResponse {
   final Metadata? metadata;
   final List<Vehicle>? vehicles;
 
-  VehiclesResponse({
-    this.message,
-    this.metadata,
-    this.vehicles,
-  });
+  VehiclesResponse({this.message, this.metadata, this.vehicles});
 
   factory VehiclesResponse.fromJson(Map<String, dynamic> json) =>
       _$VehiclesResponseFromJson(json);
@@ -28,16 +24,12 @@ class Metadata {
   final int? limit;
   final int? totalItems;
 
-  Metadata({
-    this.currentPage,
-    this.totalPages,
-    this.limit,
-    this.totalItems,
-  });
+  Metadata({this.currentPage, this.totalPages, this.limit, this.totalItems});
 
   factory Metadata.fromJson(Map<String, dynamic> json) =>
       _$MetadataFromJson(json);
 
   Map<String, dynamic> toJson() => _$MetadataToJson(this);
 }
+
 

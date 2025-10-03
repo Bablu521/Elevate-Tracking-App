@@ -36,7 +36,6 @@ abstract class ApiClient {
   @POST(Endpoints.login)
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
 
-
   @POST(Endpoints.forgetPassword)
   Future<ForgetPasswordResponse> forgetPassword(
     @Body() ForgetPasswordRequest body,
@@ -72,4 +71,6 @@ abstract class ApiClient {
   @GET(Endpoints.logout)
   Future<LogoutResponseDto> logout();
 
+  @PUT(Endpoints.editProfile)
+  Future<ProfileInfoResponseDto> updateVehicleInfo(@Body() FormData request);
 }

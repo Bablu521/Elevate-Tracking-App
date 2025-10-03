@@ -97,5 +97,7 @@
   "vehicleInfo": "Vehicle info",
   "vehicleNumber": "Vehicle number",
   "vehicleType": "Vehicle type",
-  "profileUpdatedSuccessfully": "Profile updated successfully"
+  "profileUpdatedSuccessfully": "Profile updated successfully",
+  "vehicleNotFound": "Vehicle not found select new vehicle",
+  "successUpdatedData" : "Success updated data"
 }

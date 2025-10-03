@@ -5,7 +5,9 @@ import 'package:elevate_tracking_app/api/mapper/apply_mapper.dart';
 import 'package:elevate_tracking_app/api/mapper/auth/forget_password/forget_password_mapper.dart';
 import 'package:elevate_tracking_app/api/mapper/login_mapper.dart';
 import 'package:elevate_tracking_app/api/models/requests/apply_request_dto.dart';
+import 'package:elevate_tracking_app/api/models/requests/auth/update_vehicle_request_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/apply_response_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/profile_info_response_dto/profile_info_response_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicles_response.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/api_result/safe_api_call.dart';
@@ -15,6 +17,7 @@ import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.da
 import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/requests/update_profile_info_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/requests/update_vehicle_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicles_entity.dart';
@@ -71,9 +74,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     return safeApiCall(
       () => _apiClient.forgetPassword(request.toRequest()),
       (response) => response.toEntity(),
-    );}
+    );
+  }
 
-  @override  
+  @override
   Future<ApiResult<DriverEntity>> getLoggedDriverData() {
     return safeApiCall(
       () => _apiClient.getLoggedDriverData(),
@@ -122,8 +126,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     return safeApiCall(
       () => _apiClient.emailVerification(request.toRequest()),
       (response) => response.toEntity(),
-
-  );}
+    );
+  }
 
   @override
   Future<ApiResult<VehicleEntity>> getVehicle(String id) {
@@ -133,11 +137,22 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
   }
 
-   @override
+  @override
   Future<ApiResult<LogoutResponseEntity>> logout() async {
     return safeApiCall<LogoutResponseDto, LogoutResponseEntity>(
       () => _apiClient.logout(),
       (dto) => dto.toEntity(),
     );
+  }
+
+   @override
+  Future<ApiResult<DriverEntity>> updateVehicleInfo(
+    UpdateVehicleRequestEntity request,
+  ) async {
+    return safeApiCall<ProfileInfoResponseDto, DriverEntity>(() async {
+      final UpdateVehicleRequestDto dto = request.toDto();
+      final formData = await dto.toFormData();
+      return await _apiClient.updateVehicleInfo(formData);
+    }, (dto) => dto.driver!.toEntity());
   }
 }

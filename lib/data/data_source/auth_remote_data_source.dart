@@ -2,6 +2,7 @@ import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/requests/update_profile_info_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/requests/update_vehicle_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 import '../../domain/entities/apply_response_entity.dart';
@@ -16,7 +17,6 @@ import '../../domain/entities/requests/reset_password_request_entity.dart';
 import '../../domain/entities/reset_password_entity.dart';
 import '../../domain/entities/vehicles_entity.dart';
 import 'dart:io';
-
 
 abstract interface class AuthRemoteDataSource {
   Future<ApiResult<ApplyResponseEntity>> apply({
@@ -45,10 +45,15 @@ abstract interface class AuthRemoteDataSource {
     UpdateProfileInfoRequestEntity updateProfileInfoRequestEntity,
   );
 
-  Future<ApiResult<UploadProfileImageResponseEntity>> uploadProfilePhoto(File file);
+  Future<ApiResult<UploadProfileImageResponseEntity>> uploadProfilePhoto(
+    File file,
+  );
 
   Future<ApiResult<VehicleEntity>> getVehicle(String id);
 
   Future<ApiResult<LogoutResponseEntity>> logout();
 
+  Future<ApiResult<DriverEntity>> updateVehicleInfo(
+    UpdateVehicleRequestEntity request,
+  );
 }

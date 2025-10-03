@@ -56,6 +56,7 @@ dependencies:
   pinput: ^5.0.2
   path: ^1.9.1
   network_image_mock: ^2.1.1
+  collection: ^1.19.1
 
 dev_dependencies:
   flutter_test:

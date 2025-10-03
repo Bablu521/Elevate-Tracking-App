@@ -66,7 +66,9 @@ abstract class AppRouter {
 
   static GoRouter router(String? token) {
     return GoRouter(
-      initialLocation: token == null ? RouteNames.onboarding : RouteNames.mainHome,
+      initialLocation: token == null
+          ? RouteNames.onboarding
+          : RouteNames.mainHome,
       routes: routes,
     );
   }
