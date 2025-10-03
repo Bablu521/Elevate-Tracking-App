@@ -1,4 +1,4 @@
-import 'package:elevate_tracking_app/presentation/home/views/screen/home_screen.dart';
+import 'package:elevate_tracking_app/presentation/home/view/screen/home_page.dart';
 import 'package:elevate_tracking_app/presentation/main_home/view_models/main_home_events.dart';
 import 'package:elevate_tracking_app/presentation/main_home/view_models/main_home_view_model.dart';
 import 'package:elevate_tracking_app/presentation/orders/views/screen/orders_screen.dart';
@@ -18,7 +18,7 @@ class CustomPageView extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       controller: mainHomeViewModel.pageController,
       children: [
-        const HomeScreen(),
+        const HomePage(),
         const OrdersScreen(),
         const ProfileScreen(),
       ],

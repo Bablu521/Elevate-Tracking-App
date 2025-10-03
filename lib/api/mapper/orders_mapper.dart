@@ -4,11 +4,15 @@ import 'package:elevate_tracking_app/domain/entites/driver_order_entity.dart';
 import '../../domain/entites/order_entity.dart';
 import '../../domain/entites/order_item_entity.dart';
 import '../../domain/entites/product_entity.dart';
+import '../../domain/entites/start_order_entity.dart';
+import '../../domain/entites/start_order_items_entity.dart';
 import '../../domain/entites/store_entity.dart';
 import '../../domain/entites/user_entity.dart';
 import '../models/order_dto.dart';
 import '../models/order_item_dto.dart';
 import '../models/product_dto.dart';
+import '../models/start_order_dto.dart';
+import '../models/start_order_items_dto.dart';
 import '../models/store_dto.dart';
 import '../models/user_dto.dart';
 
@@ -105,6 +109,36 @@ extension UserMapper on UserDTO {
       phone: phone,
       photo: photo,
       passwordChangedAt: passwordChangedAt,
+    );
+  }
+}
+
+extension StartOrderMapper on StartOrderDto {
+  StartOrderEntity toEntity() {
+    return StartOrderEntity(
+      id: id,
+      user: user,
+      orderItems: orderItems?.map((dto) => dto.toEntity()).toList(),
+      totalPrice: totalPrice,
+      paymentType: paymentType,
+      isPaid: isPaid,
+      isDelivered: isDelivered,
+      state: state,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      orderNumber: orderNumber,
+      v: v,
+    );
+  }
+}
+
+extension StartOrderItemsMapper on StartOrderItemsDto {
+  StartOrderItemsEntity toEntity() {
+    return StartOrderItemsEntity(
+      product: product,
+      price: price,
+      quantity: quantity,
+      id: id,
     );
   }
 }

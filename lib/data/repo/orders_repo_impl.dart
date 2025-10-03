@@ -1,6 +1,7 @@
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 
 import 'package:elevate_tracking_app/domain/entites/order_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/start_order_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/repo/orders_repo.dart';
@@ -14,5 +15,10 @@ class OrdersRepoImpl implements OrdersRepo {
   @override
   Future<ApiResult<List<OrderEntity>>> getOrders() {
     return _ordersRemoteDataSource.getOrders();
+  }
+
+  @override
+  Future<ApiResult<StartOrderEntity>> startOrder(String orderId) {
+    return _ordersRemoteDataSource.startOrder(orderId);
   }
 }

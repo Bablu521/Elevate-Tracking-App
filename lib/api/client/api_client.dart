@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:elevate_tracking_app/api/models/requests/login_request.dart';
 import 'package:elevate_tracking_app/api/models/responses/login_response.dart';
 import 'package:elevate_tracking_app/api/models/responses/orders/driver_orders_response.dart';
+import 'package:elevate_tracking_app/api/models/responses/orders/start_order_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -24,4 +25,7 @@ abstract class ApiClient {
 
   @GET(EndPoints.driverOrders)
   Future<DriverOrdersResponse> getDriverOrders();
+
+  @POST("${EndPoints.startOrder}/{orderId}")
+  Future<StartOrderResponse> startOrder(@Path("orderId") String orderId);
 }
