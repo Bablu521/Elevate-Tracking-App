@@ -62,4 +62,9 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   Future<void> saveUserToken({required String token}) async {
     await _secureStorage.write(key: ConstKeys.keyUserToken, value: token);
   }
+
+  @override
+  Future<void> userLogout() async {
+    await _secureStorage.delete(key: ConstKeys.keyUserToken);
+  }
 }

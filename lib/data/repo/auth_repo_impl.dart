@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
+<<<<<<< HEAD
 import 'package:elevate_tracking_app/data/data_source/auth_local_data_source.dart';
 import 'package:elevate_tracking_app/data/data_source/auth_remote_data_source.dart';
 import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
@@ -16,6 +18,19 @@ import '../../domain/entities/requests/login_request_entity.dart';
 import '../../domain/entities/requests/reset_password_request_entity.dart';
 import '../../domain/entities/reset_password_entity.dart';
 import '../../domain/entities/vehicles_entity.dart';
+=======
+import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/login_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/requests/login_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/requests/update_profile_info_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/upload_profile_image_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
+import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
+import 'package:injectable/injectable.dart';
+import '../data_source/auth_local_data_source.dart';
+import '../data_source/auth_remote_data_source.dart';
+>>>>>>> 334ecb053b7f43301eb107d2e020addb6402e207
 
 @Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
@@ -63,6 +78,7 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
+<<<<<<< HEAD
   Future<ApiResult<ForgetPasswordEntity>> forgetPassword(
     ForgetPasswordRequestEntity request,
   ) {
@@ -81,5 +97,35 @@ class AuthRepoImpl implements AuthRepo {
     EmailVerificationRequestEntity request,
   ) {
     return _authRemoteDataSource.emailVerification(request);
+=======
+  Future<ApiResult<DriverEntity>> getLoggedDriverData() {
+    return _authRemoteDataSource.getLoggedDriverData();
+  }
+
+  @override
+  Future<ApiResult<DriverEntity>> editProfile(
+    UpdateProfileInfoRequestEntity updateProfileInfoRequestEntity,
+  ) {
+    return _authRemoteDataSource.editProfile(updateProfileInfoRequestEntity);
+  }
+
+  @override
+  Future<ApiResult<UploadProfileImageResponseEntity>> uploadProfilePhoto(
+    File file,
+  ) {
+    return _authRemoteDataSource.uploadProfilePhoto(file);
+  }
+
+  @override
+  Future<ApiResult<VehicleEntity>> getVehicle(String id) {
+    return _authRemoteDataSource.getVehicle(id);
+  }
+
+  @override
+  Future<ApiResult<LogoutResponseEntity>> logout() async {
+    final response = await _authRemoteDataSource.logout();
+    await _authLocalDataSource.userLogout();
+    return response;
+>>>>>>> 334ecb053b7f43301eb107d2e020addb6402e207
   }
 }

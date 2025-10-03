@@ -11,6 +11,9 @@ void main() {
     configureDependencies();
   });
   group("Application Approved screen Widget Test", () {
+    setUpAll(() {
+      configureDependencies();
+    });
     testWidgets('Verify Structure', (WidgetTester tester) async {
       //Arrange
       await tester.pumpWidget(

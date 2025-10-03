@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:elevate_tracking_app/api/models/requests/auth/update_profile_info_request_dto.dart';
 import 'package:elevate_tracking_app/api/models/requests/login_request.dart';
 import 'package:elevate_tracking_app/api/models/responses/apply_response_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/login_response.dart';
@@ -6,13 +7,17 @@ import 'package:elevate_tracking_app/api/models/responses/vehicles_response.dart
 import 'package:elevate_tracking_app/core/constants/end_points.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
-
 import '../models/requests/auth/forget_password/email_verification_request.dart';
 import '../models/requests/auth/forget_password/forget_password_request.dart';
 import '../models/requests/auth/forget_password/reset_password_request.dart';
 import '../models/responses/auth/forget_password/email_verification_response.dart';
 import '../models/responses/auth/forget_password/forget_password_response.dart';
 import '../models/responses/auth/forget_password/reset_password_response.dart';
+import 'package:elevate_tracking_app/api/models/responses/profile_info_response_dto/profile_info_response_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/upload_profile_image_response_dto/upload_profile_image_response_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/vehicle_response_dto/vehicle_response_dto.dart';
+import 'package:elevate_tracking_app/core/constants/const_keys.dart';
+import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
 
 part 'api_client.g.dart';
 
@@ -31,6 +36,7 @@ abstract class ApiClient {
   @POST(Endpoints.login)
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
 
+
   @POST(Endpoints.forgetPassword)
   Future<ForgetPasswordResponse> forgetPassword(
     @Body() ForgetPasswordRequest body,
@@ -45,4 +51,25 @@ abstract class ApiClient {
   Future<ResetPasswordResponse> resetPassword(
     @Body() ResetPasswordRequest body,
   );
+
+  @GET(Endpoints.profile)
+  Future<ProfileInfoResponseDto> getLoggedDriverData();
+
+  @PUT(Endpoints.editProfile)
+  Future<ProfileInfoResponseDto> editProfile(
+    @Body() UpdateProfileInfoRequestDto updateProfileInfoRequestDto,
+  );
+
+  @PUT(Endpoints.uploadProfilePhoto)
+  @MultiPart()
+  Future<UploadProfileImageResponseDto> uploadProfilePhoto(
+    @Part(name: ConstKeys.photo) MultipartFile photo,
+  );
+
+  @GET('${Endpoints.vehicle}/{id}')
+  Future<VehicleResponseDto> getVehicle(@Path("id") String id);
+
+  @GET(Endpoints.logout)
+  Future<LogoutResponseDto> logout();
+
 }

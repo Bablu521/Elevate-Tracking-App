@@ -13,7 +13,7 @@ import 'auth_local_data_source_impl_test.mocks.dart';
 import '../../fixture/apply_fixture.dart';
 import '../../fixture/fake_file_json.dart';
 
-@GenerateMocks([AssetBundle,FlutterSecureStorage])
+@GenerateMocks([AssetBundle, FlutterSecureStorage])
 void main() {
   group("test get all country", () {
     late MockFlutterSecureStorage mockStorage;
@@ -22,7 +22,7 @@ void main() {
     setUp(() {
       mockStorage = MockFlutterSecureStorage();
       fakeBundle = ApplyFixture.fakeBundle;
-      dataSource = AuthLocalDataSourceImpl(mockStorage,testBundle: fakeBundle);
+      dataSource = AuthLocalDataSourceImpl(mockStorage, testBundle: fakeBundle);
     });
 
     test('returns List<CountryEntity> when fixture is valid', () async {
@@ -48,70 +48,87 @@ void main() {
     });
 
     group("test AuthLocalDataSourceImpl", () {
-    late MockFlutterSecureStorage mockStorage;
-    late AuthLocalDataSourceImpl dataSource;
+      late MockFlutterSecureStorage mockStorage;
+      late AuthLocalDataSourceImpl dataSource;
 
-    setUp(() {
-      mockStorage = MockFlutterSecureStorage();
-      dataSource = AuthLocalDataSourceImpl(mockStorage);
-    });
-
-    group("saveUserRememberMe", () {
-      final loginRequestEntity = LoginDummyData().fakeLoginRequestEntity;
-
-      test("should save email & password when remember me is true", () async {
-        when(
-          mockStorage.read(key: ConstKeys.keyRememberMe),
-        ).thenAnswer((_) async => ConstKeys.trueKey);
-
-        await dataSource.saveUserRememberMe(
-          loginRequestEntity: loginRequestEntity,
-        );
-
-        verify(mockStorage.read(key: ConstKeys.keyRememberMe)).called(1);
-        verify(
-          mockStorage.write(
-            key: ConstKeys.kUserLogin,
-            value: loginRequestEntity.email,
-          ),
-        ).called(1);
-        verify(
-          mockStorage.write(
-            key: ConstKeys.kUserPassword,
-            value: loginRequestEntity.password,
-          ),
-        ).called(1);
+      setUp(() {
+        mockStorage = MockFlutterSecureStorage();
+        dataSource = AuthLocalDataSourceImpl(mockStorage);
       });
 
-      test(
-        "should delete email & password when remember me is not true",
-        () async {
+      group("saveUserRememberMe", () {
+        final loginRequestEntity = LoginDummyData().fakeLoginRequestEntity;
+
+        test("should save email & password when remember me is true", () async {
           when(
             mockStorage.read(key: ConstKeys.keyRememberMe),
-          ).thenAnswer((_) async => "false");
+          ).thenAnswer((_) async => ConstKeys.trueKey);
 
           await dataSource.saveUserRememberMe(
             loginRequestEntity: loginRequestEntity,
           );
 
           verify(mockStorage.read(key: ConstKeys.keyRememberMe)).called(1);
-          verify(mockStorage.delete(key: ConstKeys.kUserLogin)).called(1);
-          verify(mockStorage.delete(key: ConstKeys.kUserPassword)).called(1);
-        },
-      );
-    });
+          verify(
+            mockStorage.write(
+              key: ConstKeys.kUserLogin,
+              value: loginRequestEntity.email,
+            ),
+          ).called(1);
+          verify(
+            mockStorage.write(
+              key: ConstKeys.kUserPassword,
+              value: loginRequestEntity.password,
+            ),
+          ).called(1);
+        });
 
-    group("saveUserToken", () {
-      test("should write token to storage", () async {
-        const token = "fake-token";
+        test(
+          "should delete email & password when remember me is not true",
+          () async {
+            when(
+              mockStorage.read(key: ConstKeys.keyRememberMe),
+            ).thenAnswer((_) async => "false");
 
-        await dataSource.saveUserToken(token: token);
+            await dataSource.saveUserRememberMe(
+              loginRequestEntity: loginRequestEntity,
+            );
 
-        verify(
-          mockStorage.write(key: ConstKeys.keyUserToken, value: token),
-        ).called(1);
+            verify(mockStorage.read(key: ConstKeys.keyRememberMe)).called(1);
+            verify(mockStorage.delete(key: ConstKeys.kUserLogin)).called(1);
+            verify(mockStorage.delete(key: ConstKeys.kUserPassword)).called(1);
+          },
+        );
+
+        group("saveUserToken", () {
+          test("should write token to storage", () async {
+            const token = "fake-token";
+
+            await dataSource.saveUserToken(token: token);
+
+            verify(
+              mockStorage.write(key: ConstKeys.keyUserToken, value: token),
+            ).called(1);
+          });
+        });
+      });
+
+      group("test logout", () {
+        late MockFlutterSecureStorage mockStorage;
+        late AuthLocalDataSourceImpl dataSource;
+        setUp(() {
+          mockStorage = MockFlutterSecureStorage();
+          dataSource = AuthLocalDataSourceImpl(mockStorage);
+        });
+        test("should save token correctly", () async {
+          // Arrange
+          // Act
+          await dataSource.userLogout();
+
+          // Assert
+          verify(mockStorage.delete(key: ConstKeys.keyUserToken)).called(1);
+        });
       });
     });
-  });
   });
 }

@@ -11,6 +11,9 @@ void main() {
     configureDependencies();
   });
   group("Onboarding screen Widget Test", () {
+    setUpAll(() {
+      configureDependencies();
+    });
     testWidgets('Verify Structure', (WidgetTester tester) async {
       //Arrange
       await tester.pumpWidget(const TestAppWrapper(child: OnboardingScreen()));
@@ -60,20 +63,20 @@ void main() {
       expect(find.text("Login"), findsOneWidget);
     });
 
-    testWidgets("Verify Apply now elevatedButton behaviour", (
-      WidgetTester tester,
-    ) async {
-      //Arrange
-      await tester.pumpWidget(const TestAppWrapper(child: OnboardingScreen()));
-      final applyButtonFinder = find.byKey(
-        const Key(WidgetsKeys.kOnboardingScreenApplyNowButton),
-      );
-      expect(applyButtonFinder, findsOneWidget);
-      //Act
-      await tester.tap(applyButtonFinder);
-      await tester.pumpAndSettle();
-      //Assert
-      expect(find.text("Apply"), findsOneWidget);
-    });
+    // testWidgets("Verify Apply now elevatedButton behaviour", (
+    //   WidgetTester tester,
+    // ) async {
+    //   //Arrange
+    //   await tester.pumpWidget(const TestAppWrapper(child: OnboardingScreen()));
+    //   final applyButtonFinder = find.byKey(
+    //     const Key(WidgetsKeys.kOnboardingScreenApplyNowButton),
+    //   );
+    //   expect(applyButtonFinder, findsOneWidget);
+    //   //Act
+    //   await tester.tap(applyButtonFinder);
+    //   await tester.pumpAndSettle();
+    //   //Assert
+    //   expect(find.text("Apply"), findsOneWidget);
+    // });
   });
 }

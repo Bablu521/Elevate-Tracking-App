@@ -14,4 +14,5 @@ abstract final class ConstKeys {
   static const String iMFeellEnglishFont = "IMFellEnglish";
   static const String kMale = "male";
   static const String kFemale = "female";
+  static const String photo = "photo";
 }

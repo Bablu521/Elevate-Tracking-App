@@ -6,4 +6,9 @@ abstract class Endpoints {
   static const String forgetPassword="api/v1/drivers/forgotPassword";
   static const String verifyReset="api/v1/drivers/verifyResetCode";
   static const String resetPassword="api/v1/drivers/resetPassword";
+  static const String profile = "api/v1/drivers/profile-data";
+  static const String editProfile = "api/v1/drivers/editProfile";
+  static const String uploadProfilePhoto = "api/v1/drivers/upload-photo";
+  static const String logout = "api/v1/drivers/logout";
 }
+

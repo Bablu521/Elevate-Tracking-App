@@ -6,7 +6,7 @@ import '../../dummy/login_dummy_data.dart';
 void main() {
   group("test LoginRequestMapper", () {
     test(
-      "when call toRequest should return LoginRequest",
+      "when call toRequest with null values should return LoginRequest",
       () {
         final loginRequestEntity = LoginDummyData().fakeLoginRequestEntity;
         final result = loginRequestEntity.toRequest();
