@@ -61,7 +61,7 @@ class ProfileInfoDummy {
     email: "ahmed@example.com",
     gender: "Male",
     phone: "+201234567890",
-    photo: "https://fakeurl.com/photo.png",
+    photo: null,
     role: "Driver",
     createdAt: DateTime.parse("2025-01-01T12:00:00Z"),
   );

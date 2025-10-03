@@ -171,6 +171,7 @@ void main() {
           state.copyWith(
             isLoading: false,
             driverData: expectedEntity,
+            isUpdated: true,
             isFormChanged: false,
           ),
         ],

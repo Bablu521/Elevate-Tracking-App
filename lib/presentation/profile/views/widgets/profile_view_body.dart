@@ -1,5 +1,6 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_icons.dart';
+import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/di/di.dart';
 import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
@@ -139,6 +140,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                           );
                         },
                         child: Container(
+                          key: const Key(WidgetsKeys.kProfileScreenLogoutIcon),
                           height: 24.h,
                           width: 24.w,
                           decoration: const BoxDecoration(
@@ -155,9 +157,17 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
             ),
           );
         } else if (state.errorMessage != null) {
-          return Center(child: Text(state.errorMessage!));
+          return Center(
+            key: const Key(WidgetsKeys.kProfileScreenErrorMessage),
+            child: Text(state.errorMessage!),
+          );
+        } else if (state.isLoading) {
+          return const Center(
+            key: Key(WidgetsKeys.kProfileScreenLoadingIndicator),
+            child: CircularProgressIndicator(),
+          );
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const SizedBox();
         }
       },
     );

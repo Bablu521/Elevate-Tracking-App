@@ -46,10 +46,10 @@ class ProfileViewModel extends Cubit<ProfileStates> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Gender? selectedGender = Gender.male;
 
-  String? _initialFirstName;
-  String? _initialLastName;
-  String? _initialEmail;
-  String? _initialPhone;
+  String? initialFirstName;
+  String? initialLastName;
+  String? initialEmail;
+  String? initialPhone;
 
   void doIntent(ProfileEvents event) {
     switch (event) {
@@ -73,10 +73,10 @@ class ProfileViewModel extends Cubit<ProfileStates> {
 
   void _onFormChanged() {
     final changed =
-        firstNameController.text != _initialFirstName ||
-        lastNameController.text != _initialLastName ||
-        emailController.text != _initialEmail ||
-        phoneNumberController.text != _initialPhone;
+        firstNameController.text != initialFirstName ||
+        lastNameController.text != initialLastName ||
+        emailController.text != initialEmail ||
+        phoneNumberController.text != initialPhone;
 
     emit(state.copyWith(isFormChanged: changed));
   }
@@ -86,10 +86,10 @@ class ProfileViewModel extends Cubit<ProfileStates> {
     final result = await _getLoggedDriverDataUseCase.call();
     switch (result) {
       case ApiSuccessResult<DriverEntity>():
-        _initialFirstName = result.data.firstName;
-        _initialLastName = result.data.lastName;
-        _initialEmail = result.data.email;
-        _initialPhone = result.data.phone;
+        initialFirstName = result.data.firstName;
+        initialLastName = result.data.lastName;
+        initialEmail = result.data.email;
+        initialPhone = result.data.phone;
         firstNameController.text = result.data.firstName!;
         lastNameController.text = result.data.lastName!;
         emailController.text = result.data.email!;
@@ -136,10 +136,15 @@ class ProfileViewModel extends Cubit<ProfileStates> {
     );
     switch (result) {
       case ApiSuccessResult<DriverEntity>():
+        initialFirstName = result.data.firstName;
+        initialLastName = result.data.lastName;
+        initialEmail = result.data.email;
+        initialPhone = result.data.phone;
         emit(
           state.copyWith(
             isLoading: false,
             driverData: result.data,
+            isUpdated: true,
             isFormChanged: false,
           ),
         );
@@ -180,5 +185,14 @@ class ProfileViewModel extends Cubit<ProfileStates> {
           state.copyWith(isLoading: false, errorMessage: result.errorMessage),
         );
     }
+  }
+
+  @override
+  Future<void> close() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    phoneNumberController.dispose();
+    return super.close();
   }
 }

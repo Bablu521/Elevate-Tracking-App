@@ -1,4 +1,5 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
+import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ class LogoutDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      key: const Key(WidgetsKeys.kProfileScreenLogoutDialog),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -46,6 +48,7 @@ class LogoutDialog extends StatelessWidget {
                 ),
 
                 ElevatedButton(
+                  key: const Key(WidgetsKeys.kProfileScreenLogoutButton),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.mainColor,
                     shape: const StadiumBorder(),
