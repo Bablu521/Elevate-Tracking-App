@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:elevate_tracking_app/api/mapper/apply_mapper.dart';
 import 'package:elevate_tracking_app/api/models/requests/apply_request_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/apply_response_dto.dart';
@@ -13,6 +12,7 @@ import 'package:elevate_tracking_app/domain/entities/apply_response_entity.dart'
 import 'package:elevate_tracking_app/domain/entities/country_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/request/apply_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicles_entity.dart';
+
 
 import 'fake_file_json.dart';
 import 'fake_image_file.dart';
@@ -61,7 +61,7 @@ class ApplyFixture {
     return const ApplyResponseDto(
       message: "success",
       token: "eyFakeTokenForTesting123456789",
-      driver: Driver(
+      driver: DriverDto(
         country: "Egypt",
         firstName: "Ahmed",
         lastName: "Ali",
@@ -76,7 +76,6 @@ class ApplyFixture {
         photo: "default-profile.png",
         role: "driver",
         id: "68cf8c7ddd8937e0573ed395",
-        createdAt: "2025-09-21T05:26:21.346Z",
       ),
     );
   }
@@ -162,7 +161,7 @@ class ApplyFixture {
     );
   }
 
-  static List<VehicleEntity> fakeVehicleEntity() {
+  static List<VehiclesEntity> fakeVehicleEntity() {
     return fakeVehiclesResponse().vehicles!
         .map((entity) => entity.toEntity())
         .toList();

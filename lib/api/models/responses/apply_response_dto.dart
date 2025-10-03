@@ -8,7 +8,7 @@ part 'apply_response_dto.g.dart';
 @JsonSerializable()
 class ApplyResponseDto extends Equatable {
   final String message;
-  final Driver driver;
+  final DriverDto driver;
   final String token;
 
   const ApplyResponseDto({

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
-import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
 import 'package:elevate_tracking_app/domain/use_cases/logout_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';

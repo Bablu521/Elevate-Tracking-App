@@ -1,5 +1,5 @@
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
-import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
 import 'package:elevate_tracking_app/domain/use_cases/get_logged_driver_data_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';

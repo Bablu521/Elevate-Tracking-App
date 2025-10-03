@@ -1,7 +1,6 @@
 import 'dart:io';
-
-import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 import 'package:equatable/equatable.dart';
 
 class ProfileStates extends Equatable {

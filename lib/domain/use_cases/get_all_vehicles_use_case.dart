@@ -10,7 +10,7 @@ class GetAllVehiclesUseCase {
 
   GetAllVehiclesUseCase(this._authRepo);
 
-  Future<ApiResult<List<VehicleEntity>>> call() async {
+  Future<ApiResult<List<VehiclesEntity>>> call() async {
     return await _authRepo.getAllVehicles();
   }
 }

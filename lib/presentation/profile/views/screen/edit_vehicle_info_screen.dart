@@ -1,4 +1,4 @@
-import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/widgets/edit_vehicle_info_view_body.dart';
 import 'package:flutter/material.dart';

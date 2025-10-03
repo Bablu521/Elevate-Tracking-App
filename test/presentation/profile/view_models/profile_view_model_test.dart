@@ -1,8 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
-import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/logout_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 import 'package:elevate_tracking_app/presentation/profile/view_models/profile_events.dart';
 import 'package:elevate_tracking_app/presentation/profile/view_models/profile_states.dart';
 import 'package:elevate_tracking_app/presentation/profile/view_models/profile_view_model.dart';

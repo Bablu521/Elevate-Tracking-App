@@ -20,7 +20,7 @@ void main() {
     late ApplyResponseDto fakeApplyResponseDto;
     final VehiclesResponse fakeVehicleResponse =
         ApplyFixture.fakeVehiclesResponse();
-    final List<VehicleEntity> fakeListVehicles =
+    final List<VehiclesEntity> fakeListVehicles =
         ApplyFixture.fakeVehicleEntity();
     final DioException fakeDioException = DioException(
       requestOptions: RequestOptions(),
@@ -92,9 +92,9 @@ void main() {
       //ACT
       final result = await authRemoteDataSourceImpl.getAllVehicles();
       //ASSERT
-      expect(result, isA<ApiSuccessResult<List<VehicleEntity>>>());
+      expect(result, isA<ApiSuccessResult<List<VehiclesEntity>>>());
       expect(
-        (result as ApiSuccessResult<List<VehicleEntity>>).data.first.id,
+        (result as ApiSuccessResult<List<VehiclesEntity>>).data.first.id,
         equals(fakeListVehicles.first.id),
       );
       verify(mockApiClient.getAllVehicles()).called(1);
@@ -105,9 +105,9 @@ void main() {
       //ACT
       final result = await authRemoteDataSourceImpl.getAllVehicles();
       //ASSERT
-      expect(result, isA<ApiErrorResult<List<VehicleEntity>>>());
+      expect(result, isA<ApiErrorResult<List<VehiclesEntity>>>());
       expect(
-        (result as ApiErrorResult<List<VehicleEntity>>).errorMessage,
+        (result as ApiErrorResult<List<VehiclesEntity>>).errorMessage,
         equals(contains(fakeDioException.message)),
       );
       verify(mockApiClient.getAllVehicles()).called(1);
@@ -118,9 +118,9 @@ void main() {
       //ACT
       final result = await authRemoteDataSourceImpl.getAllVehicles();
       //ASSERT
-      expect(result, isA<ApiErrorResult<List<VehicleEntity>>>());
+      expect(result, isA<ApiErrorResult<List<VehiclesEntity>>>());
       expect(
-        (result as ApiErrorResult<List<VehicleEntity>>).error,
+        (result as ApiErrorResult<List<VehiclesEntity>>).error,
         equals(fakeException),
       );
       verify(mockApiClient.getAllVehicles()).called(1);

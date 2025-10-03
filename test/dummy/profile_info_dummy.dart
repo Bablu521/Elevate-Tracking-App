@@ -3,13 +3,13 @@ import 'package:elevate_tracking_app/api/models/responses/profile_info_response_
 import 'package:elevate_tracking_app/api/models/responses/upload_profile_image_response_dto/upload_profile_image_response_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicle_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicle_response_dto/vehicle_response_dto.dart';
-import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/requests/update_profile_info_request_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/upload_profile_image_response_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
 import 'package:elevate_tracking_app/api/mapper/profile_info_mapper.dart';
 import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
-import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/logout_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/requests/update_profile_info_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/upload_profile_image_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 
 class ProfileInfoDummy {
   static DriverDto dummyDriverDtoNull = const DriverDto(

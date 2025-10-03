@@ -1,5 +1,5 @@
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
-import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
 
 import 'package:injectable/injectable.dart';

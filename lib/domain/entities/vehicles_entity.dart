@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-class VehicleEntity extends Equatable{
+class VehiclesEntity extends Equatable{
   final String id;
   final String type;
   final String image;
 
-  const VehicleEntity({
+  const VehiclesEntity({
     required this.id,
     required this.type,
     required this.image,

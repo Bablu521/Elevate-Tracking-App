@@ -8,7 +8,7 @@ class ApplyViewModelState extends Equatable {
     this.idImagePath,
     this.applyFun,
   });
-  final BaseState<List<VehicleEntity>>? allVehicleList;
+  final BaseState<List<VehiclesEntity>>? allVehicleList;
   final BaseState<List<CountryEntity>>? allCountry;
   final BaseState<ApplyResponseEntity>? applyFun;
   final String? vehicleImagePath;
@@ -16,7 +16,7 @@ class ApplyViewModelState extends Equatable {
   ApplyViewModelState copyWith({
     String? vehicleImagePath,
     String? idImagePath,
-    BaseState<List<VehicleEntity>>? allVehicleList,
+    BaseState<List<VehiclesEntity>>? allVehicleList,
     BaseState<List<CountryEntity>>? allCountry,
     BaseState<ApplyResponseEntity>? applyFun,
   }) {

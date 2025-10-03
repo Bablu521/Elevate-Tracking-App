@@ -3,13 +3,14 @@ import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_icons.dart';
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/utils/validations.dart';
+import 'package:elevate_tracking_app/domain/entities/vehicles_entity.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/auth/apply/view_model/apply_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../domain/entities/vehicles_entity.dart';
+
 
 class CustomVehicleTypeTextFiled extends StatelessWidget {
   const CustomVehicleTypeTextFiled({super.key});
@@ -34,7 +35,7 @@ class CustomVehicleTypeTextFiled extends StatelessWidget {
               child: SizedBox(
                 height: 30.h,
                 width: 30.w,
-                child: ValueListenableBuilder<VehicleEntity?>(
+                child: ValueListenableBuilder<VehiclesEntity?>(
                   valueListenable: cubit.selectedVehicle,
                   builder: (context, value, child) {
                     return state.allVehicleList?.isLoading == true
@@ -64,7 +65,7 @@ class CustomVehicleTypeTextFiled extends StatelessWidget {
             ),
             suffixIcon: GestureDetector(
               onTap: () {},
-              child: PopupMenuButton<VehicleEntity>(
+              child: PopupMenuButton<VehiclesEntity>(
                 icon: ImageIcon(
                   key: const Key(WidgetsKeys.kApplyScreenArrowDown),
                   const AssetImage(AppIcons.iconArrowDown),

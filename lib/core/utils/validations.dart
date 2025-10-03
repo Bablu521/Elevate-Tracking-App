@@ -64,6 +64,14 @@ class Validations {
     }
   }
 
+  static String? validateFullName(String? val) {
+    if (val == null || val.isEmpty) {
+      return AppLocalizations().thisFieldIsRequired;
+    } else {
+      return null;
+    }
+  }
+
   static String? validatePhoneNumber(String? val) {
     final regex = RegExp(r'^(?:\+2)?01[0125][0-9]{8}$'); 
 

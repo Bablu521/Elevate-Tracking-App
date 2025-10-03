@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/base_state/base_state.dart';
 import 'package:elevate_tracking_app/core/constants/const_keys.dart';
+import 'package:elevate_tracking_app/domain/entities/vehicles_entity.dart';
 import 'package:elevate_tracking_app/domain/use_cases/apply_use_case.dart';
 import 'package:elevate_tracking_app/domain/use_cases/get_all_country_use_case.dart';
 import 'package:elevate_tracking_app/domain/use_cases/get_all_vehicles_use_case.dart';
@@ -17,7 +18,6 @@ import 'package:path/path.dart' as p;
 import '../../../../domain/entities/apply_response_entity.dart';
 import '../../../../domain/entities/country_entity.dart';
 import '../../../../domain/entities/request/apply_request_entity.dart';
-import '../../../../domain/entities/vehicles_entity.dart';
 part 'apply_view_model_state.dart';
 
 @injectable
@@ -60,7 +60,7 @@ class ApplyViewModel extends Cubit<ApplyViewModelState> {
   String? vehicleImagePath;
   String? idImagePath;
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  ValueNotifier<VehicleEntity?> selectedVehicle = ValueNotifier<VehicleEntity?>(
+  ValueNotifier<VehiclesEntity?> selectedVehicle = ValueNotifier<VehiclesEntity?>(
     null,
   );
   ValueNotifier<CountryEntity?> selectedCountry = ValueNotifier<CountryEntity?>(
@@ -172,9 +172,9 @@ class ApplyViewModel extends Cubit<ApplyViewModelState> {
     emit(state.copyWith(allVehicleList: BaseState.loading()));
     final result = await _allVehiclesUseCase.call();
     switch (result) {
-      case ApiSuccessResult<List<VehicleEntity>>():
+      case ApiSuccessResult<List<VehiclesEntity>>():
         emit(state.copyWith(allVehicleList: BaseState.success(result.data)));
-      case ApiErrorResult<List<VehicleEntity>>():
+      case ApiErrorResult<List<VehiclesEntity>>():
         emit(
           state.copyWith(allVehicleList: BaseState.error(result.errorMessage)),
         );

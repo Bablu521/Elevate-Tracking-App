@@ -12,6 +12,7 @@ import 'package:elevate_tracking_app/domain/entities/login_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/requests/update_profile_info_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/upload_profile_image_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicles_entity.dart';
 import '../../dummy/login_dummy_data.dart';
 import '../../dummy/profile_info_dummy.dart';
@@ -28,7 +29,7 @@ void main() {
     final fakeApplyRequestEntity = ApplyFixture.fakeRequestEntity();
     final fakeApplyResponseEntity = ApplyFixture.fakeResponseEntity();
     final fakeAllCountry = ApplyFixture.fakeCountryEntityList();
-    final List<VehicleEntity> fakeListVehicles =
+    final List<VehiclesEntity> fakeListVehicles =
         ApplyFixture.fakeVehicleEntity();
     late MockAuthRemoteDataSource mockAuthRemoteDataSource;
     late MockAuthLocalDataSource mockAuthLocalDataSource;
@@ -51,8 +52,8 @@ void main() {
       provideDummy<ApiResult<ApplyResponseEntity>>(
         ApiErrorResult<ApplyResponseEntity>(fakeException),
       );
-      provideDummy<ApiResult<List<VehicleEntity>>>(
-        ApiSuccessResult<List<VehicleEntity>>(fakeListVehicles),
+      provideDummy<ApiResult<List<VehiclesEntity>>>(
+        ApiSuccessResult<List<VehiclesEntity>>(fakeListVehicles),
       );
       provideDummy<ApiResult<List<VehicleEntity>>>(
         ApiErrorResult<List<VehicleEntity>>(fakeException),
@@ -115,7 +116,7 @@ void main() {
       verify(mockAuthRemoteDataSource.apply(request: fakeRequestEn)).called(1);
     });
     test("get all vehicles success ApiResult List<VehicleEntity>", () async {
-      final expectResult = ApiSuccessResult<List<VehicleEntity>>(
+      final expectResult = ApiSuccessResult<List<VehiclesEntity>>(
         fakeListVehicles,
       );
       when(
@@ -132,7 +133,7 @@ void main() {
       verify(mockAuthRemoteDataSource.getAllVehicles()).called(1);
     });
     test("get all vehicles failure ApiResult DioError", () async {
-      final expectResult = ApiErrorResult<List<VehicleEntity>>(dioException);
+      final expectResult = ApiErrorResult<List<VehiclesEntity>>(dioException);
       when(
         mockAuthRemoteDataSource.getAllVehicles(),
       ).thenAnswer((_) async => expectResult);
@@ -147,7 +148,7 @@ void main() {
       verify(mockAuthRemoteDataSource.getAllVehicles()).called(1);
     });
     test("get all vehicles failure ApiResult Exception", () async {
-      final expectResult = ApiErrorResult<List<VehicleEntity>>(fakeException);
+      final expectResult = ApiErrorResult<List<VehiclesEntity>>(fakeException);
       when(
         mockAuthRemoteDataSource.getAllVehicles(),
       ).thenAnswer((_) async => expectResult);

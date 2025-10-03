@@ -1,11 +1,14 @@
 import 'dart:io';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
-<<<<<<< HEAD
 import 'package:elevate_tracking_app/data/data_source/auth_local_data_source.dart';
 import 'package:elevate_tracking_app/data/data_source/auth_remote_data_source.dart';
+import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/logout_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/requests/update_profile_info_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/upload_profile_image_response_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../domain/entities/apply_response_entity.dart';
 import '../../domain/entities/country_entity.dart';
 import '../../domain/entities/email_verification_entity.dart';
@@ -18,19 +21,6 @@ import '../../domain/entities/requests/login_request_entity.dart';
 import '../../domain/entities/requests/reset_password_request_entity.dart';
 import '../../domain/entities/reset_password_entity.dart';
 import '../../domain/entities/vehicles_entity.dart';
-=======
-import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/login_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/requests/login_request_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/requests/update_profile_info_request_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/upload_profile_image_response_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
-import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
-import 'package:injectable/injectable.dart';
-import '../data_source/auth_local_data_source.dart';
-import '../data_source/auth_remote_data_source.dart';
->>>>>>> 334ecb053b7f43301eb107d2e020addb6402e207
 
 @Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
@@ -47,7 +37,7 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<ApiResult<List<VehicleEntity>>> getAllVehicles() async {
+  Future<ApiResult<List<VehiclesEntity>>> getAllVehicles() async {
     return await _authRemoteDataSource.getAllVehicles();
   }
 
@@ -78,7 +68,6 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-<<<<<<< HEAD
   Future<ApiResult<ForgetPasswordEntity>> forgetPassword(
     ForgetPasswordRequestEntity request,
   ) {
@@ -97,7 +86,10 @@ class AuthRepoImpl implements AuthRepo {
     EmailVerificationRequestEntity request,
   ) {
     return _authRemoteDataSource.emailVerification(request);
-=======
+
+  }
+
+  @override
   Future<ApiResult<DriverEntity>> getLoggedDriverData() {
     return _authRemoteDataSource.getLoggedDriverData();
   }
@@ -126,6 +118,5 @@ class AuthRepoImpl implements AuthRepo {
     final response = await _authRemoteDataSource.logout();
     await _authLocalDataSource.userLogout();
     return response;
->>>>>>> 334ecb053b7f43301eb107d2e020addb6402e207
   }
 }

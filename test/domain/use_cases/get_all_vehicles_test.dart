@@ -12,7 +12,7 @@ import 'apply_use_case_test.mocks.dart';
 @GenerateMocks([AuthRepoImpl])
 void main() {
   group("Test get all vehicles use case", () {
-    final List<VehicleEntity> fakeListVehicles =
+    final List<VehiclesEntity> fakeListVehicles =
         ApplyFixture.fakeVehicleEntity();
     late MockAuthRepoImpl mockAuthRepoImpl;
     late GetAllVehiclesUseCase useCase;
@@ -24,17 +24,17 @@ void main() {
     setUp(() {
       mockAuthRepoImpl = MockAuthRepoImpl();
       useCase = GetAllVehiclesUseCase(mockAuthRepoImpl);
-      provideDummy<ApiResult<List<VehicleEntity>>>(
-        ApiSuccessResult<List<VehicleEntity>>(fakeListVehicles),
+      provideDummy<ApiResult<List<VehiclesEntity>>>(
+        ApiSuccessResult<List<VehiclesEntity>>(fakeListVehicles),
       );
-      provideDummy<ApiResult<List<VehicleEntity>>>(
-        ApiErrorResult<List<VehicleEntity>>(fakeException),
+      provideDummy<ApiResult<List<VehiclesEntity>>>(
+        ApiErrorResult<List<VehiclesEntity>>(fakeException),
       );
     });
     test(
       "get all vehicles use case success ApiResult ApplyResponseEntity",
       () async {
-        final expectResult = ApiSuccessResult<List<VehicleEntity>>(
+        final expectResult = ApiSuccessResult<List<VehiclesEntity>>(
           fakeListVehicles,
         );
         when(
@@ -42,9 +42,9 @@ void main() {
         ).thenAnswer((_) async => expectResult);
 
         final result = await useCase.call();
-        expect(result, isA<ApiSuccessResult<List<VehicleEntity>>>());
+        expect(result, isA<ApiSuccessResult<List<VehiclesEntity>>>());
         expect(
-          (result as ApiSuccessResult<List<VehicleEntity>>).data.length,
+          (result as ApiSuccessResult<List<VehiclesEntity>>).data.length,
           equals(fakeListVehicles.length),
         );
 
@@ -52,30 +52,30 @@ void main() {
       },
     );
     test("get all vehicles use case failure ApiResult DioError", () async {
-      final expectResult = ApiErrorResult<List<VehicleEntity>>(dioException);
+      final expectResult = ApiErrorResult<List<VehiclesEntity>>(dioException);
       when(
         mockAuthRepoImpl.getAllVehicles(),
       ).thenAnswer((_) async => expectResult);
 
       final result = await useCase.call();
-      expect(result, isA<ApiErrorResult<List<VehicleEntity>>>());
+      expect(result, isA<ApiErrorResult<List<VehiclesEntity>>>());
       expect(
-        (result as ApiErrorResult<List<VehicleEntity>>).errorMessage,
+        (result as ApiErrorResult<List<VehiclesEntity>>).errorMessage,
         contains(dioException.message),
       );
 
       verify(mockAuthRepoImpl.getAllVehicles()).called(1);
     });
     test("get all vehicles use case failure ApiResult Exception", () async {
-      final expectResult = ApiErrorResult<List<VehicleEntity>>(fakeException);
+      final expectResult = ApiErrorResult<List<VehiclesEntity>>(fakeException);
       when(
         mockAuthRepoImpl.getAllVehicles(),
       ).thenAnswer((_) async => expectResult);
 
       final result = await useCase.call();
-      expect(result, isA<ApiErrorResult<List<VehicleEntity>>>());
+      expect(result, isA<ApiErrorResult<List<VehiclesEntity>>>());
       expect(
-        (result as ApiErrorResult<List<VehicleEntity>>).error,
+        (result as ApiErrorResult<List<VehiclesEntity>>).error,
         equals(fakeException),
       );
 

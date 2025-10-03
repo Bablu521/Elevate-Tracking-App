@@ -14,7 +14,7 @@ extension ApplyResponseMapper on ApplyResponseDto {
       country: driver.country,
       message: message,
       token: token,
-      createdAt: driver.createdAt,
+      createdAt: driver.createdAt?.toIso8601String(),
       email: driver.email,
       firstName: driver.firstName,
       lastName: driver.lastName,
@@ -53,8 +53,8 @@ extension ApplyRequestMapper on ApplyRequestEntity {
 }
 
 extension VehicleMapper on Vehicle {
-  VehicleEntity toEntity() {
-    return VehicleEntity(id: id ?? '', type: type ?? '', image: image ?? '');
+  VehiclesEntity toEntity() {
+    return VehiclesEntity(id: id ?? '', type: type ?? '', image: image ?? '');
   }
 }
 
