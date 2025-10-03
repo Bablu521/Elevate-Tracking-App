@@ -31,30 +31,32 @@ class VehicleInfoCard extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.h),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context).vehicleInfo,
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      vehicleEntity.type ?? AppLocalizations.of(context).vehicleType,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodySmall!.copyWith(fontSize: 13),
-                    ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      driverEntity.vehicleNumber ??
-                          AppLocalizations.of(context).vehicleNumber,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodySmall!.copyWith(fontSize: 13),
-                    ),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context).vehicleInfo,
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                      SizedBox(height: 8.h),
+                      Text(
+                        vehicleEntity.type ?? AppLocalizations.of(context).vehicleType,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodySmall!.copyWith(fontSize: 13),
+                      ),
+                      SizedBox(height: 8.h),
+                      Text(
+                        driverEntity.vehicleNumber ??
+                            AppLocalizations.of(context).vehicleNumber,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodySmall!.copyWith(fontSize: 13),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

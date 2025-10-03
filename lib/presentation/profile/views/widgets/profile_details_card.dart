@@ -40,30 +40,32 @@ class ProfileDetailsCard extends StatelessWidget {
             ),
             SizedBox(width: 13.w),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "${driverEntity.firstName ?? AppLocalizations.of(context).firstName} ${driverEntity.lastName ?? AppLocalizations.of(context).lastName}",
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                  SizedBox(height: 8.h),
-                  Text(
-                    driverEntity.email ?? AppLocalizations.of(context).email,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall!.copyWith(fontSize: 13),
-                  ),
-                  SizedBox(height: 8.h),
-                  Text(
-                    driverEntity.phone ??
-                        AppLocalizations.of(context).phoneNumber,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall!.copyWith(fontSize: 13),
-                  ),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "${driverEntity.firstName ?? AppLocalizations.of(context).firstName} ${driverEntity.lastName ?? AppLocalizations.of(context).lastName}",
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      driverEntity.email ?? AppLocalizations.of(context).email,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall!.copyWith(fontSize: 13),
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      driverEntity.phone ??
+                          AppLocalizations.of(context).phoneNumber,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall!.copyWith(fontSize: 13),
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(
