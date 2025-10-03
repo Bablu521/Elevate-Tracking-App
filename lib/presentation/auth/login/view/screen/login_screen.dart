@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.only(left: 8.w),
           child: IconButton(
             key: const Key(WidgetsKeys.kLoginScreenAppBarButton),
-            onPressed: () => context.pop(),
+            onPressed: () => context.canPop() ? context.pop() : null,
             icon: const Icon(Icons.arrow_back_ios),
           ),
         ),
