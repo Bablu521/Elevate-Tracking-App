@@ -124,9 +124,9 @@ void main() {
       ).thenAnswer((_) async => expectResult);
 
       final result = await authRepoImpl.getAllVehicles();
-      expect(result, isA<ApiSuccessResult<List<VehicleEntity>>>());
+      expect(result, isA<ApiSuccessResult<List<VehiclesEntity>>>());
       expect(
-        (result as ApiSuccessResult<List<VehicleEntity>>).data.last.type,
+        (result as ApiSuccessResult<List<VehiclesEntity>>).data.last.type,
         equals(fakeListVehicles.last.type),
       );
 
@@ -139,9 +139,9 @@ void main() {
       ).thenAnswer((_) async => expectResult);
 
       final result = await authRepoImpl.getAllVehicles();
-      expect(result, isA<ApiErrorResult<List<VehicleEntity>>>());
+      expect(result, isA<ApiErrorResult<List<VehiclesEntity>>>());
       expect(
-        (result as ApiErrorResult<List<VehicleEntity>>).errorMessage,
+        (result as ApiErrorResult<List<VehiclesEntity>>).errorMessage,
         contains(dioException.message),
       );
 
@@ -154,9 +154,9 @@ void main() {
       ).thenAnswer((_) async => expectResult);
 
       final result = await authRepoImpl.getAllVehicles();
-      expect(result, isA<ApiErrorResult<List<VehicleEntity>>>());
+      expect(result, isA<ApiErrorResult<List<VehiclesEntity>>>());
       expect(
-        (result as ApiErrorResult<List<VehicleEntity>>).error,
+        (result as ApiErrorResult<List<VehiclesEntity>>).error,
         equals(fakeException),
       );
 
