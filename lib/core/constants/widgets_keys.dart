@@ -28,4 +28,9 @@ abstract final class WidgetsKeys {
       "profile_screen_logout_icon";
   static const String kProfileScreenLogoutDialog = "profile_screen_logout_dialog";
   static const String kProfileScreenLogoutButton = "profile_screen_logout_button";
+  static const String kEditProfileInfoScreenSuccessSnackBar =
+      "edit_profile_info_screen_success_snack_bar";
+  static const String kEditProfileInfoScreenFailureSnackBar =
+      "edit_profile_info_screen_failure_snack_bar";
+
 }

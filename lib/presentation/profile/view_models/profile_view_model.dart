@@ -136,10 +136,15 @@ class ProfileViewModel extends Cubit<ProfileStates> {
     );
     switch (result) {
       case ApiSuccessResult<DriverEntity>():
+        initialFirstName = result.data.firstName;
+        initialLastName = result.data.lastName;
+        initialEmail = result.data.email;
+        initialPhone = result.data.phone;
         emit(
           state.copyWith(
             isLoading: false,
             driverData: result.data,
+            isUpdated: true,
             isFormChanged: false,
           ),
         );

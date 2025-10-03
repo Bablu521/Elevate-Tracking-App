@@ -62,5 +62,6 @@
   "update": "Update",
   "vehicleInfo": "Vehicle info",
   "vehicleNumber": "Vehicle number",
-  "vehicleType": "Vehicle type"
+  "vehicleType": "Vehicle type",
+  "profileUpdatedSuccessfully": "Profile updated successfully"
 }

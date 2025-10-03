@@ -12,6 +12,7 @@ class ProfileStates extends Equatable {
   final bool isFormChanged;
   final File? localPickedImage;
   final bool isLogoutState;
+  final bool isUpdated;
 
 
   const ProfileStates({
@@ -21,7 +22,8 @@ class ProfileStates extends Equatable {
     this.vehicleData,
     this.isFormChanged = false,
     this.localPickedImage,
-    this.isLogoutState = false
+    this.isLogoutState = false,
+    this.isUpdated = false,
   });
 
   ProfileStates copyWith({
@@ -31,7 +33,8 @@ class ProfileStates extends Equatable {
     VehicleEntity? vehicleData,
     bool? isFormChanged,
     File? localPickedImage,
-    bool? isLogoutState
+    bool? isLogoutState,
+    bool isUpdated = false,
   }) {
     return ProfileStates(
       isLoading: isLoading ?? this.isLoading,
@@ -40,12 +43,13 @@ class ProfileStates extends Equatable {
       vehicleData: vehicleData ?? this.vehicleData,
       isFormChanged: isFormChanged ?? this.isFormChanged,
       localPickedImage: localPickedImage ?? this.localPickedImage,
-      isLogoutState: isLogoutState ?? this.isLogoutState
+      isLogoutState: isLogoutState ?? this.isLogoutState,
+      isUpdated: isUpdated,
     );
   }
 
   @override
   List<Object?> get props => [isLoading, driverData, errorMessage, vehicleData, isFormChanged, localPickedImage,
-    isLogoutState,
+    isLogoutState,isUpdated
   ];
 }

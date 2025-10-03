@@ -146,16 +146,6 @@ void main() {
       final expectedEntity = ProfileInfoDummy.dummyDriverEntityFake;
       final expectedVehicleEntity = ProfileInfoDummy.dummyVehicleEntityFake;
 
-      // mockInitialFirstName = expectedEntity.firstName;
-      // mockInitialLastName = expectedEntity.lastName;
-      // mockInitialEmail = expectedEntity.email;
-      // mockInitialPhone = expectedEntity.phone;
-      // mockFirstNameController.text = expectedEntity.firstName!;
-      // mockLastNameController.text = expectedEntity.lastName!;
-      // mockEmailController.text = expectedEntity.email!;
-      // mockPhoneNumberController.text = expectedEntity.phone!;
-      // mockSelectedGender = genderFromString(expectedEntity.gender!);
-
       final state = ProfileStates(
         isLoading: false,
         driverData: expectedEntity,
@@ -185,7 +175,7 @@ void main() {
     });
 
     testWidgets(
-      "Verify Forward icon behaviour Navigate edit profile info Scrren",
+      "Verify Forward icon behaviour Navigate edit profile info Screen",
       (WidgetTester tester) async {
         //Arrange
         final expectedEntity = ProfileInfoDummy.dummyDriverEntityFake;
@@ -219,7 +209,7 @@ void main() {
     );
 
     testWidgets(
-      "Verify Forward icon behaviour Navigate edit vehicle info Scrren",
+      "Verify Forward icon behaviour Navigate edit vehicle info Screen",
       (WidgetTester tester) async {
         //Arrange
         final expectedEntity = ProfileInfoDummy.dummyDriverEntityFake;
@@ -251,7 +241,7 @@ void main() {
     );
 
     testWidgets(
-      "Verify Forward icon behaviour Navigate edit vehicle info Scrren",
+      "Verify Forward icon behaviour Navigate edit vehicle info Screen",
       (WidgetTester tester) async {
         //Arrange
         final expectedEntity = ProfileInfoDummy.dummyDriverEntityFake;
