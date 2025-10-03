@@ -44,5 +44,11 @@
   "enterYourEmail": "Enter your email",
   "enterYourPassword": "Enter your password",
   "continueWord": "Continue",
-  "error": "Error"
+  "error": "Error",
+  "success": "success",
+  "resetPassword": "Reset Password",
+  "currentPassword": "Current password",
+  "newPassword": "New password",
+  "confirmPassword": "Confirm password",
+  "confirm": "Confirm"
 }
