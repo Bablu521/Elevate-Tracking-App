@@ -1,5 +1,6 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_images.dart';
+import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
@@ -75,6 +76,7 @@ class ProfileDetailsCard extends StatelessWidget {
                   context.push(RouteNames.editProfileInfo);
                 },
                 child: const Icon(
+                  key: Key(WidgetsKeys.kProfileScreenForwardIconToEditProfileInfo),
                   Icons.arrow_forward_ios,
                   size: 24,
                   color: AppColors.gray,

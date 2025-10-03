@@ -10,6 +10,8 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
+  errors:
+    prefer_final_locals: ignore
   exclude:
     - lib/generated/**
     - lib/l10n/**
