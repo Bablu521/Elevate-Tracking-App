@@ -81,6 +81,12 @@ class HomeOrderCard extends StatelessWidget {
                             foregroundColor: WidgetStateProperty.all(
                               AppColors.mainColor,
                             ),
+                            side: WidgetStateProperty.all(
+                              BorderSide(
+                                color: AppColors.mainColor,
+                                width: 1.w,
+                              ),
+                            ),
                           ),
                       onPressed: () {
                         homeViewModel.doIntent(RejectOrderEvent(index));

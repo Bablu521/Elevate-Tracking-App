@@ -92,10 +92,6 @@ abstract class AppTheme {
         foregroundColor: AppColors.white,
         textStyle: getTextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-        side: BorderSide(
-          color: AppColors.mainColor,
-          width: 1.w,
-        )
       ),
     ),
 
