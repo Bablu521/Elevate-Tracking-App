@@ -10,6 +10,7 @@ import 'package:retrofit/retrofit.dart';
 import '../models/requests/auth/forget_password/email_verification_request.dart';
 import '../models/requests/auth/forget_password/forget_password_request.dart';
 import '../models/requests/auth/forget_password/reset_password_request.dart';
+import '../models/requests/change_password_request_dto.dart';
 import '../models/responses/auth/forget_password/email_verification_response.dart';
 import '../models/responses/auth/forget_password/forget_password_response.dart';
 import '../models/responses/auth/forget_password/reset_password_response.dart';
@@ -19,6 +20,7 @@ import 'package:elevate_tracking_app/api/models/responses/vehicle_response_dto/v
 import 'package:elevate_tracking_app/core/constants/const_keys.dart';
 import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
 
+import '../models/responses/change_password_response_dto.dart';
 import '../models/responses/orders/driver_orders_response.dart';
 import '../models/responses/orders/orders_response.dart';
 import '../models/responses/orders/start_order_response.dart';
@@ -87,7 +89,7 @@ abstract class ApiClient {
   @PUT("${Endpoints.startOrder}/{orderId}")
   Future<StartOrderResponse> startOrder(@Path("orderId") String orderId);
 
-  @PATCH(EndPoints.changePassword)
+  @PATCH(Endpoints.changePassword)
   Future<ChangePasswordResponseDto> changePassword(
       @Body() ChangePasswordRequestDto body,
       );

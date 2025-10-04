@@ -108,10 +108,5 @@
   "accept": "Accept",
   "egp": "EGP",
   "noOrders": "No Orders",
-  "success": "success",
-  "resetPassword": "Reset Password",
-  "currentPassword": "Current password",
-  "newPassword": "New password",
-  "confirmPassword": "Confirm password",
-  "confirm": "Confirm"
+  "currentPassword": "Current password"
 }

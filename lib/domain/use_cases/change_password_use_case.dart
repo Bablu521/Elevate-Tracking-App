@@ -2,7 +2,7 @@ import 'package:elevate_tracking_app/domain/entites/response/change_password_res
 import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 import '../../core/api_result/api_result.dart';
-import '../entites/requests/change_password_request_entity.dart';
+import '../entities/requests/change_password_request_entity.dart';
 
 @injectable
 class ChangePasswordUseCase {

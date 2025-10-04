@@ -10,12 +10,14 @@ import 'package:elevate_tracking_app/domain/entities/upload_profile_image_respon
 import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 import 'package:elevate_tracking_app/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
+import '../../domain/entites/response/change_password_response_entity.dart';
 import '../../domain/entities/apply_response_entity.dart';
 import '../../domain/entities/country_entity.dart';
 import '../../domain/entities/email_verification_entity.dart';
 import '../../domain/entities/forget_password_entity.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/entities/request/apply_request_entity.dart';
+import '../../domain/entities/requests/change_password_request_entity.dart';
 import '../../domain/entities/requests/email_verification_request_entity.dart';
 import '../../domain/entities/requests/forget_password_request_entity.dart';
 import '../../domain/entities/requests/login_request_entity.dart';

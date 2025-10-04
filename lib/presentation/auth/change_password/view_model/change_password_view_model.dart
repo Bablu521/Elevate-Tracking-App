@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/api_result/api_result.dart';
-import '../../../../domain/entites/requests/change_password_request_entity.dart';
 import '../../../../domain/entites/response/change_password_response_entity.dart';
+import '../../../../domain/entities/requests/change_password_request_entity.dart';
 import '../../../../domain/use_cases/change_password_use_case.dart';
 import 'change_password_states.dart';
 

@@ -10,6 +10,7 @@ import 'package:elevate_tracking_app/presentation/profile/views/screen/edit_prof
 import 'package:elevate_tracking_app/presentation/profile/views/screen/edit_vehicle_info_screen.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/screen/profile_screen.dart';
 import 'package:go_router/go_router.dart';
+import '../../presentation/auth/change_password/view/change_password_view.dart';
 import '../../presentation/auth/forget_password/views/screen/forget_password_screen.dart';
 
 abstract class AppRouter {

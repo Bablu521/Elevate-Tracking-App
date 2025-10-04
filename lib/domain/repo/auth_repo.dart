@@ -7,12 +7,14 @@ import 'package:elevate_tracking_app/domain/entities/requests/update_vehicle_req
 import 'package:elevate_tracking_app/domain/entities/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicles_entity.dart';
+import '../entites/response/change_password_response_entity.dart';
 import '../entities/apply_response_entity.dart';
 import '../entities/country_entity.dart';
 import '../entities/email_verification_entity.dart';
 import '../entities/forget_password_entity.dart';
 import '../entities/login_entity.dart';
 import '../entities/request/apply_request_entity.dart';
+import '../entities/requests/change_password_request_entity.dart';
 import '../entities/requests/email_verification_request_entity.dart';
 import '../entities/requests/forget_password_request_entity.dart';
 import '../entities/requests/login_request_entity.dart';

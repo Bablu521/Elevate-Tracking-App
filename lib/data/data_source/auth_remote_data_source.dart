@@ -5,11 +5,13 @@ import 'package:elevate_tracking_app/domain/entities/requests/update_profile_inf
 import 'package:elevate_tracking_app/domain/entities/requests/update_vehicle_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
+import '../../domain/entites/response/change_password_response_entity.dart';
 import '../../domain/entities/apply_response_entity.dart';
 import '../../domain/entities/email_verification_entity.dart';
 import '../../domain/entities/forget_password_entity.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/entities/request/apply_request_entity.dart';
+import '../../domain/entities/requests/change_password_request_entity.dart';
 import '../../domain/entities/requests/email_verification_request_entity.dart';
 import '../../domain/entities/requests/forget_password_request_entity.dart';
 import '../../domain/entities/requests/login_request_entity.dart';
