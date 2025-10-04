@@ -38,32 +38,32 @@ abstract class ApiClient {
 
   @POST(Endpoints.forgetPassword)
   Future<ForgetPasswordResponse> forgetPassword(
-    @Body() ForgetPasswordRequest body,
-  );
+      @Body() ForgetPasswordRequest body,
+      );
 
   @POST(Endpoints.verifyReset)
   Future<EmailVerificationResponse> emailVerification(
-    @Body() EmailVerificationRequest body,
-  );
+      @Body() EmailVerificationRequest body,
+      );
 
   @PUT(Endpoints.resetPassword)
   Future<ResetPasswordResponse> resetPassword(
-    @Body() ResetPasswordRequest body,
-  );
+      @Body() ResetPasswordRequest body,
+      );
 
   @GET(Endpoints.profile)
   Future<ProfileInfoResponseDto> getLoggedDriverData();
 
   @PUT(Endpoints.editProfile)
   Future<ProfileInfoResponseDto> editProfile(
-    @Body() UpdateProfileInfoRequestDto updateProfileInfoRequestDto,
-  );
+      @Body() UpdateProfileInfoRequestDto updateProfileInfoRequestDto,
+      );
 
   @PUT(Endpoints.uploadProfilePhoto)
   @MultiPart()
   Future<UploadProfileImageResponseDto> uploadProfilePhoto(
-    @Part(name: ConstKeys.photo) MultipartFile photo,
-  );
+      @Part(name: ConstKeys.photo) MultipartFile photo,
+      );
 
   @GET('${Endpoints.vehicle}/{id}')
   Future<VehicleResponseDto> getVehicle(@Path("id") String id);
@@ -73,4 +73,13 @@ abstract class ApiClient {
 
   @PUT(Endpoints.editProfile)
   Future<ProfileInfoResponseDto> updateVehicleInfo(@Body() FormData request);
+
+  @GET("${EndPoints.orders}/{page}")
+  Future<OrdersResponse> getOrders(@Path("page") int? page);
+
+  @GET(EndPoints.driverOrders)
+  Future<DriverOrdersResponse> getDriverOrders();
+
+  @PUT("${EndPoints.startOrder}/{orderId}")
+  Future<StartOrderResponse> startOrder(@Path("orderId") String orderId);
 }

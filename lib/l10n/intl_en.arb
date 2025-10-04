@@ -99,5 +99,13 @@
   "vehicleType": "Vehicle type",
   "profileUpdatedSuccessfully": "Profile updated successfully",
   "vehicleNotFound": "Vehicle not found select new vehicle",
-  "successUpdatedData" : "Success updated data"
+  "successUpdatedData" : "Success updated data",
+  "floweryRider": "Flowery Rider",
+  "flowerOrder": "Flower order",
+  "pickupAddress": "Pickup address",
+  "userAddress": "User address",
+  "reject": "Reject",
+  "accept": "Accept",
+  "egp": "EGP",
+  "noOrders": "No Orders"
 }

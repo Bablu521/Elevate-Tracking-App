@@ -32,10 +32,6 @@ abstract class AppRouter {
       builder: (context, state) => MainHomeScreen(),
     ),
     GoRoute(
-      path: RouteNames.home,
-      builder: (context, state) => const HomeScreen(),
-    ),
-    GoRoute(
       path: RouteNames.orders,
       builder: (context, state) => const OrdersScreen(),
     ),

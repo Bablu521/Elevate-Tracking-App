@@ -1,0 +1,31 @@
+import 'package:elevate_tracking_app/domain/entites/start_order_items_entity.dart';
+
+class StartOrderEntity {
+  final String? id;
+  final String? user;
+  final List<StartOrderItemsEntity>? orderItems;
+  final int? totalPrice;
+  final String? paymentType;
+  final bool? isPaid;
+  final bool? isDelivered;
+  final String? state;
+  final String? createdAt;
+  final String? updatedAt;
+  final String? orderNumber;
+  final int? v;
+
+  StartOrderEntity({
+    this.id,
+    this.user,
+    this.orderItems,
+    this.totalPrice,
+    this.paymentType,
+    this.isPaid,
+    this.isDelivered,
+    this.state,
+    this.createdAt,
+    this.updatedAt,
+    this.orderNumber,
+    this.v,
+  });
+}
