@@ -1,16 +1,22 @@
 import 'package:elevate_tracking_app/api/models/driver_order_dto.dart';
 import 'package:elevate_tracking_app/domain/entites/driver_order_entity.dart';
 
+import '../../domain/entites/meta_data_entity.dart';
 import '../../domain/entites/order_entity.dart';
 import '../../domain/entites/order_item_entity.dart';
+import '../../domain/entites/pending_orders_entity.dart';
 import '../../domain/entites/product_entity.dart';
+import '../../domain/entites/shipping_address_entity.dart';
 import '../../domain/entites/start_order_entity.dart';
 import '../../domain/entites/start_order_items_entity.dart';
 import '../../domain/entites/store_entity.dart';
 import '../../domain/entites/user_entity.dart';
+import '../models/meta_data_dto.dart';
 import '../models/order_dto.dart';
 import '../models/order_item_dto.dart';
 import '../models/product_dto.dart';
+import '../models/responses/orders/orders_response.dart';
+import '../models/shipping_address_dto.dart';
 import '../models/start_order_dto.dart';
 import '../models/start_order_items_dto.dart';
 import '../models/store_dto.dart';
@@ -37,6 +43,7 @@ extension OrderMapper on OrderDTO {
       user: user?.toEntity(),
       orderItems: orderItems?.map((dto) => dto.toEntity()).toList(),
       totalPrice: totalPrice,
+      shippingAddress: shippingAddress?.toEntity(),
       paymentType: paymentType,
       isPaid: isPaid,
       isDelivered: isDelivered,
@@ -139,6 +146,38 @@ extension StartOrderItemsMapper on StartOrderItemsDto {
       price: price,
       quantity: quantity,
       id: id,
+    );
+  }
+}
+
+extension ShippingAddressMapper on ShippingAddressDTO {
+  ShippingAddressEntity toEntity() {
+    return ShippingAddressEntity(
+      street: street,
+      city: city,
+      phone: phone,
+      lat: lat,
+      long: long,
+    );
+  }
+}
+
+extension MetaDataMapper on MetaDataDTO {
+  MetaDataEntity toEntity() {
+    return MetaDataEntity(
+      currentPage: currentPage,
+      totalPages: totalPages,
+      totalItems: totalItems,
+      limit: limit,
+    );
+  }
+}
+
+extension OrderResponseMapper on OrdersResponse {
+  PendingOrdersEntity toEntity() {
+    return PendingOrdersEntity(
+      metadata: metadata?.toEntity(),
+      orders: orders?.map((dto) => dto.toEntity()).toList(),
     );
   }
 }

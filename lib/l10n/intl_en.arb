@@ -45,5 +45,12 @@
   "enterYourPassword": "Enter your password",
   "continueWord": "Continue",
   "error": "Error",
-  "floweryRider": "Flowery Rider"
+  "floweryRider": "Flowery Rider",
+  "flowerOrder": "Flower order",
+  "pickupAddress": "Pickup address",
+  "userAddress": "User address",
+  "reject": "Reject",
+  "accept": "Accept",
+  "egp": "EGP",
+  "noOrders": "No Orders"
 }

@@ -1,3 +1,4 @@
+import 'package:elevate_tracking_app/api/models/shipping_address_dto.dart';
 import 'package:elevate_tracking_app/api/models/store_dto.dart';
 import 'package:elevate_tracking_app/api/models/user_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -15,6 +16,8 @@ class OrderDTO {
   final List<OrderItemDTO>? orderItems;
   @JsonKey(name: "totalPrice")
   final int? totalPrice;
+  @JsonKey(name: "shippingAddress")
+  final ShippingAddressDTO? shippingAddress;
   @JsonKey(name: "paymentType")
   final String? paymentType;
   @JsonKey(name: "isPaid")
@@ -39,6 +42,7 @@ class OrderDTO {
     this.user,
     this.orderItems,
     this.totalPrice,
+    this.shippingAddress,
     this.paymentType,
     this.isPaid,
     this.isDelivered,

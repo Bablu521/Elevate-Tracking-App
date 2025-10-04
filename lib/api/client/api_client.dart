@@ -20,12 +20,12 @@ abstract class ApiClient {
   @POST(EndPoints.login)
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
 
-  @GET(EndPoints.orders)
-  Future<OrdersResponse> getOrders();
+  @GET("${EndPoints.orders}/{page}")
+  Future<OrdersResponse> getOrders(@Path("page") int? page);
 
   @GET(EndPoints.driverOrders)
   Future<DriverOrdersResponse> getDriverOrders();
 
-  @POST("${EndPoints.startOrder}/{orderId}")
+  @PUT("${EndPoints.startOrder}/{orderId}")
   Future<StartOrderResponse> startOrder(@Path("orderId") String orderId);
 }

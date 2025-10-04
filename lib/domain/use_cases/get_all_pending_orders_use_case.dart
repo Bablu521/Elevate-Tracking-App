@@ -2,7 +2,7 @@ import 'package:elevate_tracking_app/domain/repo/orders_repo.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/api_result/api_result.dart';
-import '../entites/order_entity.dart';
+import '../entites/pending_orders_entity.dart';
 
 @injectable
 class GetAllPendingOrdersUseCase {
@@ -10,7 +10,7 @@ class GetAllPendingOrdersUseCase {
 
   GetAllPendingOrdersUseCase(this._ordersRepo);
 
-  Future<ApiResult<List<OrderEntity>>> call() async {
-    return await _ordersRepo.getOrders();
+  Future<ApiResult<PendingOrdersEntity>> call({int? page}) async {
+    return await _ordersRepo.getOrders(page);
   }
 }

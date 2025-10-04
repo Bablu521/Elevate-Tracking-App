@@ -3,8 +3,13 @@ import 'package:elevate_tracking_app/core/constants/const_keys.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/home/view_model/home_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/di/di.dart';
+import '../../../../domain/entites/order_entity.dart';
+import '../../view_model/home_events.dart';
+import '../widget/home_order_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     homeViewModel = getIt.get<HomeViewModel>();
+    homeViewModel.doIntent(GetOrdersEvent());
   }
 
   @override
@@ -30,17 +36,67 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          AppLocalizations.of(context).floweryRider,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: AppColors.mainColor,
-            fontWeight: FontWeight.w400,
-            fontFamily: ConstKeys.iMFeellEnglishFont,
-          ),
-        ),
-      ],
+    return BlocConsumer<HomeViewModel, HomeState>(
+      bloc: homeViewModel,
+      listener: (context, state) {
+        if (state.errorMessage != null) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
+        }
+      },
+      builder: (context, state) {
+        if (state.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (state.ordersList == null || state.ordersList!.isEmpty) {
+          return Center(child: Text(AppLocalizations.of(context).noOrders));
+        }
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 16.h,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Text(
+                AppLocalizations.of(context).floweryRider,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: AppColors.mainColor,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: ConstKeys.iMFeellEnglishFont,
+                ),
+              ),
+            ),
+            Expanded(
+              child: NotificationListener<ScrollNotification>(
+                onNotification: (ScrollNotification scrollInfo) {
+                  if (scrollInfo.metrics.pixels ==
+                      scrollInfo.metrics.maxScrollExtent) {
+                    homeViewModel.doIntent(LoadMoreOrdersEvent());
+                  }
+                  return true;
+                },
+                child: ListView.separated(
+                  padding: EdgeInsets.only(left: 16.w, right: 16.w),
+                  itemCount: state.ordersList?.length ?? 0,
+                  itemBuilder: (ctx, index) {
+                    return HomeOrderCard(
+                      index: index,
+                      orderEntity: state.ordersList?[index] ?? OrderEntity(),
+                      homeViewModel: homeViewModel,
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(height: 16.h);
+                  },
+                ),
+              ),
+            ),
+            if (state.isLoadingMore)
+              const Center(child: CircularProgressIndicator()),
+          ],
+        );
+      },
     );
   }
 }

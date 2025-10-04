@@ -1,4 +1,5 @@
 import 'package:elevate_tracking_app/domain/entites/order_item_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/shipping_address_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/store_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/user_entity.dart';
 
@@ -7,6 +8,7 @@ class OrderEntity {
   final UserEntity? user;
   final List<OrderItemEntity>? orderItems;
   final int? totalPrice;
+  final ShippingAddressEntity? shippingAddress;
   final String? paymentType;
   final bool? isPaid;
   final bool? isDelivered;
@@ -22,6 +24,7 @@ class OrderEntity {
     this.user,
     this.orderItems,
     this.totalPrice,
+    this.shippingAddress,
     this.paymentType,
     this.isPaid,
     this.isDelivered,
