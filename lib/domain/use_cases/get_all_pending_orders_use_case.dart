@@ -2,7 +2,7 @@ import 'package:elevate_tracking_app/domain/repo/orders_repo.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/api_result/api_result.dart';
-import '../entites/pending_orders_entity.dart';
+import '../entities/pending_orders_entity.dart';
 
 @injectable
 class GetAllPendingOrdersUseCase {

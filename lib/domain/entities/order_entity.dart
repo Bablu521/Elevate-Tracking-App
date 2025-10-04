@@ -1,7 +1,7 @@
-import 'package:elevate_tracking_app/domain/entites/order_item_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/shipping_address_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/store_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/user_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/order_item_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/shipping_address_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/store_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/user_entity.dart';
 
 class OrderEntity {
   final String? id;

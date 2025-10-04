@@ -2,11 +2,11 @@ import 'package:elevate_tracking_app/api/client/api_client.dart';
 import 'package:elevate_tracking_app/api/mapper/orders_mapper.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/api_result/safe_api_call.dart';
-import 'package:elevate_tracking_app/domain/entites/start_order_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/data_source/orders_remote_data_source.dart';
-import '../../domain/entites/pending_orders_entity.dart';
+import '../../domain/entities/pending_orders_entity.dart';
+import '../../domain/entities/start_order_entity.dart';
 
 @Injectable(as: OrdersRemoteDataSource)
 class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {

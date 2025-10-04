@@ -19,6 +19,10 @@ import 'package:elevate_tracking_app/api/models/responses/vehicle_response_dto/v
 import 'package:elevate_tracking_app/core/constants/const_keys.dart';
 import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
 
+import '../models/responses/orders/driver_orders_response.dart';
+import '../models/responses/orders/orders_response.dart';
+import '../models/responses/orders/start_order_response.dart';
+
 part 'api_client.g.dart';
 
 @injectable
@@ -74,12 +78,12 @@ abstract class ApiClient {
   @PUT(Endpoints.editProfile)
   Future<ProfileInfoResponseDto> updateVehicleInfo(@Body() FormData request);
 
-  @GET("${EndPoints.orders}/{page}")
+  @GET("${Endpoints.orders}/{page}")
   Future<OrdersResponse> getOrders(@Path("page") int? page);
 
-  @GET(EndPoints.driverOrders)
+  @GET(Endpoints.driverOrders)
   Future<DriverOrdersResponse> getDriverOrders();
 
-  @PUT("${EndPoints.startOrder}/{orderId}")
+  @PUT("${Endpoints.startOrder}/{orderId}")
   Future<StartOrderResponse> startOrder(@Path("orderId") String orderId);
 }

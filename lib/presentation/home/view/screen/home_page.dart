@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/di/di.dart';
-import '../../../../domain/entites/order_entity.dart';
+import '../../../../domain/entities/order_entity.dart';
 import '../../view_model/home_events.dart';
 import '../widget/home_order_card.dart';
 

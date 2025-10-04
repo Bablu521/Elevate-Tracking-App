@@ -1,5 +1,5 @@
-import 'package:elevate_tracking_app/domain/entites/order_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/store_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/order_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/store_entity.dart';
 
 class DriverOrderEntity {
   final String? id;

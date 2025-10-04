@@ -1,4 +1,4 @@
-import 'package:elevate_tracking_app/domain/entites/start_order_items_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/start_order_items_entity.dart';
 
 class StartOrderEntity {
   final String? id;

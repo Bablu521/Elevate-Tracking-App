@@ -1,13 +1,13 @@
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
-import 'package:elevate_tracking_app/domain/entites/start_order_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/start_order_entity.dart';
 import 'package:elevate_tracking_app/domain/use_cases/start_order_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../domain/entites/order_entity.dart';
-import '../../../domain/entites/pending_orders_entity.dart';
+import '../../../domain/entities/order_entity.dart';
+import '../../../domain/entities/pending_orders_entity.dart';
 import '../../../domain/use_cases/get_all_pending_orders_use_case.dart';
 import 'home_events.dart';
 

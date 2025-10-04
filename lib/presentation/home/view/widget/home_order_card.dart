@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_colors.dart';
-import '../../../../domain/entites/order_entity.dart';
+import '../../../../domain/entities/order_entity.dart';
 import '../../../../generated/l10n.dart';
 import '../../view_model/home_events.dart';
 

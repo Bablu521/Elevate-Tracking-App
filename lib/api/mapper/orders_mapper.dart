@@ -1,16 +1,16 @@
 import 'package:elevate_tracking_app/api/models/driver_order_dto.dart';
-import 'package:elevate_tracking_app/domain/entites/driver_order_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/driver_order_entity.dart';
 
-import '../../domain/entites/meta_data_entity.dart';
-import '../../domain/entites/order_entity.dart';
-import '../../domain/entites/order_item_entity.dart';
-import '../../domain/entites/pending_orders_entity.dart';
-import '../../domain/entites/product_entity.dart';
-import '../../domain/entites/shipping_address_entity.dart';
-import '../../domain/entites/start_order_entity.dart';
-import '../../domain/entites/start_order_items_entity.dart';
-import '../../domain/entites/store_entity.dart';
-import '../../domain/entites/user_entity.dart';
+import '../../domain/entities/meta_data_entity.dart';
+import '../../domain/entities/order_entity.dart';
+import '../../domain/entities/order_item_entity.dart';
+import '../../domain/entities/pending_orders_entity.dart';
+import '../../domain/entities/product_entity.dart';
+import '../../domain/entities/shipping_address_entity.dart';
+import '../../domain/entities/start_order_entity.dart';
+import '../../domain/entities/start_order_items_entity.dart';
+import '../../domain/entities/store_entity.dart';
+import '../../domain/entities/user_entity.dart';
 import '../models/meta_data_dto.dart';
 import '../models/order_dto.dart';
 import '../models/order_item_dto.dart';
