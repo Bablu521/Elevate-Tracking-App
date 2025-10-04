@@ -44,5 +44,15 @@
   "enterYourEmail": "Enter your email",
   "enterYourPassword": "Enter your password",
   "continueWord": "Continue",
-  "error": "Error"
+  "error": "Error",
+  "myOrders": "My orders",
+  "cancelled": "Cancelled",
+  "completed": "Completed",
+  "recentOrders": "Recent orders",
+  "flowerOrder": "Flower order",
+  "pickupAddress": "Pickup address",
+  "userAddress": "User address",
+  "orderDetails": "Order details",
+  "total": "Total",
+  "paymentMethod": "Payment method"
 }

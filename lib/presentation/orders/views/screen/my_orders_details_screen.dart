@@ -1,18 +1,18 @@
 import 'package:elevate_tracking_app/generated/l10n.dart';
-import 'package:elevate_tracking_app/presentation/orders/views/widgets/orders_view_body.dart';
+import 'package:elevate_tracking_app/presentation/orders/views/widgets/my_orders_details_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class OrdersScreen extends StatelessWidget {
-  const OrdersScreen({super.key});
+class MyOrdersDetailsScreen extends StatelessWidget {
+  const MyOrdersDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppLocalizations.of(context).myOrders,
+          AppLocalizations.of(context).orderDetails,
           style: Theme.of(
             context,
           ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w500),
@@ -25,7 +25,7 @@ class OrdersScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: const SafeArea(child: OrdersViewBody()),
+      body: const SafeArea(child: MyOrdersDetailsViewBody()),
     );
   }
 }

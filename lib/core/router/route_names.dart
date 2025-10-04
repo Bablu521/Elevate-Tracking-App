@@ -13,4 +13,5 @@ abstract class RouteNames {
   static const String logout = "/logout";
   static const String onboarding = "/onboarding";
   static const String applicationApproved = "/applicationApproved";
+  static const String myOrdersDetails = "/myOrdersDetails";
 }
