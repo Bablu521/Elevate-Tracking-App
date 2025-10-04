@@ -31,32 +31,36 @@ abstract interface class AuthRepo {
   Future<ApiResult<LoginEntity>> login(LoginRequestEntity loginRequestEntity);
 
   Future<ApiResult<ForgetPasswordEntity>> forgetPassword(
-    ForgetPasswordRequestEntity request,
-  );
+      ForgetPasswordRequestEntity request,
+      );
 
   Future<ApiResult<EmailVerificationEntity>> emailVerification(
-    EmailVerificationRequestEntity request,
-  );
+      EmailVerificationRequestEntity request,
+      );
 
   Future<ApiResult<ResetPasswordEntity>> resetPassword(
-    ResetPasswordRequestEntity request,
-  );
+      ResetPasswordRequestEntity request,
+      );
 
   Future<ApiResult<DriverEntity>> getLoggedDriverData();
 
   Future<ApiResult<DriverEntity>> editProfile(
-    UpdateProfileInfoRequestEntity updateProfileInfoRequestEntity,
-  );
+      UpdateProfileInfoRequestEntity updateProfileInfoRequestEntity,
+      );
 
   Future<ApiResult<UploadProfileImageResponseEntity>> uploadProfilePhoto(
-    File file,
-  );
+      File file,
+      );
 
   Future<ApiResult<VehicleEntity>> getVehicle(String id);
 
   Future<ApiResult<LogoutResponseEntity>> logout();
 
-   Future<ApiResult<DriverEntity>> updateVehicleInfo(
-    UpdateVehicleRequestEntity request,
-  );
+  Future<ApiResult<DriverEntity>> updateVehicleInfo(
+      UpdateVehicleRequestEntity request,
+      );
+
+  Future<ApiResult<ChangePasswordResponseEntity>> changePassword(
+      ChangePasswordRequestEntity request,
+      );
 }

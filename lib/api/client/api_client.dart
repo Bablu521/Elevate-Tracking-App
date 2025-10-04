@@ -86,4 +86,9 @@ abstract class ApiClient {
 
   @PUT("${Endpoints.startOrder}/{orderId}")
   Future<StartOrderResponse> startOrder(@Path("orderId") String orderId);
+
+  @PATCH(EndPoints.changePassword)
+  Future<ChangePasswordResponseDto> changePassword(
+      @Body() ChangePasswordRequestDto body,
+      );
 }

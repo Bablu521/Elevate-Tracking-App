@@ -57,6 +57,10 @@ abstract class AppRouter {
         return EditVehicleInfoScreen(driverEntity: driverEntity);
       },
     ),
+    GoRoute(
+      path: RouteNames.changePassword,
+      builder: (context, state) => const ChangePassword(),
+    ),
   ];
 
   static GoRouter router(String? token) {

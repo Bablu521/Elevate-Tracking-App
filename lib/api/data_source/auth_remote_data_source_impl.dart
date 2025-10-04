@@ -54,105 +54,115 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<ApiResult<List<VehiclesEntity>>> getAllVehicles() async {
     return safeApiCall<VehiclesResponse, List<VehiclesEntity>>(
-      () => _apiClient.getAllVehicles(),
-      (dto) => dto.vehicles?.map((v) => v.toEntity()).toList() ?? [],
+          () => _apiClient.getAllVehicles(),
+          (dto) => dto.vehicles?.map((v) => v.toEntity()).toList() ?? [],
     );
   }
 
   @override
   Future<ApiResult<LoginEntity>> login(LoginRequestEntity loginRequestEntity) {
     return safeApiCall(
-      () => _apiClient.login(loginRequestEntity.toRequest()),
-      (response) => response.toEntity(),
+          () => _apiClient.login(loginRequestEntity.toRequest()),
+          (response) => response.toEntity(),
     );
   }
 
   @override
   Future<ApiResult<ForgetPasswordEntity>> forgetPassword(
-    ForgetPasswordRequestEntity request,
-  ) async {
+      ForgetPasswordRequestEntity request,
+      ) async {
     return safeApiCall(
-      () => _apiClient.forgetPassword(request.toRequest()),
-      (response) => response.toEntity(),
+          () => _apiClient.forgetPassword(request.toRequest()),
+          (response) => response.toEntity(),
     );
   }
 
   @override
   Future<ApiResult<DriverEntity>> getLoggedDriverData() {
     return safeApiCall(
-      () => _apiClient.getLoggedDriverData(),
-      (response) => response.driver!.toEntity(),
+          () => _apiClient.getLoggedDriverData(),
+          (response) => response.driver!.toEntity(),
     );
   }
 
   @override
   Future<ApiResult<DriverEntity>> editProfile(
-    UpdateProfileInfoRequestEntity updateProfileInfoRequestEntity,
-  ) {
+      UpdateProfileInfoRequestEntity updateProfileInfoRequestEntity,
+      ) {
     return safeApiCall(
-      () => _apiClient.editProfile(updateProfileInfoRequestEntity.toDto()),
-      (response) => response.driver!.toEntity(),
+          () => _apiClient.editProfile(updateProfileInfoRequestEntity.toDto()),
+          (response) => response.driver!.toEntity(),
     );
   }
 
   @override
   Future<ApiResult<UploadProfileImageResponseEntity>> uploadProfilePhoto(
-    File file,
-  ) async {
+      File file,
+      ) async {
     final multipartFile = await MultipartFile.fromFile(
       file.path,
       filename: file.uri.pathSegments.last,
     );
     return safeApiCall(
-      () => _apiClient.uploadProfilePhoto(multipartFile),
-      (response) => response.toEntity(),
+          () => _apiClient.uploadProfilePhoto(multipartFile),
+          (response) => response.toEntity(),
     );
   }
 
   @override
   Future<ApiResult<ResetPasswordEntity>> resetPassword(
-    ResetPasswordRequestEntity request,
-  ) async {
+      ResetPasswordRequestEntity request,
+      ) async {
     return safeApiCall(
-      () => _apiClient.resetPassword(request.toRequest()),
-      (response) => response.toEntity(),
+          () => _apiClient.resetPassword(request.toRequest()),
+          (response) => response.toEntity(),
     );
   }
 
   @override
   Future<ApiResult<EmailVerificationEntity>> emailVerification(
-    EmailVerificationRequestEntity request,
-  ) async {
+      EmailVerificationRequestEntity request,
+      ) async {
     return safeApiCall(
-      () => _apiClient.emailVerification(request.toRequest()),
-      (response) => response.toEntity(),
+          () => _apiClient.emailVerification(request.toRequest()),
+          (response) => response.toEntity(),
     );
   }
 
   @override
   Future<ApiResult<VehicleEntity>> getVehicle(String id) {
     return safeApiCall(
-      () => _apiClient.getVehicle(id),
-      (response) => response.vehicle!.toEntity(),
+          () => _apiClient.getVehicle(id),
+          (response) => response.vehicle!.toEntity(),
     );
   }
 
   @override
   Future<ApiResult<LogoutResponseEntity>> logout() async {
     return safeApiCall<LogoutResponseDto, LogoutResponseEntity>(
-      () => _apiClient.logout(),
-      (dto) => dto.toEntity(),
+          () => _apiClient.logout(),
+          (dto) => dto.toEntity(),
     );
   }
 
-   @override
+  @override
   Future<ApiResult<DriverEntity>> updateVehicleInfo(
-    UpdateVehicleRequestEntity request,
-  ) async {
+      UpdateVehicleRequestEntity request,
+      ) async {
     return safeApiCall<ProfileInfoResponseDto, DriverEntity>(() async {
       final UpdateVehicleRequestDto dto = request.toDto();
       final formData = await dto.toFormData();
       return await _apiClient.updateVehicleInfo(formData);
     }, (dto) => dto.driver!.toEntity());
+  }
+
+  @override
+  Future<ApiResult<ChangePasswordResponseEntity>> changePassword(
+      ChangePasswordRequestEntity request,
+      ) async {
+    return safeApiCall(
+          () => _apiClient.changePassword(request.fromDomain()),
+          (response) => response.toEntity(),
+    );
   }
 }

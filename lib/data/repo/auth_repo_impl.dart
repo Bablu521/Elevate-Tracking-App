@@ -49,8 +49,8 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<ApiResult<LoginEntity>> login(
-    LoginRequestEntity loginRequestEntity,
-  ) async {
+      LoginRequestEntity loginRequestEntity,
+      ) async {
     final result = await _authRemoteDataSource.login(loginRequestEntity);
     switch (result) {
       case ApiSuccessResult<LoginEntity>():
@@ -70,22 +70,22 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<ApiResult<ForgetPasswordEntity>> forgetPassword(
-    ForgetPasswordRequestEntity request,
-  ) {
+      ForgetPasswordRequestEntity request,
+      ) {
     return _authRemoteDataSource.forgetPassword(request);
   }
 
   @override
   Future<ApiResult<ResetPasswordEntity>> resetPassword(
-    ResetPasswordRequestEntity request,
-  ) {
+      ResetPasswordRequestEntity request,
+      ) {
     return _authRemoteDataSource.resetPassword(request);
   }
 
   @override
   Future<ApiResult<EmailVerificationEntity>> emailVerification(
-    EmailVerificationRequestEntity request,
-  ) {
+      EmailVerificationRequestEntity request,
+      ) {
     return _authRemoteDataSource.emailVerification(request);
   }
 
@@ -96,15 +96,15 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<ApiResult<DriverEntity>> editProfile(
-    UpdateProfileInfoRequestEntity updateProfileInfoRequestEntity,
-  ) {
+      UpdateProfileInfoRequestEntity updateProfileInfoRequestEntity,
+      ) {
     return _authRemoteDataSource.editProfile(updateProfileInfoRequestEntity);
   }
 
   @override
   Future<ApiResult<UploadProfileImageResponseEntity>> uploadProfilePhoto(
-    File file,
-  ) {
+      File file,
+      ) {
     return _authRemoteDataSource.uploadProfilePhoto(file);
   }
 
@@ -120,10 +120,17 @@ class AuthRepoImpl implements AuthRepo {
     return response;
   }
 
-   @override
+  @override
   Future<ApiResult<DriverEntity>> updateVehicleInfo(
-    UpdateVehicleRequestEntity request,
-  ) async {
+      UpdateVehicleRequestEntity request,
+      ) async {
     return await _authRemoteDataSource.updateVehicleInfo(request);
+  }
+
+  @override
+  Future<ApiResult<ChangePasswordResponseEntity>> changePassword(
+      ChangePasswordRequestEntity request,
+      ) {
+    return _authRemoteDataSource.changePassword(request);
   }
 }
