@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:elevate_tracking_app/api/models/requests/login_request.dart';
+import 'package:elevate_tracking_app/api/models/responses/driver_orders_response_dto/driver_orders_response_dto_driver_related.dart';
 import 'package:elevate_tracking_app/api/models/responses/login_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
@@ -16,4 +17,7 @@ abstract class ApiClient {
 
   @POST(EndPoints.login)
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
+
+  @GET(EndPoints.getAllDriverOrders)
+  Future<DriverOrdersResponseDtoDriverRelated>getAllDriverOrders();
 }
