@@ -72,23 +72,29 @@ class HomeOrderCard extends StatelessWidget {
                 child: ValueListenableBuilder(
                   valueListenable: homeViewModel.rejectOrderIndex,
                   builder: (context, value, child) {
-                    return ElevatedButton(
-                      style: Theme.of(context).elevatedButtonTheme.style
-                          ?.copyWith(
-                            backgroundColor: WidgetStateProperty.all(
-                              AppColors.white,
-                            ),
-                            foregroundColor: WidgetStateProperty.all(
-                              AppColors.mainColor,
-                            ),
-                          ),
-                      onPressed: () {
-                        homeViewModel.doIntent(RejectOrderEvent(index));
-                      },
-                      child: value == index
-                          ? const CircularProgressIndicator()
-                          : Text(AppLocalizations.of(context).reject),
-                    );
+                    return value == index
+                        ? const Center(child: CircularProgressIndicator())
+                        : ElevatedButton(
+                            style: Theme.of(context).elevatedButtonTheme.style
+                                ?.copyWith(
+                                  backgroundColor: WidgetStateProperty.all(
+                                    AppColors.white,
+                                  ),
+                                  foregroundColor: WidgetStateProperty.all(
+                                    AppColors.mainColor,
+                                  ),
+                                  side: WidgetStateProperty.all(
+                                    BorderSide(
+                                      color: AppColors.mainColor,
+                                      width: 1.w,
+                                    ),
+                                  ),
+                                ),
+                            onPressed: () {
+                              homeViewModel.doIntent(RejectOrderEvent(index));
+                            },
+                            child: Text(AppLocalizations.of(context).reject),
+                          );
                   },
                 ),
               ),
@@ -96,14 +102,14 @@ class HomeOrderCard extends StatelessWidget {
                 child: ValueListenableBuilder(
                   valueListenable: homeViewModel.acceptOrderIndex,
                   builder: (context, value, child) {
-                    return ElevatedButton(
-                      onPressed: () {
-                        homeViewModel.doIntent(AcceptOrderEvent(index));
-                      },
-                      child: value == index
-                          ? const CircularProgressIndicator()
-                          : Text(AppLocalizations.of(context).accept),
-                    );
+                    return value == index
+                        ? const Center(child: CircularProgressIndicator())
+                        : ElevatedButton(
+                            onPressed: () {
+                              homeViewModel.doIntent(AcceptOrderEvent(index));
+                            },
+                            child: Text(AppLocalizations.of(context).accept),
+                          );
                   },
                 ),
               ),

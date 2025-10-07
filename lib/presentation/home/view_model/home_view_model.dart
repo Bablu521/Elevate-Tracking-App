@@ -21,13 +21,12 @@ class HomeViewModel extends Cubit<HomeState> {
   HomeViewModel(this._getAllPendingOrdersUseCase, this._startOrderUseCase)
     : super(const HomeState());
 
-  int currentPage = 1;
-  int totalPages = 0;
-
-  List<OrderEntity>? ordersList;
-
   ValueNotifier<int> acceptOrderIndex = ValueNotifier(-1);
   ValueNotifier<int> rejectOrderIndex = ValueNotifier(-1);
+
+  int currentPage = 1;
+  int totalPages = 0;
+  bool isLoadMore = false;
 
   void doIntent(HomeEvents events) {
     switch (events) {
@@ -49,8 +48,7 @@ class HomeViewModel extends Cubit<HomeState> {
       case ApiSuccessResult<PendingOrdersEntity>():
         currentPage = result.data.metadata?.currentPage ?? 0;
         totalPages = result.data.metadata?.totalPages ?? 0;
-        ordersList = result.data.orders;
-        emit(state.copyWith(isLoading: false, ordersList: ordersList));
+        emit(state.copyWith(isLoading: false, ordersList: result.data.orders));
         break;
       case ApiErrorResult<PendingOrdersEntity>():
         emit(
@@ -63,12 +61,13 @@ class HomeViewModel extends Cubit<HomeState> {
   Future<void> _acceptOrder(int index) async {
     acceptOrderIndex.value = index;
     final result = await _startOrderUseCase(
-      orderId: ordersList?[index].id ?? "",
+      orderId: state.ordersList?[index].id ?? "",
     );
     switch (result) {
       case ApiSuccessResult<StartOrderEntity>():
-        ordersList?.removeAt(index);
-        emit(state.copyWith(ordersList: ordersList));
+        final updatedList = List<OrderEntity>.from(state.ordersList ?? []);
+        updatedList.removeAt(index);
+        emit(state.copyWith(ordersList: updatedList, isAcceptSuccess: true));
       case ApiErrorResult<StartOrderEntity>():
         emit(state.copyWith(errorMessage: result.errorMessage));
     }
@@ -77,14 +76,16 @@ class HomeViewModel extends Cubit<HomeState> {
 
   void _rejectOrder(int index) {
     rejectOrderIndex.value = index;
-    ordersList?.removeAt(index);
-    emit(state.copyWith(ordersList: ordersList));
+    final updatedList = List<OrderEntity>.from(state.ordersList ?? []);
+    updatedList.removeAt(index);
+    emit(state.copyWith(ordersList: updatedList));
     rejectOrderIndex.value = -1;
   }
 
   Future<void> _loadMoreOrders() async {
-    if (currentPage >= totalPages) return;
+    if (isLoadMore || currentPage >= totalPages) return;
     currentPage++;
+    isLoadMore = true;
 
     emit(state.copyWith(isLoadingMore: true));
     final result = await _getAllPendingOrdersUseCase(page: currentPage);
@@ -92,8 +93,10 @@ class HomeViewModel extends Cubit<HomeState> {
       case ApiSuccessResult<PendingOrdersEntity>():
         currentPage = result.data.metadata?.currentPage ?? 0;
         totalPages = result.data.metadata?.totalPages ?? 0;
-        ordersList?.addAll(result.data.orders ?? []);
-        emit(state.copyWith(isLoadingMore: false, ordersList: ordersList));
+        final updatedList = List<OrderEntity>.from(state.ordersList ?? []);
+        updatedList.addAll(result.data.orders ?? []);
+        emit(state.copyWith(isLoadingMore: false, ordersList: updatedList));
+        isLoadMore = false;
         break;
       case ApiErrorResult<PendingOrdersEntity>():
         emit(
@@ -102,6 +105,7 @@ class HomeViewModel extends Cubit<HomeState> {
             errorMessage: result.errorMessage,
           ),
         );
+        isLoadMore = false;
         break;
     }
   }

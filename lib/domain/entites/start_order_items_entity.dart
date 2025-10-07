@@ -1,8 +1,13 @@
-class StartOrderItemsEntity {
+import 'package:equatable/equatable.dart';
+
+class StartOrderItemsEntity extends Equatable {
   final String? product;
   final int? price;
   final int? quantity;
   final String? id;
 
-  StartOrderItemsEntity({this.product, this.price, this.quantity, this.id});
+  const StartOrderItemsEntity({this.product, this.price, this.quantity, this.id});
+
+  @override
+  List<Object?> get props => [product, price, quantity, id];
 }

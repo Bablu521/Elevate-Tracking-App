@@ -52,5 +52,6 @@
   "reject": "Reject",
   "accept": "Accept",
   "egp": "EGP",
-  "noOrders": "No Orders"
+  "noOrders": "No Orders",
+  "orderAcceptedSuccessfully": "Order accepted successfully"
 }
