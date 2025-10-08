@@ -5,7 +5,7 @@ import 'package:elevate_tracking_app/api/models/order_dto.dart';
 import 'package:elevate_tracking_app/core/custom_widget/custom_cached_network_image.dart';
 import 'package:elevate_tracking_app/core/custom_widget/test_app_wrapper.dart';
 import 'package:elevate_tracking_app/core/di/di.dart';
-import 'package:elevate_tracking_app/domain/entites/order_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/order_entity.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/home/view/screen/home_page.dart';
 import 'package:elevate_tracking_app/presentation/home/view/widget/home_order_card.dart';

@@ -1,6 +1,6 @@
 import 'package:elevate_tracking_app/api/mapper/orders_mapper.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
-import 'package:elevate_tracking_app/domain/entites/start_order_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/start_order_entity.dart';
 import 'package:elevate_tracking_app/domain/repo/orders_repo.dart';
 import 'package:elevate_tracking_app/domain/use_cases/start_order_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';

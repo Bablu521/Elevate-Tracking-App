@@ -1,4 +1,4 @@
-import 'package:elevate_tracking_app/domain/entites/product_entity.dart';
+import 'package:elevate_tracking_app/domain/entities/product_entity.dart';
 import 'package:equatable/equatable.dart';
 
 class OrderItemEntity extends Equatable {
