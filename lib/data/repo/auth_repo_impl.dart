@@ -77,9 +77,9 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<ApiResult<DriverEntity>> updateVehicleInfo(
-    UpdateVehicleRequestEntity request,
-  ) async {
+  Future<ApiResult<DriverEntity>> updateVehicleInfo({
+    required UpdateVehicleRequestEntity request,
+  }) async {
     return await _authRemoteDataSource.updateVehicleInfo(request);
   }
 }

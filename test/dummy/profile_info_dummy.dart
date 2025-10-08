@@ -1,3 +1,4 @@
+import 'package:elevate_tracking_app/api/models/requests/auth/update_vehicle_request_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/driver_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/profile_info_response_dto/profile_info_response_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/upload_profile_image_response_dto/upload_profile_image_response_dto.dart';
@@ -148,7 +149,13 @@ class ProfileInfoDummy {
     return fakeLogoutResponseDto().toEntity();
   }
 
-  static Future<UpdateVehicleRequestEntity> fakeUpdateVehicleRequest() async {
+  static Future<UpdateVehicleRequestDto> fakeUpdateVehicleRequestDto() async {
+    final requestEntity = await fakeUpdateVehicleRequestEntity();
+    return requestEntity.toDto();
+  }
+
+  static Future<UpdateVehicleRequestEntity>
+  fakeUpdateVehicleRequestEntity() async {
     final fakeImage = await createTempFile("fake_license.png");
     return UpdateVehicleRequestEntity(
       vehicleType: "Car",

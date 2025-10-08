@@ -8,6 +8,7 @@ import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/login_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/requests/update_profile_info_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/requests/update_vehicle_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/vehicle_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/logout_response_entity.dart';
@@ -166,7 +167,7 @@ void main() {
       setUp(() async {
         final tempDir = Directory.systemTemp.createTempSync();
         file = File(path.join(tempDir.path, "fake.png"));
-        await file.writeAsString("fake content"); 
+        await file.writeAsString("fake content");
       });
 
       test(
@@ -219,8 +220,7 @@ void main() {
         "when call it should return VehicleResponseDto from api with correct parameters",
         () async {
           //Arrange
-          final expectedResult =
-              ProfileInfoDummy.dummyVehicleResponseDtoFake;
+          final expectedResult = ProfileInfoDummy.dummyVehicleResponseDtoFake;
 
           when(
             mockApiClient.getVehicle(id),
@@ -240,9 +240,7 @@ void main() {
       test("when call failed it should return an error result", () async {
         //Arrange
         final expectedError = "Server-Error";
-        when(
-          mockApiClient.getVehicle(id),
-        ).thenThrow(Exception(expectedError));
+        when(mockApiClient.getVehicle(id)).thenThrow(Exception(expectedError));
 
         //Act
         final result = await dataSource.getVehicle(id);
@@ -254,60 +252,110 @@ void main() {
         expect(result.errorMessage, contains(expectedError));
       });
     });
-  });
-  group("test logout", () {
-    late MockApiClient mockApiClient;
-    late AuthRemoteDataSourceImpl dataSource;
-    final fakeLogoutResponseDto = ProfileInfoDummy.fakeLogoutResponseDto();
-    final DioException fakeDioException = DioException(
-      requestOptions: RequestOptions(),
-      message: "fake_message",
-    );
-    final Exception fakeException = Exception();
-    setUp(() {
-      mockApiClient = MockApiClient();
-      dataSource = AuthRemoteDataSourceImpl(mockApiClient);
-    });
-    test("logout success", () async {
-      //ARRANGE
-      when(
-        mockApiClient.logout(),
-      ).thenAnswer((_) async => fakeLogoutResponseDto);
-      //ACT
-      final result = await dataSource.logout();
-      //ASSERT
-      expect(result, isA<ApiSuccessResult<LogoutResponseEntity>>());
-      expect(
-        (result as ApiSuccessResult<LogoutResponseEntity>).data.message,
-        equals(fakeLogoutResponseDto.message),
+
+    group("test logout", () {
+      final fakeLogoutResponseDto = ProfileInfoDummy.fakeLogoutResponseDto();
+      final DioException fakeDioException = DioException(
+        requestOptions: RequestOptions(),
+        message: "fake_message",
       );
-      verify(mockApiClient.logout()).called(1);
+      final Exception fakeException = Exception();
+      test("logout success", () async {
+        //ARRANGE
+        when(
+          mockApiClient.logout(),
+        ).thenAnswer((_) async => fakeLogoutResponseDto);
+        //ACT
+        final result = await dataSource.logout();
+        //ASSERT
+        expect(result, isA<ApiSuccessResult<LogoutResponseEntity>>());
+        expect(
+          (result as ApiSuccessResult<LogoutResponseEntity>).data.message,
+          equals(fakeLogoutResponseDto.message),
+        );
+        verify(mockApiClient.logout()).called(1);
+      });
+      test("logout dio exception", () async {
+        //ARRANGE
+        when(mockApiClient.logout()).thenThrow(fakeDioException);
+        //ACT
+        final result = await dataSource.logout();
+        //ASSERT
+        expect(result, isA<ApiErrorResult<LogoutResponseEntity>>());
+        expect(
+          (result as ApiErrorResult<LogoutResponseEntity>).errorMessage,
+          equals(contains(fakeDioException.message)),
+        );
+        verify(mockApiClient.logout()).called(1);
+      });
+      test("apply exception", () async {
+        //ARRANGE
+        when(mockApiClient.logout()).thenThrow(fakeException);
+        //ACT
+        final result = await dataSource.logout();
+        //ASSERT
+        expect(result, isA<ApiErrorResult<LogoutResponseEntity>>());
+        expect(
+          (result as ApiErrorResult<LogoutResponseEntity>).error,
+          equals(fakeException),
+        );
+        verify(mockApiClient.logout()).called(1);
+      });
     });
-    test("logout dio exception", () async {
-      //ARRANGE
-      when(mockApiClient.logout()).thenThrow(fakeDioException);
-      //ACT
-      final result = await dataSource.logout();
-      //ASSERT
-      expect(result, isA<ApiErrorResult<LogoutResponseEntity>>());
-      expect(
-        (result as ApiErrorResult<LogoutResponseEntity>).errorMessage,
-        equals(contains(fakeDioException.message)),
+    group("test update vehicle", () {
+      final fakeDriverDto = ProfileInfoDummy.dummyProfileInfoResponseDtoFake;
+      final DioException fakeDioException = DioException(
+        requestOptions: RequestOptions(),
+        message: "fake_message",
       );
-      verify(mockApiClient.logout()).called(1);
-    });
-    test("apply exception", () async {
-      //ARRANGE
-      when(mockApiClient.logout()).thenThrow(fakeException);
-      //ACT
-      final result = await dataSource.logout();
-      //ASSERT
-      expect(result, isA<ApiErrorResult<LogoutResponseEntity>>());
-      expect(
-        (result as ApiErrorResult<LogoutResponseEntity>).error,
-        equals(fakeException),
-      );
-      verify(mockApiClient.logout()).called(1);
+      final Exception fakeException = Exception();
+      test("update vehicle success", () async {
+        //ARRANGE
+        final UpdateVehicleRequestEntity requestEntity =
+            await ProfileInfoDummy.fakeUpdateVehicleRequestEntity();
+        when(
+          mockApiClient.updateVehicleInfo(any),
+        ).thenAnswer((_) async => fakeDriverDto);
+        //ACT
+        final result = await dataSource.updateVehicleInfo(requestEntity);
+        //ASSERT
+        expect(result, isA<ApiSuccessResult<DriverEntity>>());
+        expect(
+          (result as ApiSuccessResult<DriverEntity>).data.email,
+          equals(fakeDriverDto.driver?.email),
+        );
+        verify(mockApiClient.updateVehicleInfo(any)).called(1);
+      });
+      test("update vehicle dio exception", () async {
+        //ARRANGE
+        final UpdateVehicleRequestEntity requestEntity =
+            await ProfileInfoDummy.fakeUpdateVehicleRequestEntity();
+        when(mockApiClient.updateVehicleInfo(any)).thenThrow(fakeDioException);
+        //ACT
+        final result = await dataSource.updateVehicleInfo(requestEntity);
+        //ASSERT
+        expect(result, isA<ApiErrorResult<DriverEntity>>());
+        expect(
+          (result as ApiErrorResult<DriverEntity>).errorMessage,
+          equals(contains(fakeDioException.message)),
+        );
+        verify(mockApiClient.updateVehicleInfo(any)).called(1);
+      });
+      test("update vehicle exception", () async {
+        //ARRANGE
+        final UpdateVehicleRequestEntity requestEntity =
+            await ProfileInfoDummy.fakeUpdateVehicleRequestEntity();
+        when(mockApiClient.updateVehicleInfo(any)).thenThrow(fakeException);
+        //ACT
+        final result = await dataSource.updateVehicleInfo(requestEntity);
+        //ASSERT
+        expect(result, isA<ApiErrorResult<DriverEntity>>());
+        expect(
+          (result as ApiErrorResult<DriverEntity>).error,
+          equals(fakeException),
+        );
+        verify(mockApiClient.updateVehicleInfo(any)).called(1);
+      });
     });
   });
 }

@@ -26,7 +26,7 @@ abstract interface class AuthRepo {
   Future<ApiResult<VehicleEntity>> getVehicle(String id);
 
   Future<ApiResult<LogoutResponseEntity>> logout();
-  Future<ApiResult<DriverEntity>> updateVehicleInfo(
-    UpdateVehicleRequestEntity request,
-  );
+  Future<ApiResult<DriverEntity>> updateVehicleInfo({
+    required UpdateVehicleRequestEntity request,
+  });
 }

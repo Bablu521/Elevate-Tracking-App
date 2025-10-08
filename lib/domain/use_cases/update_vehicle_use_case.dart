@@ -12,6 +12,6 @@ class UpdateVehicleUseCase {
   Future<ApiResult<DriverEntity>> call(
     UpdateVehicleRequestEntity request,
   ) async {
-    return await _authRepo.updateVehicleInfo(request);
+    return await _authRepo.updateVehicleInfo(request: request);
   }
 }

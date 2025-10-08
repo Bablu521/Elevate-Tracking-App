@@ -1,6 +1,7 @@
 import 'package:elevate_tracking_app/api/mapper/profile_info_mapper.dart';
 import 'package:elevate_tracking_app/api/models/responses/driver_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicle_dto.dart';
+import 'package:elevate_tracking_app/domain/entites/requests/update_vehicle_request_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../dummy/profile_info_dummy.dart';
@@ -163,6 +164,16 @@ void main() {
       final dto = ProfileInfoDummy.fakeLogoutResponseDto();
       final entity = dto.toEntity();
       expect(dto.message, equals(entity.message));
+    });
+    group("test update vehicle info", () {
+      test("update request entity to dto", () async {
+        final UpdateVehicleRequestEntity requestEntity =
+            await ProfileInfoDummy.fakeUpdateVehicleRequestEntity();
+        final dto = requestEntity.toDto();
+        expect(dto.vehicleLicense, requestEntity.vehicleLicense);
+        expect(dto.vehicleNumber, requestEntity.vehicleNumber);
+        expect(dto.vehicleType, requestEntity.vehicleType);
+      });
     });
   });
 }
