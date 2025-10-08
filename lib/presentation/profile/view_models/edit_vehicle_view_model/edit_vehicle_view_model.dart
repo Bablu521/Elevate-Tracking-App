@@ -42,7 +42,7 @@ class EditVehicleViewModel extends Cubit<EditVehicleViewModelState> {
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final ValueNotifier<bool> isUserAuthenticated = ValueNotifier(false);
   String? vehicleLicenseImagePath;
-  ValueNotifier<VehicleEntity?> selectedVehicle = ValueNotifier<VehicleEntity?>(
+  ValueNotifier<VehiclesEntity?> selectedVehicle = ValueNotifier<VehiclesEntity?>(
     null,
   );
   TextEditingController controllerVehicleType = TextEditingController();
@@ -94,7 +94,7 @@ class EditVehicleViewModel extends Cubit<EditVehicleViewModelState> {
     final vehicle = state.allVehicleList?.data?.firstWhereOrNull(
       (v) => v.id == vehicleId,
     );
-    selectedVehicle.value = vehicle as VehicleEntity?;
+    selectedVehicle.value = vehicle;
     controllerVehicleType.text =
         vehicle?.type ?? AppLocalizations().vehicleNotFound;
   }

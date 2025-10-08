@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../domain/entities/vehicles_entity.dart';
+
 class CustomTextFieldEditVehicle extends StatelessWidget {
   const CustomTextFieldEditVehicle({super.key});
 
@@ -33,7 +35,7 @@ class CustomTextFieldEditVehicle extends StatelessWidget {
               child: SizedBox(
                 height: 30.h,
                 width: 30.w,
-                child: ValueListenableBuilder<VehicleEntity?>(
+                child: ValueListenableBuilder<VehiclesEntity?>(
                   valueListenable: cubit.selectedVehicle,
                   builder: (context, value, child) {
                     return CachedNetworkImage(
@@ -53,7 +55,7 @@ class CustomTextFieldEditVehicle extends StatelessWidget {
             ),
             suffixIcon: GestureDetector(
               onTap: () {},
-              child: PopupMenuButton<VehicleEntity>(
+              child: PopupMenuButton<VehiclesEntity>(
                 icon: ImageIcon(
                   key: const Key(WidgetsKeys.kEditVehicleScreenArrowDown),
                   const AssetImage(AppIcons.iconArrowDown),
@@ -69,7 +71,7 @@ class CustomTextFieldEditVehicle extends StatelessWidget {
                 itemBuilder: (context) => List.generate(
                   state.allVehicleList?.data?.length ?? 0,
                   (index) => PopupMenuItem(
-                    value: state.allVehicleList?.data![index] as VehicleEntity?,
+                    value: state.allVehicleList?.data![index],
                     child: Row(
                       spacing: 10.sp,
                       children: [
