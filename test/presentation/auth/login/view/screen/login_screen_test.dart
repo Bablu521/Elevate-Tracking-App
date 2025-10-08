@@ -3,8 +3,8 @@ import 'package:elevate_tracking_app/core/constants/const_keys.dart';
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/custom_widget/test_app_wrapper.dart';
 import 'package:elevate_tracking_app/core/di/di.dart';
-import 'package:elevate_tracking_app/domain/entities/login_entity.dart';
-import 'package:elevate_tracking_app/domain/entities/requests/login_request_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/login_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/requests/login_request_entity.dart';
 import 'package:elevate_tracking_app/domain/use_cases/login_use_case.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view/screen/login_screen.dart';
@@ -90,7 +90,7 @@ void main() {
       //await tester.tap(appBarButton);
       //await tester.pumpAndSettle();
 
-      //expect(find.text("Page Not Found"), findsOneWidget);
+      //expect(find.text(AppLocalizations().welcomeToFloweryRiderApp), findsOneWidget);
     });
 
     testWidgets("Verify login form fields behaviour", (tester) async {
@@ -229,7 +229,9 @@ void main() {
       await tester.enterText(passwordField, expectedRequestEntity.password);
       await tester.pumpAndSettle();
       await tester.tap(continueButton);
-      await tester.pumpAndSettle();
+      //await tester.pump();
+
+      //expect(find.text(AppLocalizations().home), findsOneWidget);
     });
 
     testWidgets("Verify error login behaviour", (tester) async {

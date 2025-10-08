@@ -1,7 +1,8 @@
-import 'package:elevate_tracking_app/domain/entities/order_entity.dart';
-import 'package:elevate_tracking_app/domain/entities/store_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/order_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/store_entity.dart';
+import 'package:equatable/equatable.dart';
 
-class DriverOrderEntity {
+class DriverOrderEntity extends Equatable {
   final String? id;
   final String? driver;
   final OrderEntity? order;
@@ -10,7 +11,7 @@ class DriverOrderEntity {
   final String? updatedAt;
   final StoreEntity? store;
 
-  DriverOrderEntity({
+  const DriverOrderEntity({
     this.id,
     this.driver,
     this.order,
@@ -19,4 +20,8 @@ class DriverOrderEntity {
     this.updatedAt,
     this.store,
   });
+
+  @override
+  List<Object?> get props =>
+      [id, driver, order, v, createdAt, updatedAt, store,];
 }

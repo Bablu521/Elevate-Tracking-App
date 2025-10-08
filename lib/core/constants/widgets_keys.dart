@@ -92,4 +92,5 @@ abstract final class WidgetsKeys {
       "edit_vehicle_screen_app_bar";
   static const String kEditVehicleScreenArrowDown =
       "edit_vehicle_screen_arrow_down";
+  static const String kHomePageListView = "home_page_list_view";
 }

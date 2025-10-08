@@ -1,9 +1,10 @@
-import 'package:elevate_tracking_app/domain/entities/order_item_entity.dart';
-import 'package:elevate_tracking_app/domain/entities/shipping_address_entity.dart';
-import 'package:elevate_tracking_app/domain/entities/store_entity.dart';
-import 'package:elevate_tracking_app/domain/entities/user_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/order_item_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/shipping_address_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/store_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/user_entity.dart';
+import 'package:equatable/equatable.dart';
 
-class OrderEntity {
+class OrderEntity extends Equatable {
   final String? id;
   final UserEntity? user;
   final List<OrderItemEntity>? orderItems;
@@ -19,7 +20,7 @@ class OrderEntity {
   final int? v;
   final StoreEntity? store;
 
-  OrderEntity({
+  const OrderEntity({
     this.id,
     this.user,
     this.orderItems,
@@ -35,4 +36,23 @@ class OrderEntity {
     this.v,
     this.store,
   });
+
+  @override
+  List<Object?> get props =>
+      [
+        id,
+        user,
+        orderItems,
+        totalPrice,
+        shippingAddress,
+        paymentType,
+        isPaid,
+        isDelivered,
+        state,
+        createdAt,
+        updatedAt,
+        orderNumber,
+        v,
+        store,
+      ];
 }

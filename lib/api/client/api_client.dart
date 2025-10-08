@@ -80,8 +80,8 @@ abstract class ApiClient {
   @PUT(Endpoints.editProfile)
   Future<ProfileInfoResponseDto> updateVehicleInfo(@Body() FormData request);
 
-  @GET("${Endpoints.orders}/{page}")
-  Future<OrdersResponse> getOrders(@Path("page") int? page);
+  @GET(Endpoints.orders)
+  Future<OrdersResponse> getOrders(@Query("page") int? page);
 
   @GET(Endpoints.driverOrders)
   Future<DriverOrdersResponse> getDriverOrders();

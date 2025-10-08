@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/constants/widgets_keys.dart';
 import '../../../../core/di/di.dart';
 import '../../../../domain/entities/order_entity.dart';
 import '../../view_model/home_events.dart';
@@ -44,6 +45,15 @@ class _HomePageState extends State<HomePage> {
             context,
           ).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
         }
+        if (state.isAcceptSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                AppLocalizations.of(context).orderAcceptedSuccessfully,
+              ),
+            ),
+          );
+        }
       },
       builder: (context, state) {
         if (state.isLoading) {
@@ -57,7 +67,7 @@ class _HomePageState extends State<HomePage> {
           spacing: 16.h,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              padding: EdgeInsets.only(left: 16.w, top: 16.h),
               child: Text(
                 AppLocalizations.of(context).floweryRider,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -71,18 +81,26 @@ class _HomePageState extends State<HomePage> {
               child: NotificationListener<ScrollNotification>(
                 onNotification: (ScrollNotification scrollInfo) {
                   if (scrollInfo.metrics.pixels ==
-                      scrollInfo.metrics.maxScrollExtent) {
+                          scrollInfo.metrics.maxScrollExtent &&
+                      !state.isLoadingMore) {
                     homeViewModel.doIntent(LoadMoreOrdersEvent());
                   }
                   return true;
                 },
                 child: ListView.separated(
-                  padding: EdgeInsets.only(left: 16.w, right: 16.w),
+                  key: const Key(WidgetsKeys.kHomePageListView),
+                  padding: EdgeInsets.only(
+                    left: 16.w,
+                    right: 16.w,
+                    bottom: 16.h,
+                  ),
                   itemCount: state.ordersList?.length ?? 0,
                   itemBuilder: (ctx, index) {
                     return HomeOrderCard(
+                      key: Key(state.ordersList?[index].id ?? ""),
                       index: index,
-                      orderEntity: state.ordersList?[index] ?? OrderEntity(),
+                      orderEntity:
+                          state.ordersList?[index] ?? const OrderEntity(),
                       homeViewModel: homeViewModel,
                     );
                   },
