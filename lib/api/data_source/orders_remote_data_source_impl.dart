@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elevate_tracking_app/api/client/api_client.dart';
 import 'package:elevate_tracking_app/api/mapper/orders_mapper.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
@@ -23,10 +24,21 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
   }
 
   @override
-  Future<ApiResult<StartOrderEntity>> startOrder(String orderId) {
-    return safeApiCall(
+  Future<ApiResult<StartOrderEntity>> startOrder(String orderId) async {
+    try {
+      final result = await _apiClient.startOrder(orderId);
+      final ordersRef = FirebaseFirestore.instance.collection('orders');
+      //await ordersRef.add(result.orders!.toFirestoreJson());
+      return ApiSuccessResult(result.orders!.toEntity());
+    } catch (e) {
+      print(e.toString());
+      return ApiErrorResult(e);
+    }
+    /*return safeApiCall(
       () => _apiClient.startOrder(orderId),
-      (response) => response.orders!.toEntity(),
-    );
+      (response) {
+        return response.orders!.toEntity();
+      },
+    );*/
   }
 }
