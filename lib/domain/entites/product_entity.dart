@@ -41,6 +41,52 @@ class ProductEntity extends Equatable {
     this.rateCount,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'slug': slug,
+      'description': description,
+      'imgCover': imgCover,
+      'images': images,
+      'price': price,
+      'priceAfterDiscount': priceAfterDiscount,
+      'quantity': quantity,
+      'category': category,
+      'occasion': occasion,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'v': v,
+      'isSuperAdmin': isSuperAdmin,
+      'sold': sold,
+      'rateAvg': rateAvg,
+      'rateCount': rateCount,
+    };
+  }
+
+  factory ProductEntity.fromMap(Map<String, dynamic> map) {
+    return ProductEntity(
+      id: map['id'] as String?,
+      title: map['title'] as String?,
+      slug: map['slug'] as String?,
+      description: map['description'] as String?,
+      imgCover: map['imgCover'] as String?,
+      images: List<String>.from(map['images']),
+      price: map['price'] as int?,
+      priceAfterDiscount: map['priceAfterDiscount'] as int?,
+      quantity: map['quantity'] as int?,
+      category: map['category'] as String?,
+      occasion: map['occasion'] as String?,
+      createdAt: map['createdAt'] as String?,
+      updatedAt: map['updatedAt'] as String?,
+      v: map['v'] as int?,
+      isSuperAdmin: map['isSuperAdmin'] as bool?,
+      sold: map['sold'] as int?,
+      rateAvg: map['rateAvg'] as int?,
+      rateCount: map['rateCount'] as int?,
+    );
+  }
+
   @override
   List<Object?> get props =>
       [

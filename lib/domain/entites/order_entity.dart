@@ -37,22 +37,63 @@ class OrderEntity extends Equatable {
     this.store,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'user': user?.toMap(),
+      'orderItems': orderItems?.map((item) => item.toMap()).toList(),
+      'totalPrice': totalPrice,
+      'shippingAddress': shippingAddress?.toMap(),
+      'paymentType': paymentType,
+      'isPaid': isPaid,
+      'isDelivered': isDelivered,
+      'state': state,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'orderNumber': orderNumber,
+      'v': v,
+      'store': store?.toMap(),
+    };
+  }
+
+  factory OrderEntity.fromMap(Map<String, dynamic> map) {
+    return OrderEntity(
+      id: map['id'] as String?,
+      user: UserEntity.fromMap(Map<String, dynamic>.from(map['user'])),
+      orderItems: List<Map<String, dynamic>>.from(
+        map['orderItems'],
+      ).map((item) => OrderItemEntity.fromMap(item)).toList(),
+      totalPrice: map['totalPrice'] as int?,
+      shippingAddress: ShippingAddressEntity.fromMap(
+        Map<String, dynamic>.from(map['shippingAddress']),
+      ),
+      paymentType: map['paymentType'] as String?,
+      isPaid: map['isPaid'] as bool?,
+      isDelivered: map['isDelivered'] as bool?,
+      state: map['state'] as String?,
+      createdAt: map['createdAt'] as String?,
+      updatedAt: map['updatedAt'] as String?,
+      orderNumber: map['orderNumber'] as String?,
+      v: map['v'] as int?,
+      store: StoreEntity.fromMap(Map<String, dynamic>.from(map['store'])),
+    );
+  }
+
   @override
-  List<Object?> get props =>
-      [
-        id,
-        user,
-        orderItems,
-        totalPrice,
-        shippingAddress,
-        paymentType,
-        isPaid,
-        isDelivered,
-        state,
-        createdAt,
-        updatedAt,
-        orderNumber,
-        v,
-        store,
-      ];
+  List<Object?> get props => [
+    id,
+    user,
+    orderItems,
+    totalPrice,
+    shippingAddress,
+    paymentType,
+    isPaid,
+    isDelivered,
+    state,
+    createdAt,
+    updatedAt,
+    orderNumber,
+    v,
+    store,
+  ];
 }

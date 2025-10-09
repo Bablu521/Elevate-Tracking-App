@@ -1,4 +1,5 @@
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
+import 'package:elevate_tracking_app/domain/entites/order_firestore_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/start_order_entity.dart';
 import 'package:injectable/injectable.dart';
 
@@ -20,5 +21,20 @@ class OrdersRepoImpl implements OrdersRepo {
   @override
   Future<ApiResult<StartOrderEntity>> startOrder(String orderId) {
     return _ordersRemoteDataSource.startOrder(orderId);
+  }
+
+  @override
+  Future<ApiResult<bool>> addFirestoreOrder(OrderFirestoreEntity order) {
+    return _ordersRemoteDataSource.addFirestoreOrder(order);
+  }
+
+  @override
+  Future<ApiResult<OrderFirestoreEntity>> getFirestoreOrder(String orderId) {
+    return _ordersRemoteDataSource.getFirestoreOrder(orderId);
+  }
+
+  @override
+  Stream<ApiResult<OrderFirestoreEntity>> streamFirestoreOrder(String orderId) {
+    return _ordersRemoteDataSource.streamFirestoreOrder(orderId);
   }
 }

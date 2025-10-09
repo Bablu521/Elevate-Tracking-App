@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elevate_tracking_app/api/client/api_client.dart';
 import 'package:elevate_tracking_app/api/data_source/orders_remote_data_source_impl.dart';
 import 'package:elevate_tracking_app/api/mapper/orders_mapper.dart';
@@ -11,17 +12,19 @@ import 'package:mockito/mockito.dart';
 import '../../dummy/orders_dummy_data.dart';
 import 'orders_remote_data_source_impl_test.mocks.dart';
 
-@GenerateMocks([ApiClient])
+@GenerateMocks([ApiClient, FirebaseFirestore])
 void main() {
   final dummyData = OrdersDummyData();
 
   group("test OrdersRemoteDataSourceImpl", () {
     late MockApiClient mockApiClient;
+    late MockFirebaseFirestore mockFirebaseFirestore;
     late OrdersRemoteDataSourceImpl dataSource;
 
     setUp(() {
       mockApiClient = MockApiClient();
-      dataSource = OrdersRemoteDataSourceImpl(mockApiClient);
+      mockFirebaseFirestore = MockFirebaseFirestore();
+      dataSource = OrdersRemoteDataSourceImpl(mockApiClient, mockFirebaseFirestore);
     });
 
     group("test getOrders", () {

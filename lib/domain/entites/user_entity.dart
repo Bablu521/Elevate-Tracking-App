@@ -21,6 +21,32 @@ class UserEntity extends Equatable {
     this.passwordChangedAt,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'gender': gender,
+      'phone': phone,
+      'photo': photo,
+      'passwordChangedAt': passwordChangedAt,
+    };
+  }
+
+  factory UserEntity.fromMap(Map<String, dynamic> map) {
+    return UserEntity(
+      id: map['id'] as String?,
+      firstName: map['firstName'] as String?,
+      lastName: map['lastName'] as String?,
+      email: map['email'] as String?,
+      gender: map['gender'] as String?,
+      phone: map['phone'] as String?,
+      photo: map['photo'] as String?,
+      passwordChangedAt: map['passwordChangedAt'] as String?,
+    );
+  }
+
   @override
   List<Object?> get props =>
       [

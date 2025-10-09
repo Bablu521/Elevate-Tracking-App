@@ -15,6 +15,26 @@ class ShippingAddressEntity extends Equatable {
     this.long,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'street': street,
+      'city': city,
+      'phone': phone,
+      'lat': lat,
+      'long': long,
+    };
+  }
+
+  factory ShippingAddressEntity.fromMap(Map<String, dynamic> map) {
+    return ShippingAddressEntity(
+      street: map['street'] as String?,
+      city: map['city'] as String?,
+      phone: map['phone'] as String?,
+      lat: map['lat'] as String?,
+      long: map['long'] as String?,
+    );
+  }
+
   @override
   List<Object?> get props => [street, city, phone, lat, long];
 }
