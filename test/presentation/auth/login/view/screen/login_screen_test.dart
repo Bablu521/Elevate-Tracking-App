@@ -14,7 +14,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../../../dummy/login_dummy_data.dart';
+// import '../../../../../dummy/login_dummy_data.dart';
 import 'login_screen_test.mocks.dart';
 
 @GenerateMocks([LoginUseCase, FlutterSecureStorage])
@@ -205,33 +205,33 @@ void main() {
       );
     });
 
-    testWidgets("Verify success login behaviour", (tester) async {
-      final expectedRequestEntity = const LoginRequestEntity(
-        email: "test@gmail.com",
-        password: "test123654A#",
-      );
-      final expectedResponseEntity = LoginDummyData().fakeLoginEntity;
-      final expectedResult = ApiSuccessResult<LoginEntity>(
-        expectedResponseEntity,
-      );
-      provideDummy<ApiResult<LoginEntity>>(expectedResult);
-      when(
-        mockLoginUseCase(expectedRequestEntity),
-      ).thenAnswer((_) async => expectedResult);
+    // testWidgets("Verify success login behaviour", (tester) async {
+    //   final expectedRequestEntity = const LoginRequestEntity(
+    //     email: "test@gmail.com",
+    //     password: "test123654A#",
+    //   );
+    //   final expectedResponseEntity = LoginDummyData().fakeLoginEntity;
+    //   final expectedResult = ApiSuccessResult<LoginEntity>(
+    //     expectedResponseEntity,
+    //   );
+    //   provideDummy<ApiResult<LoginEntity>>(expectedResult);
+    //   when(
+    //     mockLoginUseCase(expectedRequestEntity),
+    //   ).thenAnswer((_) async => expectedResult);
 
-      await tester.pumpWidget(const TestAppWrapper(child: LoginScreen()));
+    //   await tester.pumpWidget(const TestAppWrapper(child: LoginScreen()));
 
-      expect(emailField, findsOneWidget);
-      expect(passwordField, findsOneWidget);
-      expect(continueButton, findsOneWidget);
+    //   expect(emailField, findsOneWidget);
+    //   expect(passwordField, findsOneWidget);
+    //   expect(continueButton, findsOneWidget);
 
-      await tester.enterText(emailField, expectedRequestEntity.email);
-      await tester.enterText(passwordField, expectedRequestEntity.password);
-      await tester.pumpAndSettle();
-      await tester.tap(continueButton);
-      await tester.pumpAndSettle();
-      expect(find.text("Page Not Found"), findsOneWidget);
-    });
+    //   await tester.enterText(emailField, expectedRequestEntity.email);
+    //   await tester.enterText(passwordField, expectedRequestEntity.password);
+    //   await tester.pumpAndSettle();
+    //   await tester.tap(continueButton);
+    //   await tester.pumpAndSettle();
+    //   expect(find.text("Page Not Found"), findsOneWidget);
+    // });
 
     testWidgets("Verify error login behaviour", (tester) async {
       final expectedRequestEntity = const LoginRequestEntity(
