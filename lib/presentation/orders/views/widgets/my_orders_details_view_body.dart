@@ -1,6 +1,6 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_icons.dart';
-import 'package:elevate_tracking_app/core/constants/app_images.dart';
+import 'package:elevate_tracking_app/domain/entites/driver_order_entity_driver_related.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/orders/views/widgets/address_info_custom_card.dart';
 import 'package:elevate_tracking_app/presentation/orders/views/widgets/order_details_info_custom_card.dart';
@@ -10,7 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyOrdersDetailsViewBody extends StatelessWidget {
-  const MyOrdersDetailsViewBody({super.key});
+  final DriverOrderEntityDriverRelated driverOrderEntityDriverRelated;
+  const MyOrdersDetailsViewBody({
+    super.key,
+    required this.driverOrderEntityDriverRelated,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,26 +30,59 @@ class MyOrdersDetailsViewBody extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Image(
-                      image: AssetImage(AppIcons.iconCompleted),
-                      height: 24,
-                      width: 24,
-                    ),
+                    driverOrderEntityDriverRelated.order!.state! == "completed"
+                        ? const Image(
+                            image: AssetImage(AppIcons.iconCompleted),
+                            height: 24,
+                            width: 24,
+                          )
+                        : driverOrderEntityDriverRelated.order!.state! ==
+                              "canceled"
+                        ? const Image(
+                            image: AssetImage(AppIcons.iconCancelled),
+                            height: 24,
+                            width: 24,
+                          )
+                        : const Image(
+                            image: AssetImage(AppIcons.iconLoading),
+                            height: 18,
+                            width: 18,
+                          ),
                     SizedBox(width: 4.w),
-                    Text(
-                      AppLocalizations.of(context).completed,
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.green,
-                      ),
-                    ),
+                    driverOrderEntityDriverRelated.order!.state! == "completed"
+                        ? Text(
+                            AppLocalizations.of(context).completed,
+                            style: Theme.of(context).textTheme.bodyMedium!
+                                .copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.green,
+                                ),
+                          )
+                        : driverOrderEntityDriverRelated.order!.state! ==
+                              "canceled"
+                        ? Text(
+                            AppLocalizations.of(context).cancelled,
+                            style: Theme.of(context).textTheme.bodyMedium!
+                                .copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.red,
+                                ),
+                          )
+                        : Text(
+                            AppLocalizations.of(context).inProgress,
+                            style: Theme.of(context).textTheme.bodyMedium!
+                                .copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.gray,
+                                ),
+                          ),
                   ],
                 ),
                 Text(
-                  "# 123456",
+                  "# ${driverOrderEntityDriverRelated.order!.id}",
                   style: Theme.of(
                     context,
-                  ).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600),
+                  ).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.w600),
                 ),
               ],
             ),
@@ -55,11 +92,11 @@ class MyOrdersDetailsViewBody extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             SizedBox(height: 16.h),
-            const AddressInfoCustomCard(
+            AddressInfoCustomCard(
               height: 76,
-              title: "Flowery store",
-              address: "20th st, Sheikh Zayed, Giza",
-              imgUrl: AppImages.imageFloweryLogo,
+              title: "${driverOrderEntityDriverRelated.store!.name}",
+              address: "${driverOrderEntityDriverRelated.store!.address}",
+              imgUrl: "${driverOrderEntityDriverRelated.store!.image}",
             ),
             SizedBox(height: 24.h),
             Text(
@@ -67,11 +104,12 @@ class MyOrdersDetailsViewBody extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             SizedBox(height: 16.h),
-            const AddressInfoCustomCard(
-              height: 60,
-              title: "Nour mohamed",
-              address: "20th st, Sheikh Zayed, Giza",
-              imgUrl: AppImages.imageUserPhoto,
+            AddressInfoCustomCard(
+              height: 76,
+              title:
+                  "${driverOrderEntityDriverRelated.order!.user!.firstName} ${driverOrderEntityDriverRelated.order!.user!.lastName}",
+              address:
+                  "${driverOrderEntityDriverRelated.order!.shippingAddress?.street ?? AppLocalizations.of(context).fakeStreet} ${driverOrderEntityDriverRelated.order!.shippingAddress?.city ?? AppLocalizations.of(context).fakeCity}",
             ),
             SizedBox(height: 24.h),
             Text(
@@ -82,21 +120,40 @@ class MyOrdersDetailsViewBody extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 5,
+              itemCount:
+                  driverOrderEntityDriverRelated.order!.orderItems!.length,
               itemBuilder: (context, index) {
-                return const OrderDetailsInfoCustomCard(
-                  item: "Red roses,15 Pink Rose Bouquet",
-                  price: "600",
+                return OrderDetailsInfoCustomCard(
+                  item: AppLocalizations.of(context).redRoses15PinkRoseBouquet,
+                  price:
+                      (driverOrderEntityDriverRelated
+                              .order!
+                              .orderItems![index]
+                              .price)!
+                          .toInt()
+                          .toString(),
                   imgUrl: AppIcons.iconCard,
-                  count: 1,
+                  count:
+                      driverOrderEntityDriverRelated
+                          .order!
+                          .orderItems![index]
+                          .quantity ??
+                      1,
                 );
               },
             ),
             SizedBox(height: 20.h),
-            const OrderDetailsInfoCustomTotalCard(total: 3000),
+            OrderDetailsInfoCustomTotalCard(
+              total: (driverOrderEntityDriverRelated.order!.totalPrice)
+                  ?.toInt(),
+            ),
             SizedBox(height: 24.h),
-            const OrderDetailsInfoCustomPaymentMethodCard(paymentMethod: "Cash on delivery",),
-            SizedBox(height: 32.h)
+            OrderDetailsInfoCustomPaymentMethodCard(
+              paymentMethod:
+                  driverOrderEntityDriverRelated.order!.paymentType ??
+                  AppLocalizations.of(context).cash,
+            ),
+            SizedBox(height: 32.h),
           ],
         ),
       ),

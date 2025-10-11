@@ -22,7 +22,7 @@ class OrderDetailsInfoCustomCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 4.w),
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 8.w),
-        height: 76.h,
+        constraints: BoxConstraints(minHeight: 76.h),
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.r)),
@@ -40,7 +40,7 @@ class OrderDetailsInfoCustomCard extends StatelessWidget {
           children: [
             Image(image: AssetImage(imgUrl), height: 44, width: 44),
             SizedBox(width: 8.w),
-            Expanded(
+            Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

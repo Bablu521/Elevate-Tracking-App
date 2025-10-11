@@ -54,5 +54,11 @@
   "userAddress": "User address",
   "orderDetails": "Order details",
   "total": "Total",
-  "paymentMethod": "Payment method"
+  "paymentMethod": "Payment method",
+  "noOrdersYet": "No Orders Yet",
+  "fakeStreet": "20th st, Sheikh Zayed,",
+  "fakeCity": "Giza",
+  "cash": "cash",
+  "inProgress": "In Progress",
+  "redRoses15PinkRoseBouquet": "Red roses,15 Pink Rose Bouquet"
 }

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrderDetailsInfoCustomTotalCard extends StatelessWidget {
-  final num total;
-  const OrderDetailsInfoCustomTotalCard({super.key,required this.total});
+  final int? total;
+  const OrderDetailsInfoCustomTotalCard({super.key,this.total = 0});
 
   @override
   Widget build(BuildContext context) {

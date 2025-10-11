@@ -1,19 +1,24 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_icons.dart';
+import 'package:elevate_tracking_app/domain/entites/driver_order_entity_driver_related.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CountCancelledCompletedOrdersSection extends StatelessWidget {
-  const CountCancelledCompletedOrdersSection({super.key});
+  final List<DriverOrderEntityDriverRelated> orderList;
+  const CountCancelledCompletedOrdersSection({
+    super.key,
+    required this.orderList,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
+        Flexible(
           child: Container(
-            height: 75.h,
+            constraints: BoxConstraints(minHeight: 75.h),
             decoration: BoxDecoration(
               color: AppColors.lightPink,
               borderRadius: BorderRadius.all(Radius.circular(10.r)),
@@ -22,8 +27,15 @@ class CountCancelledCompletedOrdersSection extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text("4", style: Theme.of(context).textTheme.headlineMedium),
+                  Text(
+                    orderList
+                        .where((e) => e.order?.state == "canceled")
+                        .length
+                        .toString(),
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
                   SizedBox(height: 8.h),
                   Row(
                     children: [
@@ -33,10 +45,13 @@ class CountCancelledCompletedOrdersSection extends StatelessWidget {
                         width: 24,
                       ),
                       SizedBox(width: 4.w),
-                      Text(
-                        AppLocalizations.of(context).cancelled,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontWeight: FontWeight.w500,
+                      Flexible(
+                        child: Text(
+                          AppLocalizations.of(context).cancelled,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                          style: Theme.of(context).textTheme.bodyMedium!
+                              .copyWith(fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],
@@ -47,9 +62,9 @@ class CountCancelledCompletedOrdersSection extends StatelessWidget {
           ),
         ),
         SizedBox(width: 33.w),
-        Expanded(
+        Flexible(
           child: Container(
-            height: 75.h,
+            constraints: BoxConstraints(minHeight: 75.h),
             decoration: BoxDecoration(
               color: AppColors.lightPink,
               borderRadius: BorderRadius.all(Radius.circular(10.r)),
@@ -58,9 +73,13 @@ class CountCancelledCompletedOrdersSection extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "100",
+                    orderList
+                        .where((e) => e.order?.state == "completed")
+                        .length
+                        .toString(),
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   SizedBox(height: 8.h),
@@ -72,10 +91,13 @@ class CountCancelledCompletedOrdersSection extends StatelessWidget {
                         width: 24,
                       ),
                       SizedBox(width: 4.w),
-                      Text(
-                        AppLocalizations.of(context).completed,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontWeight: FontWeight.w500,
+                      Flexible(
+                        child: Text(
+                          AppLocalizations.of(context).completed,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                          style: Theme.of(context).textTheme.bodyMedium!
+                              .copyWith(fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],

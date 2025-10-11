@@ -1,5 +1,6 @@
 import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_icons.dart';
+import 'package:elevate_tracking_app/core/constants/app_images.dart';
 import 'package:elevate_tracking_app/core/constants/const_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +15,7 @@ class AddressInfoCustomCard extends StatelessWidget {
     required this.height,
     required this.title,
     required this.address,
-    required this.imgUrl,
+    this.imgUrl = AppImages.defaultProfileImage,
   });
 
   @override
@@ -37,7 +38,13 @@ class AddressInfoCustomCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image(image: AssetImage(imgUrl), height: 44, width: 44),
+          CircleAvatar(
+            radius: 22,
+            backgroundColor: Colors.transparent,
+            backgroundImage: (imgUrl.isNotEmpty && imgUrl.startsWith('http'))
+                ? NetworkImage(imgUrl)
+                : AssetImage(imgUrl),
+          ),
           SizedBox(width: 8.w),
           Expanded(
             child: Column(

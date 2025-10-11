@@ -16,4 +16,14 @@ abstract final class WidgetsKeys {
       "login_screen_forgot_password_button";
   static const String kLoginScreenContinueButton =
       "login_screen_continue_button";
+  static const String kDriverOrdersScreenLoadingIndicator =
+      "driver_orders_screen_loading_indicator";
+  static const String kDriverOrdersScreenErrorMessage =
+      "driver_orders_screen_error_message";
+  static const String kDriverOrdersSuccessState =
+      "driver_orders_screen_success_state";
+  static const String kDriverOrdersSuccessNoOrders =
+      "driver_orders_screen_success_no_orders";
+  static const String kDriverOrdersFlowerOrderCustomCard =
+      "driver_orders_screen_flower_order_custom_card";
 }
