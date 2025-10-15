@@ -1,12 +1,12 @@
 abstract class AppIcons {
-  
   static const String iconArrowDown = "assets/icons/arrow_down.png";
 
   static const String iconBackIcon = "assets/icons/back_icon.png";
 
   static const String iconCall = "assets/icons/call.png";
 
-  static const String iconCameraEditProfile = "assets/icons/camera_edit_profile.png";
+  static const String iconCameraEditProfile =
+      "assets/icons/camera_edit_profile.png";
 
   static const String iconCancelled = "assets/icons/cancelled.png";
 
@@ -49,5 +49,5 @@ abstract class AppIcons {
   static const String iconWhatsapp = "assets/icons/whatsapp.png";
 
   static const String iconX1 = "assets/icons/X1.png";
+  static const String whatsAppICons = "assets/icons/whatsapp_icon.svg";
 }
-

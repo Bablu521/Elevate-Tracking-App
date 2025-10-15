@@ -2,6 +2,7 @@ import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/presentation/application_approved/views/screen/application_approved_screen.dart';
 import 'package:elevate_tracking_app/presentation/main_home/views/screen/main_home_screen.dart';
 import 'package:elevate_tracking_app/presentation/onboarding/views/screen/onboarding_screen.dart';
+import 'package:elevate_tracking_app/presentation/order_details/view/screen/order_details_view.dart';
 import 'package:elevate_tracking_app/presentation/orders/views/screen/orders_screen.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/screen/profile_screen.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view/screen/login_screen.dart';
@@ -33,12 +34,17 @@ abstract class AppRouter {
       path: RouteNames.profile,
       builder: (context, state) => const ProfileScreen(),
     ),
-
+    GoRoute(
+      path: RouteNames.orderDetails,
+      builder: (context, state) => const OrderDetailsView(),
+    ),
   ];
 
   static GoRouter router(String? token) {
     return GoRouter(
-      initialLocation: token == null ? RouteNames.onboarding : RouteNames.mainHome,
+      initialLocation: token == null
+          ? RouteNames.onboarding
+          : RouteNames.orderDetails,
       routes: routes,
     );
   }

@@ -1,0 +1,129 @@
+[debug] [2025-10-15T17:13:20.249Z] ----------------------------------------------------------------------
+[debug] [2025-10-15T17:13:20.254Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\wwwmo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js apps:sdkconfig ios 1:795578737478:ios:2f40aa26a69314d5e1bb47 --json
+[debug] [2025-10-15T17:13:20.255Z] CLI Version:   13.29.2
+[debug] [2025-10-15T17:13:20.255Z] Platform:      win32
+[debug] [2025-10-15T17:13:20.255Z] Node Version:  v22.13.1
+[debug] [2025-10-15T17:13:20.255Z] Time:          Wed Oct 15 2025 20:13:20 GMT+0300 (Eastern European Summer Time)
+[debug] [2025-10-15T17:13:20.256Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-15T17:13:20.260Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2025-10-15T17:13:20.725Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"flutter"}
+[debug] [2025-10-15T17:13:20.735Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-15T17:13:20.735Z] > authorizing via signed-in user (wwwmoazosama525@gmail.com)
+[debug] [2025-10-15T17:13:20.741Z] Checked if tokens are valid: false, expires at: 1746644497192
+[debug] [2025-10-15T17:13:20.741Z] Checked if tokens are valid: false, expires at: 1746644497192
+[debug] [2025-10-15T17:13:20.741Z] > refreshing access token with scopes: []
+[debug] [2025-10-15T17:13:20.743Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-15T17:13:20.743Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-15T17:13:20.989Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-15T17:13:20.990Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-15T17:13:21.001Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/iosApps/1:795578737478:ios:2f40aa26a69314d5e1bb47/config [none]
+[debug] [2025-10-15T17:13:21.120Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-10-15T17:13:21.121Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-10-15T17:13:20.707Z] ----------------------------------------------------------------------
+[debug] [2025-10-15T17:13:20.712Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\wwwmo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js apps:sdkconfig android 1:795578737478:android:0f68939309ee7dc5e1bb47 --json
+[debug] [2025-10-15T17:13:20.713Z] CLI Version:   13.29.2
+[debug] [2025-10-15T17:13:20.713Z] Platform:      win32
+[debug] [2025-10-15T17:13:20.713Z] Node Version:  v22.13.1
+[debug] [2025-10-15T17:13:20.714Z] Time:          Wed Oct 15 2025 20:13:20 GMT+0300 (Eastern European Summer Time)
+[debug] [2025-10-15T17:13:20.714Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-15T17:13:20.720Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2025-10-15T17:13:21.161Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"flutter"}
+[debug] [2025-10-15T17:13:21.169Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-15T17:13:21.169Z] > authorizing via signed-in user (wwwmoazosama525@gmail.com)
+[debug] [2025-10-15T17:13:21.174Z] Checked if tokens are valid: true, expires at: 1760551999990
+[debug] [2025-10-15T17:13:21.175Z] Checked if tokens are valid: true, expires at: 1760551999990
+[debug] [2025-10-15T17:13:21.175Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/androidApps/1:795578737478:android:0f68939309ee7dc5e1bb47/config [none]
+[debug] [2025-10-15T17:13:21.563Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-10-15T17:13:21.564Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-10-15T17:13:22.011Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/iosApps/1:795578737478:ios:2f40aa26a69314d5e1bb47/config 200
+[debug] [2025-10-15T17:13:22.011Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/iosApps/1:795578737478:ios:2f40aa26a69314d5e1bb47/config {"configFilename":"GoogleService-Info.plist","configFileContents":"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwbGUvL0RURCBQTElTVCAxLjAvL0VOIiAiaHR0cDovL3d3dy5hcHBsZS5jb20vRFREcy9Qcm9wZXJ0eUxpc3QtMS4wLmR0ZCI+CjxwbGlzdCB2ZXJzaW9uPSIxLjAiPgo8ZGljdD4KCTxrZXk+QVBJX0tFWTwva2V5PgoJPHN0cmluZz5BSXphU3lBWmJqTHFGM1JWNnZQS3Rkb1NhTnNyZUFSMWhITzd4d1E8L3N0cmluZz4KCTxrZXk+R0NNX1NFTkRFUl9JRDwva2V5PgoJPHN0cmluZz43OTU1Nzg3Mzc0Nzg8L3N0cmluZz4KCTxrZXk+UExJU1RfVkVSU0lPTjwva2V5PgoJPHN0cmluZz4xPC9zdHJpbmc+Cgk8a2V5PkJVTkRMRV9JRDwva2V5PgoJPHN0cmluZz5jb20uZXhhbXBsZS5lbGV2YXRlVHJhY2tpbmdBcHA8L3N0cmluZz4KCTxrZXk+UFJPSkVDVF9JRDwva2V5PgoJPHN0cmluZz5maXItYXBwLWRpc3RyaWJ1dGlvbi0zM2JmZTwvc3RyaW5nPgoJPGtleT5TVE9SQUdFX0JVQ0tFVDwva2V5PgoJPHN0cmluZz5maXItYXBwLWRpc3RyaWJ1dGlvbi0zM2JmZS5maXJlYmFzZXN0b3JhZ2UuYXBwPC9zdHJpbmc+Cgk8a2V5PklTX0FEU19FTkFCTEVEPC9rZXk+Cgk8ZmFsc2U+PC9mYWxzZT4KCTxrZXk+SVNfQU5BTFlUSUNTX0VOQUJMRUQ8L2tleT4KCTxmYWxzZT48L2ZhbHNlPgoJPGtleT5JU19BUFBJTlZJVEVfRU5BQkxFRDwva2V5PgoJPHRydWU+PC90cnVlPgoJPGtleT5JU19HQ01fRU5BQkxFRDwva2V5PgoJPHRydWU+PC90cnVlPgoJPGtleT5JU19TSUdOSU5fRU5BQkxFRDwva2V5PgoJPHRydWU+PC90cnVlPgoJPGtleT5HT09HTEVfQVBQX0lEPC9rZXk+Cgk8c3RyaW5nPjE6Nzk1NTc4NzM3NDc4OmlvczoyZjQwYWEyNmE2OTMxNGQ1ZTFiYjQ3PC9zdHJpbmc+CjwvZGljdD4KPC9wbGlzdD4="}
+[info] <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAZbjLqF3RV6vPKtdoSaNsreAR1hHO7xwQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>795578737478</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.elevateTrackingApp</string>
+	<key>PROJECT_ID</key>
+	<string>fir-app-distribution-33bfe</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fir-app-distribution-33bfe.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:795578737478:ios:2f40aa26a69314d5e1bb47</string>
+</dict>
+</plist>
+[debug] [2025-10-15T17:13:22.257Z] Error: EBUSY: resource busy or locked, unlink 'F:\Project\Elevate-Tracking-App\firebase-debug.log'
+    at Object.unlinkSync (node:fs:1953:11)
+    at process.<anonymous> (C:\Users\wwwmo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js:82:12)
+    at process.emit (node:events:536:35)
+[debug] [2025-10-15T17:13:22.444Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/androidApps/1:795578737478:android:0f68939309ee7dc5e1bb47/config 200
+[debug] [2025-10-15T17:13:22.444Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/androidApps/1:795578737478:android:0f68939309ee7dc5e1bb47/config {"configFilename":"google-services.json","configFileContents":"ewogICJwcm9qZWN0X2luZm8iOiB7CiAgICAicHJvamVjdF9udW1iZXIiOiAiNzk1NTc4NzM3NDc4IiwKICAgICJwcm9qZWN0X2lkIjogImZpci1hcHAtZGlzdHJpYnV0aW9uLTMzYmZlIiwKICAgICJzdG9yYWdlX2J1Y2tldCI6ICJmaXItYXBwLWRpc3RyaWJ1dGlvbi0zM2JmZS5maXJlYmFzZXN0b3JhZ2UuYXBwIgogIH0sCiAgImNsaWVudCI6IFsKICAgIHsKICAgICAgImNsaWVudF9pbmZvIjogewogICAgICAgICJtb2JpbGVzZGtfYXBwX2lkIjogIjE6Nzk1NTc4NzM3NDc4OmFuZHJvaWQ6YzM0NGQwYjM1MWUxNTFkMGUxYmI0NyIsCiAgICAgICAgImFuZHJvaWRfY2xpZW50X2luZm8iOiB7CiAgICAgICAgICAicGFja2FnZV9uYW1lIjogImNvbS5leGFtcGxlLmVsZXZhdGVfZWNvbW1lcmNlX2FwcCIKICAgICAgICB9CiAgICAgIH0sCiAgICAgICJvYXV0aF9jbGllbnQiOiBbXSwKICAgICAgImFwaV9rZXkiOiBbCiAgICAgICAgewogICAgICAgICAgImN1cnJlbnRfa2V5IjogIkFJemFTeUNfUHp0ZEZwWG5zZnQyd05Cal8zRGZrUUVMRGNZNGNnUSIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJzZXJ2aWNlcyI6IHsKICAgICAgICAiYXBwaW52aXRlX3NlcnZpY2UiOiB7CiAgICAgICAgICAib3RoZXJfcGxhdGZvcm1fb2F1dGhfY2xpZW50IjogW10KICAgICAgICB9CiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJjbGllbnRfaW5mbyI6IHsKICAgICAgICAibW9iaWxlc2RrX2FwcF9pZCI6ICIxOjc5NTU3ODczNzQ3ODphbmRyb2lkOjBmNjg5MzkzMDllZTdkYzVlMWJiNDciLAogICAgICAgICJhbmRyb2lkX2NsaWVudF9pbmZvIjogewogICAgICAgICAgInBhY2thZ2VfbmFtZSI6ICJjb20uZXhhbXBsZS5lbGV2YXRlX3RyYWNraW5nX2FwcCIKICAgICAgICB9CiAgICAgIH0sCiAgICAgICJvYXV0aF9jbGllbnQiOiBbXSwKICAgICAgImFwaV9rZXkiOiBbCiAgICAgICAgewogICAgICAgICAgImN1cnJlbnRfa2V5IjogIkFJemFTeUNfUHp0ZEZwWG5zZnQyd05Cal8zRGZrUUVMRGNZNGNnUSIKICAgICAgICB9CiAgICAgIF0sCiAgICAgICJzZXJ2aWNlcyI6IHsKICAgICAgICAiYXBwaW52aXRlX3NlcnZpY2UiOiB7CiAgICAgICAgICAib3RoZXJfcGxhdGZvcm1fb2F1dGhfY2xpZW50IjogW10KICAgICAgICB9CiAgICAgIH0KICAgIH0KICBdLAogICJjb25maWd1cmF0aW9uX3ZlcnNpb24iOiAiMSIKfQ=="}
+[info] {
+  "project_info": {
+    "project_number": "795578737478",
+    "project_id": "fir-app-distribution-33bfe",
+    "storage_bucket": "fir-app-distribution-33bfe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795578737478:android:c344d0b351e151d0e1bb47",
+        "android_client_info": {
+          "package_name": "com.example.elevate_ecommerce_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_PztdFpXnsft2wNBj_3DfkQELDcY4cgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795578737478:android:0f68939309ee7dc5e1bb47",
+        "android_client_info": {
+          "package_name": "com.example.elevate_tracking_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_PztdFpXnsft2wNBj_3DfkQELDcY4cgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+[debug] [2025-10-15T17:13:22.658Z] Error: EBUSY: resource busy or locked, unlink 'F:\Project\Elevate-Tracking-App\firebase-debug.log'
+    at Object.unlinkSync (node:fs:1953:11)
+    at process.<anonymous> (C:\Users\wwwmo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js:82:12)
+    at process.emit (node:events:536:35)

@@ -53,5 +53,13 @@
   "accept": "Accept",
   "egp": "EGP",
   "noOrders": "No Orders",
-  "orderAcceptedSuccessfully": "Order accepted successfully"
+  "orderAcceptedSuccessfully": "Order accepted successfully",
+  "orderDetails":"Order details",
+  "total": "Total",
+  "paymentMethod" :"Payment method",
+  "orderId" :"Order ID",
+  "arrivedAtPickupPoint" : "Arrived at Pickup point",
+  "startDeliver" : "Start deliver",
+  "arrivedToTheUser" : "Arrived to the user",
+  "status" : "Status"
 }

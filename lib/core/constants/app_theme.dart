@@ -91,7 +91,7 @@ abstract class AppTheme {
         disabledBackgroundColor: AppColors.black[30],
         foregroundColor: AppColors.white,
         textStyle: getTextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100))
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
       ),
     ),
 
@@ -112,6 +112,13 @@ abstract class AppTheme {
       minLeadingWidth: 0,
       minVerticalPadding: 0,
       minTileHeight: 0,
+    ),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      trackGap: 8,
+      color: Colors.green,
+      linearTrackColor: Colors.grey,
+      strokeAlign: 8,
+      borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
   );
 
