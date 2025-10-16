@@ -22,3 +22,12 @@ extension ChangePasswordRequestMapper on ChangePasswordRequestEntity{
     );
   }
 }
+
+extension ChangePasswordResponseEntityMapper on ChangePasswordResponseEntity {
+  ChangePasswordResponseDto toDto() {
+    return ChangePasswordResponseDto(
+      message: message,
+      token: token,
+    );
+  }
+}

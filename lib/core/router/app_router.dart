@@ -39,6 +39,7 @@ abstract class AppRouter {
       path: RouteNames.profile,
       builder: (context, state) => const ProfileScreen(),
     ),
+
   GoRoute(
       path: RouteNames.changePassword,
       builder: (context, state) => const ChangePassword(),
@@ -48,7 +49,7 @@ abstract class AppRouter {
 
   static GoRouter router(String? token) {
     return GoRouter(
-      initialLocation: token == null ? RouteNames.changePassword : RouteNames.changePassword,
+      initialLocation: token == null ? RouteNames.changePassword: RouteNames.changePassword,
       routes: routes,
     );
   }

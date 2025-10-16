@@ -16,4 +16,13 @@ abstract final class WidgetsKeys {
       "login_screen_forgot_password_button";
   static const String kLoginScreenContinueButton =
       "login_screen_continue_button";
+  static const String kChanePasswordPassword =
+      "change_password_password";
+  static const String kChanePasswordConfirmPassword =
+      "change_password_confirm_password";
+  static const String kChanePasswordNewPassword =
+      "change_password_new_password";
+  static const String kChanePasswordConfirmButton =
+      "change_password_confirm_button";
+
 }
