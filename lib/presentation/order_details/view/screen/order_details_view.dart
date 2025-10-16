@@ -37,7 +37,7 @@ class OrderDetailsView extends StatelessWidget {
         create: (context) => getIt.get<OrderDetailsViewModelCubit>()
           ..doIntent(
             OrderDetailsGetOrderFromFireBase(
-              orderId: "68d6daffdd8937e0573fb8d4",
+              orderId: "68efde9d7fee68a4c2ec2e18",
             ),
           ),
         child: const OrderDetailsBodyBuilder(),

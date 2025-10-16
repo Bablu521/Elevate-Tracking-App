@@ -2,7 +2,10 @@ import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_icons.dart';
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/custom_widget/custom_cached_network_image.dart';
+import 'package:elevate_tracking_app/presentation/order_details/view_model/order_details_event.dart';
+import 'package:elevate_tracking_app/presentation/order_details/view_model/order_details_view_model_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -71,15 +74,31 @@ class CustomUserOrderInfoItem extends StatelessWidget {
             Row(
               spacing: 2.w,
               children: [
-                Icon(
-                  Icons.phone_outlined,
-                  color: theme.colorScheme.primary,
-                  size: 16.sp,
+                GestureDetector(
+                  onTap: () =>
+                      context.read<OrderDetailsViewModelCubit>().doIntent(
+                        OrderDetailsDirectToCallNumber(
+                          phoneNumber: phoneNumber ?? "",
+                        ),
+                      ),
+                  child: Icon(
+                    Icons.phone_outlined,
+                    color: theme.colorScheme.primary,
+                    size: 16.sp,
+                  ),
                 ),
-                SvgPicture.asset(
-                  AppIcons.whatsAppICons,
-                  width: 17.w,
-                  height: 17.h,
+                GestureDetector(
+                  onTap: () =>
+                      context.read<OrderDetailsViewModelCubit>().doIntent(
+                        OrderDetailsDirectToWhatsApp(
+                          phoneNumber: phoneNumber ?? "",
+                        ),
+                      ),
+                  child: SvgPicture.asset(
+                    AppIcons.whatsAppICons,
+                    width: 17.w,
+                    height: 17.h,
+                  ),
                 ),
               ],
             ),

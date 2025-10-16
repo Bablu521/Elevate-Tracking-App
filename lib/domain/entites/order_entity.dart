@@ -36,6 +36,39 @@ class OrderEntity extends Equatable {
     this.v,
     this.store,
   });
+  OrderEntity copyWith({
+    String? id,
+    UserEntity? user,
+    List<OrderItemEntity>? orderItems,
+    int? totalPrice,
+    ShippingAddressEntity? shippingAddress,
+    String? paymentType,
+    bool? isPaid,
+    bool? isDelivered,
+    String? state,
+    String? createdAt,
+    String? updatedAt,
+    String? orderNumber,
+    int? v,
+    StoreEntity? store,
+  }) {
+    return OrderEntity(
+      id: id ?? this.id,
+      user: user ?? this.user,
+      orderItems: orderItems ?? this.orderItems,
+      totalPrice: totalPrice ?? this.totalPrice,
+      shippingAddress: shippingAddress ?? this.shippingAddress,
+      paymentType: paymentType ?? this.paymentType,
+      isPaid: isPaid ?? this.isPaid,
+      isDelivered: isDelivered ?? this.isDelivered,
+      state: state ?? this.state,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      orderNumber: orderNumber ?? this.orderNumber,
+      v: v ?? this.v,
+      store: store ?? this.store,
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -64,9 +97,11 @@ class OrderEntity extends Equatable {
         map['orderItems'],
       ).map((item) => OrderItemEntity.fromMap(item)).toList(),
       totalPrice: map['totalPrice'] as int?,
-      shippingAddress: ShippingAddressEntity.fromMap(
-        Map<String, dynamic>.from(map['shippingAddress']),
-      ),
+      shippingAddress: map['shippingAddress'] != null
+          ? ShippingAddressEntity.fromMap(
+              Map<String, dynamic>.from(map['shippingAddress']),
+            )
+          : null,
       paymentType: map['paymentType'] as String?,
       isPaid: map['isPaid'] as bool?,
       isDelivered: map['isDelivered'] as bool?,

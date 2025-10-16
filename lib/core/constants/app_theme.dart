@@ -113,13 +113,6 @@ abstract class AppTheme {
       minVerticalPadding: 0,
       minTileHeight: 0,
     ),
-    progressIndicatorTheme: const ProgressIndicatorThemeData(
-      trackGap: 8,
-      color: Colors.green,
-      linearTrackColor: Colors.grey,
-      strokeAlign: 8,
-      borderRadius: BorderRadius.all(Radius.circular(8)),
-    ),
   );
 
   static InputBorder getOutlineInputBorder({required Color color}) {

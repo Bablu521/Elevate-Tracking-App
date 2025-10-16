@@ -3,10 +3,14 @@ import 'package:elevate_tracking_app/domain/entites/order_firestore_entity.dart'
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/order_details/view/widgets/custom_card_order_details_info.dart';
 import 'package:elevate_tracking_app/presentation/order_details/view/widgets/custom_card_price_info_order.dart';
+import 'package:elevate_tracking_app/presentation/order_details/view/widgets/custom_order_progress_bar.dart';
 import 'package:elevate_tracking_app/presentation/order_details/view/widgets/custom_order_status.dart';
 import 'package:elevate_tracking_app/presentation/order_details/view/widgets/custom_user_order_item.dart';
+import 'package:elevate_tracking_app/presentation/order_details/view_model/order_details_event.dart';
+import 'package:elevate_tracking_app/presentation/order_details/view_model/order_details_view_model_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class OrderDetailsBody extends StatelessWidget {
   const OrderDetailsBody({super.key, required this.orderFirestoreEntity});
@@ -15,7 +19,7 @@ class OrderDetailsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final local = AppLocalizations.of(context);
-
+    final cubit = context.read<OrderDetailsViewModelCubit>();
     return Padding(
       padding: EdgeInsets.all(16.sp),
       child: SingleChildScrollView(
@@ -24,12 +28,7 @@ class OrderDetailsBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const LinearProgressIndicator(
-              key: Key(WidgetsKeys.kOrderDetailsScreenLinearProgressIndicator),
-              value: 2 / 4,
-              trackGap: 8,
-              year2023: false,
-            ),
+            CustomOrderProgressBar(currentStep: cubit.orderStateNumber),
             SizedBox(height: 24.h),
             CustomOrderStatus(
               orderId: orderFirestoreEntity?.order?.id,
@@ -109,9 +108,13 @@ class OrderDetailsBody extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 key: const Key(WidgetsKeys.kOrderDetailsScreenMainButton),
-                onPressed: () {},
+                onPressed: cubit.isDelivered
+                    ? null
+                    : () {
+                        cubit.doIntent(OrderDetailsUpdateOrderStatus());
+                      },
                 child: Text(
-                  local.arrivedAtPickupPoint,
+                  cubit.buttonTitle[cubit.orderStateNumber],
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: theme.colorScheme.onSecondary,
                   ),

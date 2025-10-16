@@ -10,6 +10,8 @@ class OrderDetailsBodyBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return BlocBuilder<OrderDetailsViewModelCubit, OrderDetailsViewModelState>(
+      buildWhen: (previous, current) =>
+          previous.orderDetails != current.orderDetails,
       builder: (context, state) {
         if (state.orderDetails?.isLoading == true) {
           return Center(
