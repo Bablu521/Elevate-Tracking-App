@@ -49,6 +49,8 @@ class OrderDetailsBody extends StatelessWidget {
               imagePath: orderFirestoreEntity?.order?.store?.image,
               phoneNumber: orderFirestoreEntity?.order?.store?.phoneNumber,
               name: orderFirestoreEntity?.order?.store?.name,
+              isUser: false,
+              orderId: orderFirestoreEntity?.order?.id,
             ),
             SizedBox(height: 24.h),
             Text(
@@ -64,6 +66,8 @@ class OrderDetailsBody extends StatelessWidget {
               imagePath: orderFirestoreEntity?.order?.user?.photo,
               phoneNumber: orderFirestoreEntity?.order?.user?.phone,
               name: orderFirestoreEntity?.order?.user?.firstName,
+              isUser: true,
+              orderId: orderFirestoreEntity?.order?.id,
             ),
             SizedBox(height: 24.h),
             Text(

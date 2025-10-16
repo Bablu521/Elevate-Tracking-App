@@ -2,12 +2,15 @@ import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_icons.dart';
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/custom_widget/custom_cached_network_image.dart';
+import 'package:elevate_tracking_app/core/models/track_screen_model.dart';
+import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/presentation/order_details/view_model/order_details_event.dart';
 import 'package:elevate_tracking_app/presentation/order_details/view_model/order_details_view_model_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomUserOrderInfoItem extends StatelessWidget {
   const CustomUserOrderInfoItem({
@@ -16,8 +19,11 @@ class CustomUserOrderInfoItem extends StatelessWidget {
     this.phoneNumber,
     this.name,
     this.imagePath,
+    this.orderId,
+    required this.isUser,
   });
-  final String? address, phoneNumber, name, imagePath;
+  final String? address, phoneNumber, name, imagePath, orderId;
+  final bool isUser;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -54,10 +60,19 @@ class CustomUserOrderInfoItem extends StatelessWidget {
                 Row(
                   spacing: 2.w,
                   children: [
-                    ImageIcon(
-                      const AssetImage(AppIcons.iconLocation),
-                      size: 16.sp,
-                      color: theme.colorScheme.secondary,
+                    GestureDetector(
+                      onTap: () => context.push(
+                        RouteNames.locationScreen,
+                        extra: TrackScreenModel(
+                          orderId: orderId ?? "",
+                          isUser: isUser,
+                        ),
+                      ),
+                      child: ImageIcon(
+                        const AssetImage(AppIcons.iconLocation),
+                        size: 16.sp,
+                        color: theme.colorScheme.secondary,
+                      ),
                     ),
                     Text(
                       address ?? "",
