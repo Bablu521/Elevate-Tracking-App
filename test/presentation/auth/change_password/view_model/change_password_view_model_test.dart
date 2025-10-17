@@ -10,86 +10,82 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import '../../../../dummy/change_password_dummy_data.dart';
 import 'change_password_view_model_test.mocks.dart';
+
+
 @GenerateMocks([ChangePasswordUseCase])
 void main() {
-  group("change password view model",(){
-
+  group("change password view model", () {
     late MockChangePasswordUseCase mockChangePasswordUseCase;
     late ChangePasswordStates changePasswordStates;
     late ChangePasswordViewModel changePasswordViewModel;
 
-    setUp((){
+    setUp(() {
       mockChangePasswordUseCase = MockChangePasswordUseCase();
-      changePasswordViewModel =ChangePasswordViewModel(mockChangePasswordUseCase );
-      changePasswordStates = ChangePasswordStates();
+      changePasswordViewModel = ChangePasswordViewModel(mockChangePasswordUseCase);
+      changePasswordStates = const ChangePasswordStates();
     });
-    final  changePasswordEntity = ChangePasswordDummyData().fakeChangePasswordResponseEntity ;
-    final  changePasswordRequestEntity = ChangePasswordDummyData().fakeChangePasswordRequestEntity ;
-    final expectedResult= ApiSuccessResult<ChangePasswordResponseEntity>(changePasswordEntity);
 
-    provideDummy <ApiResult<ChangePasswordResponseEntity>>(expectedResult);
+    final changePasswordEntity = ChangePasswordDummyData().fakeChangePasswordResponseEntity;
+    final changePasswordRequestEntity = ChangePasswordDummyData().fakeChangePasswordRequestEntity;
+    final expectedResult = ApiSuccessResult<ChangePasswordResponseEntity>(changePasswordEntity);
 
-    blocTest("when emit success state should call change password with valid data ",
+    provideDummy<ApiResult<ChangePasswordResponseEntity>>(expectedResult);
 
-        build:()=>changePasswordViewModel,
-
-      act: (bloc) {
-      when(mockChangePasswordUseCase(any)).thenAnswer((_) async => expectedResult);
-      bloc.newPasswordController.text = changePasswordRequestEntity.newPassword!;
-      bloc.currentPasswordController.text = changePasswordRequestEntity.password!;
-      return bloc.doIntent(ChangePasswordEvent());
-
-      },
-      expect:
-      ()=><ChangePasswordStates>[
-        changePasswordStates.copyWith(isLoading: true),
-        changePasswordStates.copyWith(isLoading: false,changePasswordResponseEntity: changePasswordEntity,
-          isButtonEnabled: false,isSuccess: true,errorMessage:null
-        )
-      ]
-      ,
-      verify: (_) {
-        verify(mockChangePasswordUseCase(any)).called(1);
-      },
-
-
-    );
-   final expectedError = "fake_error" ;
-   final expectedErrorResult= ApiErrorResult<ChangePasswordResponseEntity>(expectedError);
-
-   provideDummy<ApiResult<ChangePasswordResponseEntity>>(expectedErrorResult);
-
-    blocTest("when emit error state it should call change password fails ",
-        build:() =>changePasswordViewModel,
-
-      act: (bloc){
-      when(mockChangePasswordUseCase(any)).thenAnswer((_) async =>expectedErrorResult);
-      bloc.newPasswordController.text = changePasswordRequestEntity.newPassword!;
-      bloc.currentPasswordController.text = changePasswordRequestEntity.password!;
-      return bloc.doIntent(ChangePasswordEvent());
-      },
-        expect:
-        ()=><ChangePasswordStates>[
-      changePasswordStates.copyWith(isLoading: true),
-      changePasswordStates.copyWith(isLoading: false,changePasswordResponseEntity: null,
-          isButtonEnabled: false,isSuccess: false,errorMessage:expectedError,
-
-      )
-    ],
-      verify: (_){
-      verify(mockChangePasswordUseCase(any)).called(1);
-      }
-
-
-    );
     blocTest<ChangePasswordViewModel, ChangePasswordStates>(
-      "should emit isButtonEnabled true when all fields are filled and passwords match",
+      "when success should emit loading then success state",
+      build: () => changePasswordViewModel,
+      act: (bloc) {
+        when(mockChangePasswordUseCase(any)).thenAnswer((_) async => expectedResult);
+        bloc.newPasswordController.text = changePasswordRequestEntity.newPassword!;
+        bloc.currentPasswordController.text = changePasswordRequestEntity.password!;
+        return bloc.doIntent(ChangePasswordEvent());
+      },
+      expect: () => [
+        changePasswordStates.copyWith(status: ChangePasswordStatus.loading),
+        changePasswordStates.copyWith(
+          status: ChangePasswordStatus.success,
+          changePasswordResponseEntity: changePasswordEntity,
+          errorMessage: null,
+          isButtonEnabled: false,
+        ),
+      ],
+      verify: (_) => verify(mockChangePasswordUseCase(any)).called(1),
+    );
+
+    final expectedError = "fake_error";
+    final expectedErrorResult = ApiErrorResult<ChangePasswordResponseEntity>(expectedError);
+
+    provideDummy<ApiResult<ChangePasswordResponseEntity>>(expectedErrorResult);
+
+    blocTest<ChangePasswordViewModel, ChangePasswordStates>(
+      "when error → should emit loading then error state",
+      build: () => changePasswordViewModel,
+      act: (bloc) {
+        when(mockChangePasswordUseCase(any)).thenAnswer((_) async => expectedErrorResult);
+        bloc.newPasswordController.text = changePasswordRequestEntity.newPassword!;
+        bloc.currentPasswordController.text = changePasswordRequestEntity.password!;
+        return bloc.doIntent(ChangePasswordEvent());
+      },
+      expect: () => [
+        changePasswordStates.copyWith(status: ChangePasswordStatus.loading),
+        changePasswordStates.copyWith(
+          status: ChangePasswordStatus.error,
+          errorMessage: expectedError,
+          changePasswordResponseEntity: null,
+          isButtonEnabled: false,
+        ),
+      ],
+      verify: (_) => verify(mockChangePasswordUseCase(any)).called(1),
+    );
+
+    blocTest<ChangePasswordViewModel, ChangePasswordStates>(
+      "should emit isButtonEnabled true when all fields are valid and match",
       build: () => changePasswordViewModel,
       act: (bloc) {
         bloc.currentPasswordController.text = "old123";
         bloc.newPasswordController.text = "new123";
         bloc.confirmPasswordController.text = "new123";
-        bloc.checkIfAllFieldsFilled();
+        bloc.doIntent(CheckAllFieldsEvent());
       },
       expect: () => [
         changePasswordStates.copyWith(isButtonEnabled: true),
@@ -97,19 +93,17 @@ void main() {
     );
 
     blocTest<ChangePasswordViewModel, ChangePasswordStates>(
-      "should emit isButtonEnabled false when fields are empty or passwords do not match",
+      "should emit isButtonEnabled false when passwords do not match",
       build: () => changePasswordViewModel,
       act: (bloc) {
         bloc.currentPasswordController.text = "old123";
         bloc.newPasswordController.text = "new123";
         bloc.confirmPasswordController.text = "different";
-        bloc.checkIfAllFieldsFilled();
+        bloc.doIntent(CheckAllFieldsEvent());
       },
       expect: () => [
         changePasswordStates.copyWith(isButtonEnabled: false),
       ],
     );
-
-
   });
 }

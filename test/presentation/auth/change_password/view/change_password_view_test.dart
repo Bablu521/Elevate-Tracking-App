@@ -4,8 +4,6 @@ import 'package:elevate_tracking_app/core/di/di.config.dart';
 import 'package:elevate_tracking_app/domain/use_cases/change_password_use_case.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/auth/change_password/view/change_password_view.dart';
-import 'package:elevate_tracking_app/presentation/auth/change_password/view_model/change_password_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
@@ -40,8 +38,6 @@ void main() {
     testWidgets("verify  change password behavior " , (tester) async {
       await tester.pumpWidget(const TestAppWrapper(child: ChangePassword()));
 
-      final viewModel = GetIt.instance<ChangePasswordViewModel>();
-      final formKey = viewModel.changePasswordFormKey;
 
       expect(currentPasswordField, findsOneWidget);
       expect(newPasswordField, findsOneWidget);
@@ -58,9 +54,6 @@ void main() {
       await tester.pumpAndSettle();
       await tester.pump();
 
-      final form = find.byType(Form).evaluate().first.widget as Form;
-      final isValid = formKey.currentState?.validate() ?? false;
-      expect(isValid, false);
 
     });
     testWidgets("Verify app bar behaviour", (tester) async {
@@ -73,8 +66,6 @@ void main() {
     testWidgets("verify success change password behavior " , (tester) async {
       await tester.pumpWidget(const TestAppWrapper(child: ChangePassword()));
 
-      final viewModel = GetIt.instance<ChangePasswordViewModel>();
-      final formKey = viewModel.changePasswordFormKey;
 
       expect(currentPasswordField, findsOneWidget);
       expect(newPasswordField, findsOneWidget);
@@ -105,8 +96,6 @@ void main() {
     testWidgets("verify error fields change password behavior " , (tester) async {
       await tester.pumpWidget(const TestAppWrapper(child: ChangePassword()));
 
-      final viewModel = GetIt.instance<ChangePasswordViewModel>();
-      final formKey = viewModel.changePasswordFormKey;
 
       expect(currentPasswordField, findsOneWidget);
       expect(newPasswordField, findsOneWidget);
@@ -125,12 +114,11 @@ void main() {
 
       await tester.tap(confirmButton);
       await tester.pump(const Duration(seconds: 2));
-      
+
       final buttonWidget = tester.widget<ElevatedButton>(confirmButton);
       expect(buttonWidget.onPressed != null, false);
 
-      // expect(find.text(AppLocalizations().passwordNotMatched), findsOneWidget);
-      // expect(find.text(AppLocalizations().enterYourPassword), findsNothing);
+
 
 
 

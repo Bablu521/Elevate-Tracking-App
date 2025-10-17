@@ -39,11 +39,16 @@ class ChangePasswordViewModel extends Cubit<ChangePasswordStates> {
         confirmPasswordController.text.isNotEmpty &&
         newPasswordController.text == confirmPasswordController.text;
 
-    emit(state.copyWith(isButtonEnabled: isFilled));
+    // emit(state.copyWith(isButtonEnabled: isFilled));
+    emit(state.copyWith(
+      isButtonEnabled: isFilled,
+      status: state.status,
+    ));
   }
 
   Future<void> _changePassword() async {
-    emit(state.copyWith(isLoading: true));
+    // emit(state.copyWith(isLoading: true));
+    emit(state.copyWith(status: ChangePasswordStatus.loading));
     final result = await _changePasswordUseCase(
       ChangePasswordRequestEntity(
         password: currentPasswordController.text,
@@ -51,18 +56,28 @@ class ChangePasswordViewModel extends Cubit<ChangePasswordStates> {
       ),
     );
     switch (result) {
-      case ApiSuccessResult<ChangePasswordResponseEntity>():
-        emit(
-          state.copyWith(
-            isLoading: false,
-            changePasswordResponseEntity: result.data,
-            isSuccess: true,
-          ),
-        );
-      case ApiErrorResult<ChangePasswordResponseEntity>():
-        emit(
-          state.copyWith(isLoading: false, errorMessage: result.errorMessage),
-        );
+      // case ApiSuccessResult<ChangePasswordResponseEntity>():
+      //   emit(
+      //     state.copyWith(
+      //       isLoading: false,
+      //       changePasswordResponseEntity: result.data,
+      //       isSuccess: true,
+      //     ),
+      //   );
+      // case ApiErrorResult<ChangePasswordResponseEntity>():
+      //   emit(
+      //     state.copyWith(isLoading: false, errorMessage: result.errorMessage),
+    case ApiSuccessResult<ChangePasswordResponseEntity>():
+    emit(state.copyWith(
+    status: ChangePasswordStatus.success,
+    changePasswordResponseEntity: result.data,
+    ));
+    case ApiErrorResult<ChangePasswordResponseEntity>():
+    emit(state.copyWith(
+    status: ChangePasswordStatus.error,
+    errorMessage: result.errorMessage,
+    ));
+
     }
   }
 

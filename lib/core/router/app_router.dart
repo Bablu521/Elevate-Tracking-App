@@ -49,7 +49,7 @@ abstract class AppRouter {
 
   static GoRouter router(String? token) {
     return GoRouter(
-      initialLocation: token == null ? RouteNames.changePassword: RouteNames.changePassword,
+      initialLocation: token == null ? RouteNames.login: RouteNames.login,
       routes: routes,
     );
   }
