@@ -2,9 +2,7 @@ import 'package:elevate_tracking_app/api/mapper/login_mapper.dart';
 import 'package:elevate_tracking_app/api/models/requests/login_request.dart';
 import 'package:elevate_tracking_app/api/models/responses/login_response.dart';
 import 'package:elevate_tracking_app/domain/entites/login_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/requests/change_password_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/requests/login_request_entity.dart';
-import 'package:elevate_tracking_app/domain/entites/response/change_password_response_entity.dart';
 
 class LoginDummyData {
   LoginRequestEntity get fakeLoginRequestEntity =>
