@@ -72,7 +72,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 message: state.changePasswordResponseEntity?.message,
                 cancelable: false,
                 positiveOnClick: () {
-                  context.go(RouteNames.resetPassword);
+                  context.go(RouteNames.login);
                 },
               );
             }
