@@ -122,5 +122,9 @@
   "fakeCity": "Giza",
   "cash": "cash",
   "inProgress": "In Progress",
-  "redRoses15PinkRoseBouquet": "Red roses,15 Pink Rose Bouquet"
+  "redRoses15PinkRoseBouquet": "Red roses,15 Pink Rose Bouquet",
+  "yourLocation": "Your Location",
+  "liveLocation" : "Live Location",
+  "user": "User",
+  "flowery": "Flowery"
 }

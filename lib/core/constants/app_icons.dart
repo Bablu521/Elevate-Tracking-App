@@ -1,5 +1,5 @@
 abstract class AppIcons {
-  
+
   static const String iconArrowDown = "assets/icons/arrow_down.png";
 
   static const String iconBackIcon = "assets/icons/back_icon.png";
@@ -52,6 +52,8 @@ abstract class AppIcons {
 
   static const String iconLoading = "assets/icons/loading.png";
 
-  
+
+
+  static const String iconMarker = "assets/icons/markerIcon.png";
 }
 

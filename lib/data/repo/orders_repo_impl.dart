@@ -26,4 +26,19 @@ class OrdersRepoImpl implements OrdersRepo {
   Future<ApiResult<List<DriverOrderEntityDriverRelated>>> getAllDriverOrders() {
     return _ordersRemoteDataSource.getAllDriverOrders();
   }
+
+  @override
+  Future<ApiResult<bool>> addFirestoreOrder(OrderFirestoreEntity order) {
+    return _ordersRemoteDataSource.addFirestoreOrder(order);
+  }
+
+  @override
+  Future<ApiResult<OrderFirestoreEntity>> getFirestoreOrder(String orderId) {
+    return _ordersRemoteDataSource.getFirestoreOrder(orderId);
+  }
+
+  @override
+  Stream<ApiResult<OrderFirestoreEntity>> streamFirestoreOrder(String orderId) {
+    return _ordersRemoteDataSource.streamFirestoreOrder(orderId);
+  }
 }

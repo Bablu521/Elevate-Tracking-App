@@ -2,7 +2,6 @@ import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationManager {
-
   static Future<void> _checkServiceEnabled() async {
     final serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
@@ -31,5 +30,9 @@ class LocationManager {
     await _checkPermission();
     return await Geolocator.getCurrentPosition();
   }
-}
 
+  static Future<void> checkLocationPermission() async {
+    await _checkServiceEnabled();
+    await _checkPermission();
+  }
+}

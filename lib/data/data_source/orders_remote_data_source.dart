@@ -9,5 +9,11 @@ abstract interface class OrdersRemoteDataSource {
   Future<ApiResult<StartOrderEntity>> startOrder(String orderId);
 
   Future<ApiResult<List<DriverOrderEntityDriverRelated>>> getAllDriverOrders();
-  
+
+  Future<ApiResult<bool>> addFirestoreOrder(OrderFirestoreEntity order);
+
+  Future<ApiResult<OrderFirestoreEntity>> getFirestoreOrder(String orderId);
+
+  Stream<ApiResult<OrderFirestoreEntity>> streamFirestoreOrder(String orderId);
+
 }

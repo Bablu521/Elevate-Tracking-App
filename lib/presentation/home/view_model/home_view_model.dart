@@ -1,13 +1,13 @@
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
-import 'package:elevate_tracking_app/domain/entities/start_order_entity.dart';
 import 'package:elevate_tracking_app/domain/use_cases/start_order_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../domain/entities/order_entity.dart';
-import '../../../domain/entities/pending_orders_entity.dart';
+import '../../../domain/entites/order_entity.dart';
+import '../../../domain/entites/pending_orders_entity.dart';
+import '../../../domain/entites/start_order_entity.dart';
 import '../../../domain/use_cases/get_all_pending_orders_use_case.dart';
 import 'home_events.dart';
 
@@ -18,8 +18,17 @@ class HomeViewModel extends Cubit<HomeState> {
   final GetAllPendingOrdersUseCase _getAllPendingOrdersUseCase;
   final StartOrderUseCase _startOrderUseCase;
 
-  HomeViewModel(this._getAllPendingOrdersUseCase, this._startOrderUseCase)
-    : super(const HomeState());
+  /*final AddOrderToFirestoreUseCase _addOrderToFirestoreUseCase;
+  final GetOrderFromFirestoreUseCase _getOrderFromFirestoreUseCase;
+  final StreamOrderFromFirestoreUseCase _streamOrderFromFirestoreUseCase;*/
+
+  HomeViewModel(
+    this._getAllPendingOrdersUseCase,
+    this._startOrderUseCase,
+    /*this._addOrderToFirestoreUseCase,
+    this._getOrderFromFirestoreUseCase,
+    this._streamOrderFromFirestoreUseCase,*/
+  ) : super(const HomeState());
 
   ValueNotifier<int> acceptOrderIndex = ValueNotifier(-1);
   ValueNotifier<int> rejectOrderIndex = ValueNotifier(-1);
@@ -109,4 +118,66 @@ class HomeViewModel extends Cubit<HomeState> {
         break;
     }
   }
+
+  /*Future<void> testAdd(int index) async {
+    final result = await _addOrderToFirestoreUseCase(
+      order: OrderFirestoreEntity(
+        driver: const DriverEntity(
+          id: "1",
+          country: "Egypt",
+          firstName: "Ahmed",
+          lastName: "Ali",
+          vehicleType: "Car",
+          vehicleNumber: "123456",
+          vehicleLicense: "123456",
+          nid: "123456",
+          nidImg: "https://picsum.photos/200/300",
+          email: "fake-email@gmail.com",
+          gender: "Male",
+          phone: "0123456789",
+          photo: "0123456789",
+          role: "Driver",
+          createdAt: "DateTime.timestamp()",
+        ),
+        order: state.ordersList?[index],
+        location: const LiveLocationEntity(
+          lat: "30.0444",
+          long: "31.2357",
+          address: "Cairo, Egypt",
+        ),
+      ),
+    );
+
+    switch (result) {
+      case ApiSuccessResult<bool>():
+        emit(state.copyWith(isAcceptSuccess: true));
+      case ApiErrorResult<bool>():
+        emit(state.copyWith(errorMessage: result.errorMessage));
+    }
+  }
+
+  Future<void> testGet(int index) async {
+    final result = await _getOrderFromFirestoreUseCase(
+      orderId: state.ordersList?[index].id ?? "",
+    );
+    switch (result) {
+      case ApiSuccessResult<OrderFirestoreEntity>():
+        print(result.data.toMap());
+        emit(state.copyWith(isAcceptSuccess: true));
+      case ApiErrorResult<OrderFirestoreEntity>():
+        emit(state.copyWith(errorMessage: result.errorMessage));
+    }
+  }
+
+  void testStream(int index) {
+    _streamOrderFromFirestoreUseCase(orderId: state.ordersList?[index].id ?? "").listen((result) {
+      switch (result) {
+        case ApiSuccessResult<OrderFirestoreEntity>():
+          print(result.data.toMap());
+          emit(state.copyWith(isAcceptSuccess: true));
+        case ApiErrorResult<OrderFirestoreEntity>():
+          emit(state.copyWith(errorMessage: result.errorMessage));
+      }
+    });
+  }*/
 }

@@ -71,6 +71,10 @@ abstract class AppRouter {
         return MyOrdersDetailsScreen(driverOrderEntityDriverRelated: driverOrderEntityDriverRelated);
       },
     ),
+    GoRoute(
+      path: RouteNames.locationScreen,
+      builder: (context, state) => const LocationScreen(),
+    ),
   ];
 
   static GoRouter router(String? token) {

@@ -1,5 +1,5 @@
 abstract class AppImages {
-  
+
   static const String imageApplySuccess = "assets/images/apply_success.png";
 
   static const String imageBg = "assets/images/bg.png";
@@ -24,5 +24,7 @@ abstract class AppImages {
 
   static const String defaultProfileImage = "assets/images/default_profile_image.jpeg";
 
+
+  static const String imageMotorcycleDelivery = "assets/images/motorcycle_delivery.png";
 }
 

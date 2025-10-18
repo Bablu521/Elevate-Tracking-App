@@ -19,24 +19,68 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
   @override
   Future<ApiResult<PendingOrdersEntity>> getOrders(int? page) {
     return safeApiCall(
-      () => _apiClient.getOrders(page),
-      (response) => response.toEntity(),
+          () => _apiClient.getOrders(page),
+          (response) => response.toEntity(),
     );
   }
 
   @override
   Future<ApiResult<StartOrderEntity>> startOrder(String orderId) {
     return safeApiCall(
-      () => _apiClient.startOrder(orderId),
-      (response) => response.orders!.toEntity(),
+          () => _apiClient.startOrder(orderId),
+          (response) => response.orders!.toEntity(),
     );
   }
 
   @override
   Future<ApiResult<List<DriverOrderEntityDriverRelated>>> getAllDriverOrders() {
     return safeApiCall(
-      () => _apiClient.getAllDriverOrders(),
-      (response) => response.orders!.map((e) => e.toEntity()).toList(),
+          () => _apiClient.getAllDriverOrders(),
+          (response) => response.orders!.map((e) => e.toEntity()).toList(),
     );
+  }
+
+  @override
+  Future<ApiResult<bool>> addFirestoreOrder(OrderFirestoreEntity order) async {
+    try {
+      final collection = _firestore.collection('orders');
+      await collection
+          .doc(order.order?.id ?? "")
+          .set(order.toMap(), SetOptions(merge: true));
+      return ApiSuccessResult(true);
+    } catch (e) {
+      return ApiErrorResult(e);
+    }
+  }
+
+  @override
+  Future<ApiResult<OrderFirestoreEntity>> getFirestoreOrder(
+      String orderId,
+      ) async {
+    try {
+      final doc = await _firestore.collection('orders').doc(orderId).get();
+      if (doc.exists) {
+        return ApiSuccessResult(OrderFirestoreEntity.fromMap(doc.data()!));
+      } else {
+        return ApiErrorResult("Document does not exist");
+      }
+    } catch (e) {
+      return ApiErrorResult(e);
+    }
+  }
+
+  @override
+  Stream<ApiResult<OrderFirestoreEntity>> streamFirestoreOrder(String orderId) async* {
+    try {
+      await for (final doc in _firestore.collection('orders').doc(orderId).snapshots()) {
+        if (doc.exists) {
+          yield ApiSuccessResult(OrderFirestoreEntity.fromMap(doc.data()!));
+        } else {
+          yield ApiErrorResult("Document does not exist");
+        }
+      }
+    } catch (e) {
+      yield ApiErrorResult(e.toString());
+    }
   }
 }
