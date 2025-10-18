@@ -3,8 +3,12 @@ import 'package:elevate_tracking_app/api/models/meta_data_dto.dart';
 import 'package:elevate_tracking_app/api/models/order_dto.dart';
 import 'package:elevate_tracking_app/api/models/order_item_dto.dart';
 import 'package:elevate_tracking_app/api/models/product_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/orders/driver_orders_response.dart';
 import 'package:elevate_tracking_app/api/models/responses/orders/orders_response.dart';
+import 'package:elevate_tracking_app/api/models/responses/orders/start_order_response.dart';
 import 'package:elevate_tracking_app/api/models/shipping_address_dto.dart';
+import 'package:elevate_tracking_app/api/models/start_order_dto.dart';
+import 'package:elevate_tracking_app/api/models/start_order_items_dto.dart';
 import 'package:elevate_tracking_app/api/models/store_dto.dart';
 import 'package:elevate_tracking_app/api/models/user_dto.dart';
 
@@ -17,14 +21,14 @@ class OrdersDummyData {
     email: 'john.doe@example.com',
     gender: 'Male',
     phone: '123-456-7890',
-    photo: 'https://example.com/profile_pic.jpg',
+    photo: null,
     passwordChangedAt: DateTime.now().toIso8601String(),
   );
 
   // Dummy Store Data
   final storeDTO1 = StoreDTO(
     name: 'Central Perk Cafe',
-    image: 'https://example.com/store_image.jpg',
+    image: null,
     address: '123 Main Street, New York, NY',
     phoneNumber: '987-654-3210',
     latLong: '40.7128,-74.0060',
@@ -37,11 +41,8 @@ class OrdersDummyData {
     slug: 'classic-glazed-donut',
     description:
         'A timeless classic, our glazed donut is light, fluffy, and delicious.',
-    imgCover: 'https://example.com/donut_cover.jpg',
-    images: [
-      'https://example.com/donut_1.jpg',
-      'https://example.com/donut_2.jpg',
-    ],
+    imgCover: null,
+    images: null,
     price: 10,
     priceAfterDiscount: 9,
     quantity: 100,
@@ -61,8 +62,8 @@ class OrdersDummyData {
     title: 'Chocolate Filled Croissant',
     slug: 'chocolate-filled-croissant',
     description: 'A buttery croissant filled with rich chocolate.',
-    imgCover: 'https://example.com/croissant_cover.jpg',
-    images: ['https://example.com/croissant_1.jpg'],
+    imgCover: null,
+    images: null,
     price: 25,
     quantity: 50,
     category: 'cat_pastries',
@@ -150,6 +151,16 @@ class OrdersDummyData {
     store: storeDTO1,
   );
 
+  late final driverOrderDTO2 = DriverOrderDTO(
+    id: 'driver_order_002',
+    driver: 'driver_id_765',
+    order: orderDTO2,
+    v: 2,
+    createdAt: DateTime.now().toIso8601String(),
+    updatedAt: DateTime.now().toIso8601String(),
+    store: storeDTO1,
+  );
+
   // Dummy MetaData
   final metaDataDTO = MetaDataDTO(
     currentPage: 1,
@@ -162,5 +173,50 @@ class OrdersDummyData {
   late final pendingOrdersResponse = OrdersResponse(
     metadata: metaDataDTO,
     orders: [orderDTO1, orderDTO2],
+  );
+
+  final startOrderItemsDto1 = StartOrderItemsDto(
+    product: 'prod_abc',
+    price: 15,
+    quantity: 2,
+    id: 'item_1',
+  );
+  final startOrderItemsDto2 = StartOrderItemsDto(
+    product: 'prod_cba',
+    price: 25,
+    quantity: 3,
+    id: 'item_2',
+  );
+
+  late final startOrderDto = StartOrderDto(
+    id: 'start_order_1',
+    user: 'user_123',
+    orderItems: [startOrderItemsDto1, startOrderItemsDto2],
+    totalPrice: 25,
+    paymentType: 'Card',
+    isPaid: true,
+    isDelivered: false,
+    state: 'new',
+    createdAt: DateTime.now().toIso8601String(),
+    updatedAt: DateTime.now().toIso8601String(),
+    orderNumber: "2001",
+    v: 1,
+  );
+
+  late final ordersResponse = OrdersResponse(
+    message: "message",
+    metadata: metaDataDTO,
+    orders: [orderDTO1, orderDTO2],
+  );
+
+  late final startOrderResponse = StartOrderResponse(
+    message: "message",
+    orders: startOrderDto,
+  );
+
+  late final driverOrdersResponse = DriverOrdersResponse(
+    message: "message",
+    metadata: metaDataDTO,
+    orders: [driverOrderDTO1, driverOrderDTO2],
   );
 }

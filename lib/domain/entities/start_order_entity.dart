@@ -1,6 +1,8 @@
 import 'package:elevate_tracking_app/domain/entities/start_order_items_entity.dart';
+import 'package:equatable/equatable.dart';
 
-class StartOrderEntity {
+
+class StartOrderEntity extends Equatable {
   final String? id;
   final String? user;
   final List<StartOrderItemsEntity>? orderItems;
@@ -14,7 +16,7 @@ class StartOrderEntity {
   final String? orderNumber;
   final int? v;
 
-  StartOrderEntity({
+  const StartOrderEntity({
     this.id,
     this.user,
     this.orderItems,
@@ -28,4 +30,21 @@ class StartOrderEntity {
     this.orderNumber,
     this.v,
   });
+
+  @override
+  List<Object?> get props =>
+      [
+        id,
+        user,
+        orderItems,
+        totalPrice,
+        paymentType,
+        isPaid,
+        isDelivered,
+        state,
+        createdAt,
+        updatedAt,
+        orderNumber,
+        v,
+      ];
 }

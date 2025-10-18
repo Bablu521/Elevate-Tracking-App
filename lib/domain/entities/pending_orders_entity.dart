@@ -1,9 +1,16 @@
+
 import 'package:elevate_tracking_app/domain/entities/meta_data_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/order_entity.dart';
 
-class PendingOrdersEntity {
+import 'package:equatable/equatable.dart';
+
+
+class PendingOrdersEntity extends Equatable {
   final MetaDataEntity? metadata;
   final List<OrderEntity>? orders;
 
-  PendingOrdersEntity({this.metadata, this.orders});
+  const PendingOrdersEntity({this.metadata, this.orders});
+
+  @override
+  List<Object?> get props => [metadata, orders];
 }

@@ -64,10 +64,11 @@ abstract final class WidgetsKeys {
       "profile_screen_forward_icon_to_edit_profile_info";
   static const String kProfileScreenForwardIconToEditVehicleInfo =
       "profile_screen_forward_icon_to_edit_vehicle_info";
-  static const String kProfileScreenLogoutIcon =
-      "profile_screen_logout_icon";
-  static const String kProfileScreenLogoutDialog = "profile_screen_logout_dialog";
-  static const String kProfileScreenLogoutButton = "profile_screen_logout_button";
+  static const String kProfileScreenLogoutIcon = "profile_screen_logout_icon";
+  static const String kProfileScreenLogoutDialog =
+      "profile_screen_logout_dialog";
+  static const String kProfileScreenLogoutButton =
+      "profile_screen_logout_button";
   static const String kEditProfileInfoScreenSuccessSnackBar =
       "edit_profile_info_screen_success_snack_bar";
   static const String kEditProfileInfoScreenFailureSnackBar =
@@ -88,8 +89,8 @@ abstract final class WidgetsKeys {
       "edit_vehicle_screen_text_update";
   static const String kEditVehicleScreenNotificationIcon =
       "edit_vehicle_screen_notification_icon";
-  static const String kEditVehicleScreenAppBar =
-      "edit_vehicle_screen_app_bar";
+  static const String kEditVehicleScreenAppBar = "edit_vehicle_screen_app_bar";
   static const String kEditVehicleScreenArrowDown =
       "edit_vehicle_screen_arrow_down";
+  static const String kHomePageListView = "home_page_list_view";
 }

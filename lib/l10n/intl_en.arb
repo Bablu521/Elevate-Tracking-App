@@ -108,5 +108,6 @@
   "accept": "Accept",
   "egp": "EGP",
   "noOrders": "No Orders",
-  "currentPassword": "Current password"
+  "currentPassword": "Current password",
+  "orderAcceptedSuccessfully": "Order accepted successfully"
 }

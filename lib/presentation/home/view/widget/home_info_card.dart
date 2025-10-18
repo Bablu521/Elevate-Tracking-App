@@ -57,31 +57,43 @@ class HomeInfoCard extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              Column(
-                spacing: 8.h,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    name,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall?.copyWith(color: AppColors.gray),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 4.w,
-                    children: [
-                      Image.asset(AppIcons.iconLocation, fit: BoxFit.cover),
-                      Text(
-                        address,
-                        style: Theme.of(context).textTheme.bodySmall,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  spacing: 8.h,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      name,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(color: AppColors.gray),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      spacing: 4.w,
+                      children: [
+                        Image.asset(
+                          AppIcons.iconLocation,
+                          fit: BoxFit.cover,
+                          height: 16.w,
+                          width: 16.w,
+                        ),
+                        Expanded(
+                          child: Text(
+                            address,
+                            style: Theme.of(context).textTheme.bodySmall,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

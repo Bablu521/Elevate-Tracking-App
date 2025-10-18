@@ -42,6 +42,7 @@ abstract class ApiClient {
   @POST(Endpoints.login)
   Future<LoginResponse> login(@Body() LoginRequest loginRequest);
 
+
   @POST(Endpoints.forgetPassword)
   Future<ForgetPasswordResponse> forgetPassword(
       @Body() ForgetPasswordRequest body,
@@ -80,8 +81,8 @@ abstract class ApiClient {
   @PUT(Endpoints.editProfile)
   Future<ProfileInfoResponseDto> updateVehicleInfo(@Body() FormData request);
 
-  @GET("${Endpoints.orders}/{page}")
-  Future<OrdersResponse> getOrders(@Path("page") int? page);
+  @GET(Endpoints.orders)
+  Future<OrdersResponse> getOrders(@Query("page") int? page);
 
   @GET(Endpoints.driverOrders)
   Future<DriverOrdersResponse> getDriverOrders();
