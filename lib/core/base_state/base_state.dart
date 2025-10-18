@@ -11,8 +11,4 @@ class BaseState<T> extends Equatable {
       BaseState(errorMessage: errorMessage);
   @override
   List<Object?> get props => [isLoading, errorMessage, data];
-
 }
-
-
-

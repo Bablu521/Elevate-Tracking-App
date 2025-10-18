@@ -68,8 +68,8 @@ class OrderEntity extends Equatable {
       totalPrice: map['totalPrice'] as int?,
       shippingAddress: map['shippingAddress'] != null
           ? ShippingAddressEntity.fromMap(
-              Map<String, dynamic>.from(map['shippingAddress']),
-            )
+        Map<String, dynamic>.from(map['shippingAddress']),
+      )
           : _fakeShippingAddress,
       paymentType: map['paymentType'] as String?,
       isPaid: map['isPaid'] as bool?,

@@ -75,6 +75,10 @@ abstract class AppRouter {
       path: RouteNames.locationScreen,
       builder: (context, state) => const LocationScreen(),
     ),
+    GoRoute(
+      path: RouteNames.orderDetails,
+      builder: (context, state) => const OrderDetailsView(),
+    ),
   ];
 
   static GoRouter router(String? token) {

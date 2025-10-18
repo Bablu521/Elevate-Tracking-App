@@ -103,4 +103,32 @@ abstract final class WidgetsKeys {
       "driver_orders_screen_success_no_orders";
   static const String kDriverOrdersFlowerOrderCustomCard =
       "driver_orders_screen_flower_order_custom_card";
+  static const String kOrderDetailsScreenIconArrowBack =
+      "k_order_detail_screen_icon_arrow_back";
+  static const String kOrderDetailsScreenScrolling =
+      "k_order_detail_screen_scrolling";
+  static const String kOrderDetailsScreenLabelAppBar =
+      "k_order_detail_screen_label_app_bar";
+  static const String kOrderDetailsScreenLinearProgressIndicator =
+      "k_order_detail_screen_linear_progress_indicator";
+  static const String kOrderDetailsScreenOrderStatus =
+      "k_order_detail_screen_order_status";
+  static const String kOrderDetailsScreenPickupText =
+      "k_order_detail_screen_pickup_text";
+  static const String kOrderDetailsScreenUserAddressText =
+      "k_order_detail_screen_user_address_text";
+  static const String kOrderDetailsScreenOrderDetailsText =
+      "k_order_detail_screen_order_details_text";
+  static const String kOrderDetailsScreenUserOrderInfo =
+      "k_order_detail_screen_user_order_info";
+  static const String kOrderDetailsScreenUserOrderInfoImage =
+      "k_order_detail_screen_user_order_info_image";
+  static const String kOrderDetailsScreenOrderDetailsInfoCard =
+      "k_order_detail_screen_order_details_info_card";
+  static const String kOrderDetailsScreenOrderDetailsCardImage =
+      "k_order_detail_screen_order_details_card_image";
+  static const String kOrderDetailsScreenPriceInfoOrder =
+      "k_order_detail_screen_price_info_order";
+  static const String kOrderDetailsScreenMainButton =
+      "k_order_detail_screen_main_button";
 }

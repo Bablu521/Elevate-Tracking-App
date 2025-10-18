@@ -55,5 +55,6 @@ abstract class AppIcons {
 
 
   static const String iconMarker = "assets/icons/markerIcon.png";
+  static const String whatsAppICons = "assets/icons/whatsapp_icon.svg";
 }
 

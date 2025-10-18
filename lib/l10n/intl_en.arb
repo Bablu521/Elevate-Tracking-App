@@ -126,5 +126,12 @@
   "yourLocation": "Your Location",
   "liveLocation" : "Live Location",
   "user": "User",
-  "flowery": "Flowery"
+  "flowery": "Flowery",
+  "orderId" :"Order ID",
+  "arrivedAtPickupPoint" : "Arrived at Pickup point",
+  "StartDeliver" : "Start Deliver",
+  "deliveredToTheUser" : "Delivered to the user",
+  "startDeliver" : "Start deliver",
+  "arrivedToTheUser" : "Arrived to the user",
+  "status" : "Status"
 }
