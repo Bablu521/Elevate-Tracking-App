@@ -10,9 +10,9 @@ abstract class Endpoints {
   static const String editProfile = "api/v1/drivers/editProfile";
   static const String uploadProfilePhoto = "api/v1/drivers/upload-photo";
   static const String logout = "api/v1/drivers/logout";
-  static const orders = "api/v1/orders/pending-orders";
-  static const driverOrders = "api/v1/orders/driver-orders";
-  static const startOrder = "api/v1/orders/start";
-  static const changePassword = "api/v1/drivers/change-password";
+  static const String orders = "api/v1/orders/pending-orders";
+  static const String driverOrders = "api/v1/orders/driver-orders";
+  static const String startOrder = "api/v1/orders/start";
+  static const String changePassword = "api/v1/drivers/change-password";
+  static const String getAllDriverOrders = "api/v1/orders/driver-orders";
 }
-

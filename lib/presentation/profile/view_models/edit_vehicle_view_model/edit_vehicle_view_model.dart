@@ -94,7 +94,7 @@ class EditVehicleViewModel extends Cubit<EditVehicleViewModelState> {
     final vehicle = state.allVehicleList?.data?.firstWhereOrNull(
       (v) => v.id == vehicleId,
     );
-    selectedVehicle.value = vehicle as VehicleEntity?;
+    selectedVehicle.value = vehicle as VehicleEntity;
     controllerVehicleType.text =
         vehicle?.type ?? AppLocalizations().vehicleNotFound;
   }

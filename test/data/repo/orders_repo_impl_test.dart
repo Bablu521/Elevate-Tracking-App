@@ -4,11 +4,13 @@ import 'package:elevate_tracking_app/data/data_source/orders_remote_data_source.
 import 'package:elevate_tracking_app/data/repo/orders_repo_impl.dart';
 import 'package:elevate_tracking_app/domain/entities/pending_orders_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/start_order_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/driver_order_entity_driver_related.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../dummy/orders_dummy_data.dart';
+import '../../dummy/driver_orders_driver_related_dummy.dart';
 import 'orders_repo_impl_test.mocks.dart';
 
 @GenerateMocks([OrdersRemoteDataSource])
@@ -94,25 +96,80 @@ void main() {
           expect(result.data, expectedEntity);
         },
       );
+    });
 
-      test("when startOrder failed should return error result", () async {
-        final expectedOrderId = "fake-order-id";
-        final expectedError = "fake-error";
-        final expectedResult = ApiErrorResult<StartOrderEntity>(expectedError);
+    test("when startOrder failed should return error result", () async {
+      final expectedOrderId = "fake-order-id";
+      final expectedError = "fake-error";
+      final expectedResult = ApiErrorResult<StartOrderEntity>(expectedError);
 
-        provideDummy<ApiResult<StartOrderEntity>>(expectedResult);
+      provideDummy<ApiResult<StartOrderEntity>>(expectedResult);
+      when(
+        mockOrdersRemoteDataSource.startOrder(expectedOrderId),
+      ).thenAnswer((_) async => expectedResult);
+
+      final result = await ordersRepoImpl.startOrder(expectedOrderId);
+
+      verify(mockOrdersRemoteDataSource.startOrder(expectedOrderId)).called(1);
+
+      expect(result, isA<ApiErrorResult<StartOrderEntity>>());
+      result as ApiErrorResult<StartOrderEntity>;
+      expect(result.errorMessage, expectedError);
+    });
+
+    group("test getAllDriverOrders", () {
+      test(
+        "when call it should return DriverOrderEntityDriverRelated from data source with correct parameters",
+        () async {
+          //Arrange
+          final expectedEntity = [
+            DriverOrdersDriverRelatedDummy.dummyDriverOrderEntityDriverRelated,
+          ];
+          final expectedResult = ApiSuccessResult(expectedEntity);
+          provideDummy<ApiResult<List<DriverOrderEntityDriverRelated>>>(
+            expectedResult,
+          );
+          when(
+            mockOrdersRemoteDataSource.getAllDriverOrders(),
+          ).thenAnswer((_) async => expectedResult);
+
+          //Act
+          final result = await ordersRepoImpl.getAllDriverOrders();
+
+          //Assert
+          verify(mockOrdersRemoteDataSource.getAllDriverOrders()).called(1);
+          expect(
+            result,
+            isA<ApiSuccessResult<List<DriverOrderEntityDriverRelated>>>(),
+          );
+          result as ApiSuccessResult<List<DriverOrderEntityDriverRelated>>;
+          expect(result.data.length, expectedEntity.length);
+          expect(result.data[0], expectedEntity[0]);
+        },
+      );
+
+      test("when call failed it should return an error result", () async {
+        //Arrange
+        final expectedError = "Server-Error";
+        final expectedResult =
+            ApiErrorResult<List<DriverOrderEntityDriverRelated>>(expectedError);
+        provideDummy<ApiResult<List<DriverOrderEntityDriverRelated>>>(
+          expectedResult,
+        );
         when(
-          mockOrdersRemoteDataSource.startOrder(expectedOrderId),
+          mockOrdersRemoteDataSource.getAllDriverOrders(),
         ).thenAnswer((_) async => expectedResult);
 
-        final result = await ordersRepoImpl.startOrder(expectedOrderId);
+        //Act
+        final result = await ordersRepoImpl.getAllDriverOrders();
 
-        verify(
-          mockOrdersRemoteDataSource.startOrder(expectedOrderId),
-        ).called(1);
-
-        expect(result, isA<ApiErrorResult<StartOrderEntity>>());
-        result as ApiErrorResult<StartOrderEntity>;
+        //Assert
+        verify(mockOrdersRemoteDataSource.getAllDriverOrders()).called(1);
+        expect(
+          result,
+          isA<ApiErrorResult<List<DriverOrderEntityDriverRelated>>>(),
+        );
+        result as ApiErrorResult<List<DriverOrderEntityDriverRelated>>;
         expect(result.errorMessage, expectedError);
       });
     });

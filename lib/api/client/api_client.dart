@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:elevate_tracking_app/api/models/requests/auth/update_profile_info_request_dto.dart';
 import 'package:elevate_tracking_app/api/models/requests/login_request.dart';
 import 'package:elevate_tracking_app/api/models/responses/apply_response_dto.dart';
+import 'package:elevate_tracking_app/api/models/responses/driver_orders_response_dto/driver_orders_response_dto_driver_related.dart';
 import 'package:elevate_tracking_app/api/models/responses/login_response.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicles_response.dart';
 import 'package:elevate_tracking_app/core/constants/end_points.dart';
@@ -94,4 +95,8 @@ abstract class ApiClient {
   Future<ChangePasswordResponseDto> changePassword(
       @Body() ChangePasswordRequestDto body,
       );
+
+  @GET(Endpoints.getAllDriverOrders)
+  Future<DriverOrdersResponseDtoDriverRelated>getAllDriverOrders();
+
 }

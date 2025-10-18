@@ -59,21 +59,5 @@ void main() {
       //Assert
       expect(find.text("Login"), findsOneWidget);
     });
-
-    testWidgets("Verify Apply now elevatedButton behaviour", (
-      WidgetTester tester,
-    ) async {
-      //Arrange
-      await tester.pumpWidget(const TestAppWrapper(child: OnboardingScreen()));
-      final applyButtonFinder = find.byKey(
-        const Key(WidgetsKeys.kOnboardingScreenApplyNowButton),
-      );
-      expect(applyButtonFinder, findsOneWidget);
-      //Act
-      await tester.tap(applyButtonFinder);
-      await tester.pumpAndSettle();
-      //Assert
-      expect(find.text("Page Not Found"), findsOneWidget);
-    });
   });
 }

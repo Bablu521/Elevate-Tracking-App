@@ -21,5 +21,8 @@ abstract class AppImages {
   static const String imageUserPhoto = "assets/images/user_photo.png";
 
   static const String imageYourLocation = "assets/images/your_location.png";
+
+  static const String defaultProfileImage = "assets/images/default_profile_image.jpeg";
+
 }
 

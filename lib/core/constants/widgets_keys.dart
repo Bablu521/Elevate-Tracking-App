@@ -93,4 +93,14 @@ abstract final class WidgetsKeys {
   static const String kEditVehicleScreenArrowDown =
       "edit_vehicle_screen_arrow_down";
   static const String kHomePageListView = "home_page_list_view";
+  static const String kDriverOrdersScreenLoadingIndicator =
+      "driver_orders_screen_loading_indicator";
+  static const String kDriverOrdersScreenErrorMessage =
+      "driver_orders_screen_error_message";
+  static const String kDriverOrdersSuccessState =
+      "driver_orders_screen_success_state";
+  static const String kDriverOrdersSuccessNoOrders =
+      "driver_orders_screen_success_no_orders";
+  static const String kDriverOrdersFlowerOrderCustomCard =
+      "driver_orders_screen_flower_order_custom_card";
 }

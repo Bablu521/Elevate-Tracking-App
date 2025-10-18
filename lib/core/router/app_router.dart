@@ -1,10 +1,12 @@
 import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/driver_order_entity_driver_related.dart';
 import 'package:elevate_tracking_app/presentation/application_approved/views/screen/application_approved_screen.dart';
 import 'package:elevate_tracking_app/presentation/auth/apply/view/screen/apply_view.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view/screen/login_screen.dart';
 import 'package:elevate_tracking_app/presentation/main_home/views/screen/main_home_screen.dart';
 import 'package:elevate_tracking_app/presentation/onboarding/views/screen/onboarding_screen.dart';
+import 'package:elevate_tracking_app/presentation/orders/views/screen/my_orders_details_screen.dart';
 import 'package:elevate_tracking_app/presentation/orders/views/screen/orders_screen.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/screen/edit_profile_info_screen.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/screen/edit_vehicle_info_screen.dart';
@@ -61,6 +63,13 @@ abstract class AppRouter {
     GoRoute(
       path: RouteNames.changePassword,
       builder: (context, state) => const ChangePassword(),
+    ),
+    GoRoute(
+      path: RouteNames.myOrdersDetails,
+      builder: (context, state) {
+        final DriverOrderEntityDriverRelated driverOrderEntityDriverRelated = state.extra as DriverOrderEntityDriverRelated;
+        return MyOrdersDetailsScreen(driverOrderEntityDriverRelated: driverOrderEntityDriverRelated);
+      },
     ),
   ];
 
