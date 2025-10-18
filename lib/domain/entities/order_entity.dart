@@ -91,6 +91,40 @@ class OrderEntity extends Equatable {
     long: '-118.2437',
   );
 
+  OrderEntity copyWith({
+    String? id,
+    UserEntity? user,
+    List<OrderItemEntity>? orderItems,
+    int? totalPrice,
+    ShippingAddressEntity? shippingAddress,
+    String? paymentType,
+    bool? isPaid,
+    bool? isDelivered,
+    String? state,
+    String? createdAt,
+    String? updatedAt,
+    String? orderNumber,
+    int? v,
+    StoreEntity? store,
+  }) {
+    return OrderEntity(
+      id: id ?? this.id,
+      user: user ?? this.user,
+      orderItems: orderItems ?? this.orderItems,
+      totalPrice: totalPrice ?? this.totalPrice,
+      shippingAddress: shippingAddress ?? this.shippingAddress,
+      paymentType: paymentType ?? this.paymentType,
+      isPaid: isPaid ?? this.isPaid,
+      isDelivered: isDelivered ?? this.isDelivered,
+      state: state ?? this.state,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      orderNumber: orderNumber ?? this.orderNumber,
+      v: v ?? this.v,
+      store: store ?? this.store,
+    );
+  }
+
   @override
   List<Object?> get props => [
     id,

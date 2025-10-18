@@ -9,7 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class OrderDetailsView extends StatelessWidget {
-  const OrderDetailsView({super.key});
+  final String orderId;
+  const OrderDetailsView({super.key, required this.orderId});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class OrderDetailsView extends StatelessWidget {
         create: (context) => getIt.get<OrderDetailsViewModelCubit>()
           ..doIntent(
             OrderDetailsGetOrderFromFireBase(
-              orderId: "68efde9d7fee68a4c2ec2e18",
+              orderId: orderId,
             ),
           ),
         child: const OrderDetailsBodyBuilder(),

@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/base_state/base_state.dart';
-import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/requests/update_vehicle_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicles_entity.dart';
@@ -16,6 +15,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart' as p;
 import 'package:collection/collection.dart';
+
+import '../../../../domain/entites/driver_entity.dart';
 part 'edit_vehicle_view_model_state.dart';
 
 @injectable

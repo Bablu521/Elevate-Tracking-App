@@ -1,7 +1,8 @@
 import 'dart:io';
-import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../../domain/entites/driver_entity.dart';
 
 class ProfileStates extends Equatable {
   final bool isLoading;

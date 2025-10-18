@@ -10,7 +10,10 @@ import 'package:elevate_tracking_app/presentation/order_details/view_model/order
 import 'package:elevate_tracking_app/presentation/order_details/view_model/order_details_view_model_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../core/router/route_names.dart';
 
 class OrderDetailsBody extends StatelessWidget {
   const OrderDetailsBody({super.key, required this.orderFirestoreEntity});
@@ -44,13 +47,21 @@ class OrderDetailsBody extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.h),
-            CustomUserOrderInfoItem(
-              address: orderFirestoreEntity?.order?.store?.address,
-              imagePath: orderFirestoreEntity?.order?.store?.image,
-              phoneNumber: orderFirestoreEntity?.order?.store?.phoneNumber,
-              name: orderFirestoreEntity?.order?.store?.name,
-              isUser: false,
-              orderId: orderFirestoreEntity?.order?.id,
+            GestureDetector(
+              onTap: (){
+                context.push(RouteNames.locationScreen, extra: {
+                  'orderId': orderFirestoreEntity?.order?.id,
+                  'isUser': false,
+                });
+              },
+              child: CustomUserOrderInfoItem(
+                address: orderFirestoreEntity?.order?.store?.address,
+                imagePath: orderFirestoreEntity?.order?.store?.image,
+                phoneNumber: orderFirestoreEntity?.order?.store?.phoneNumber,
+                name: orderFirestoreEntity?.order?.store?.name,
+                isUser: false,
+                orderId: orderFirestoreEntity?.order?.id,
+              ),
             ),
             SizedBox(height: 24.h),
             Text(
@@ -61,13 +72,21 @@ class OrderDetailsBody extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.h),
-            CustomUserOrderInfoItem(
-              address: orderFirestoreEntity?.location?.address,
-              imagePath: orderFirestoreEntity?.order?.user?.photo,
-              phoneNumber: orderFirestoreEntity?.order?.user?.phone,
-              name: orderFirestoreEntity?.order?.user?.firstName,
-              isUser: true,
-              orderId: orderFirestoreEntity?.order?.id,
+            GestureDetector(
+              onTap: (){
+                context.push(RouteNames.locationScreen, extra: {
+                  'orderId': orderFirestoreEntity?.order?.id,
+                  'isUser': true,
+                });
+              },
+              child: CustomUserOrderInfoItem(
+                address: orderFirestoreEntity?.location?.address,
+                imagePath: orderFirestoreEntity?.order?.user?.photo,
+                phoneNumber: orderFirestoreEntity?.order?.user?.phone,
+                name: orderFirestoreEntity?.order?.user?.firstName,
+                isUser: true,
+                orderId: orderFirestoreEntity?.order?.id,
+              ),
             ),
             SizedBox(height: 24.h),
             Text(

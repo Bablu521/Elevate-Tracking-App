@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/enums/gender_enum.dart';
-import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/requests/update_profile_info_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/upload_profile_image_response_entity.dart';
@@ -16,6 +15,8 @@ import 'package:elevate_tracking_app/presentation/profile/view_models/profile_st
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../domain/entites/driver_entity.dart';
 
 @singleton
 @injectable

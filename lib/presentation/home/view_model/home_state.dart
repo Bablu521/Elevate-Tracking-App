@@ -6,6 +6,8 @@ final class HomeState extends Equatable {
   final String? errorMessage;
   final List<OrderEntity>? ordersList;
   final bool isAcceptSuccess;
+  final bool isFinish;
+  final String? orderId;
 
   const HomeState({
     this.isLoading = false,
@@ -13,6 +15,8 @@ final class HomeState extends Equatable {
     this.errorMessage,
     this.ordersList,
     this.isAcceptSuccess = false,
+    this.isFinish = false,
+    this.orderId,
   });
 
   HomeState copyWith({
@@ -21,6 +25,8 @@ final class HomeState extends Equatable {
     String? errorMessage,
     List<OrderEntity>? ordersList,
     bool? isAcceptSuccess,
+    bool? isFinish,
+    String? orderId,
   }) {
     return HomeState(
       isLoading: isLoading ?? this.isLoading,
@@ -28,6 +34,8 @@ final class HomeState extends Equatable {
       errorMessage: errorMessage,
       ordersList: ordersList ?? this.ordersList,
       isAcceptSuccess: isAcceptSuccess ?? false,
+      isFinish: isFinish ?? this.isFinish,
+      orderId: orderId ?? this.orderId,
     );
   }
 
@@ -38,5 +46,7 @@ final class HomeState extends Equatable {
     errorMessage,
     ordersList,
     isAcceptSuccess,
+    isFinish,
+    orderId,
   ];
 }

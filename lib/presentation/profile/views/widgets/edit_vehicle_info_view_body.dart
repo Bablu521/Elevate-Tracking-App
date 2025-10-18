@@ -1,5 +1,5 @@
 import 'package:elevate_tracking_app/core/custom_widget/custom_dialog.dart';
-import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
+
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/profile/view_models/edit_vehicle_view_model/edit_vehicle_view_model.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/widgets/edit_vehicle_info_body_builder.dart';
@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path/path.dart' as p;
+
+import '../../../../domain/entites/driver_entity.dart';
 
 class EditVehicleInfoBody extends StatefulWidget {
   const EditVehicleInfoBody({super.key, required this.driverEntity});

@@ -2,7 +2,7 @@ import 'package:elevate_tracking_app/domain/entites/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/live_location_entity.dart';
 import 'package:equatable/equatable.dart';
 
-import 'order_entity.dart';
+import '../entities/order_entity.dart';
 
 class OrderFirestoreEntity extends Equatable {
   final DriverEntity? driver;

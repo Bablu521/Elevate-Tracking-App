@@ -1,13 +1,20 @@
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
+import 'package:elevate_tracking_app/core/utils/location_manager.dart';
+import 'package:elevate_tracking_app/core/utils/token_storage/token_storage.dart';
+import 'package:elevate_tracking_app/domain/use_cases/get_logged_driver_data_use_case.dart';
 import 'package:elevate_tracking_app/domain/use_cases/start_order_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../domain/entites/order_entity.dart';
-import '../../../domain/entites/pending_orders_entity.dart';
-import '../../../domain/entites/start_order_entity.dart';
+import '../../../domain/entites/driver_entity.dart';
+import '../../../domain/entites/live_location_entity.dart';
+import '../../../domain/entites/order_firestore_entity.dart';
+import '../../../domain/entities/order_entity.dart';
+import '../../../domain/entities/pending_orders_entity.dart';
+import '../../../domain/entities/start_order_entity.dart';
+import '../../../domain/use_cases/add_order_to_firestore_use_case.dart';
 import '../../../domain/use_cases/get_all_pending_orders_use_case.dart';
 import 'home_events.dart';
 
@@ -17,17 +24,14 @@ part 'home_state.dart';
 class HomeViewModel extends Cubit<HomeState> {
   final GetAllPendingOrdersUseCase _getAllPendingOrdersUseCase;
   final StartOrderUseCase _startOrderUseCase;
-
-  /*final AddOrderToFirestoreUseCase _addOrderToFirestoreUseCase;
-  final GetOrderFromFirestoreUseCase _getOrderFromFirestoreUseCase;
-  final StreamOrderFromFirestoreUseCase _streamOrderFromFirestoreUseCase;*/
+  final GetLoggedDriverDataUseCase _getLoggedDriverDataUseCase;
+  final AddOrderToFirestoreUseCase _addOrderToFirestoreUseCase;
 
   HomeViewModel(
     this._getAllPendingOrdersUseCase,
     this._startOrderUseCase,
-    /*this._addOrderToFirestoreUseCase,
-    this._getOrderFromFirestoreUseCase,
-    this._streamOrderFromFirestoreUseCase,*/
+    this._getLoggedDriverDataUseCase,
+    this._addOrderToFirestoreUseCase,
   ) : super(const HomeState());
 
   ValueNotifier<int> acceptOrderIndex = ValueNotifier(-1);
@@ -36,6 +40,8 @@ class HomeViewModel extends Cubit<HomeState> {
   int currentPage = 1;
   int totalPages = 0;
   bool isLoadMore = false;
+
+  late DriverEntity driverEntity;
 
   void doIntent(HomeEvents events) {
     switch (events) {
@@ -51,7 +57,19 @@ class HomeViewModel extends Cubit<HomeState> {
   }
 
   Future<void> _getOrders() async {
+    final isAcceptOrder = await TokenStorage.getIsAcceptOrder();
+    if (isAcceptOrder != null) {
+      emit(state.copyWith(isFinish: true, orderId: isAcceptOrder));
+      return;
+    }
     emit(const HomeState(isLoading: true));
+    final driverData = await _getLoggedDriverDataUseCase();
+    switch (driverData) {
+      case ApiSuccessResult<DriverEntity>():
+        driverEntity = driverData.data;
+      case ApiErrorResult<DriverEntity>():
+        state.copyWith(isLoading: false, errorMessage: driverData.errorMessage);
+    }
     final result = await _getAllPendingOrdersUseCase();
     switch (result) {
       case ApiSuccessResult<PendingOrdersEntity>():
@@ -75,6 +93,7 @@ class HomeViewModel extends Cubit<HomeState> {
     switch (result) {
       case ApiSuccessResult<StartOrderEntity>():
         final updatedList = List<OrderEntity>.from(state.ordersList ?? []);
+        await addOrderToFirestore(index);
         updatedList.removeAt(index);
         emit(state.copyWith(ordersList: updatedList, isAcceptSuccess: true));
       case ApiErrorResult<StartOrderEntity>():
@@ -119,65 +138,26 @@ class HomeViewModel extends Cubit<HomeState> {
     }
   }
 
-  /*Future<void> testAdd(int index) async {
+  Future<void> addOrderToFirestore(int index) async {
+    final liveLocation = await LocationManager.getCurrentLocation();
     final result = await _addOrderToFirestoreUseCase(
       order: OrderFirestoreEntity(
-        driver: const DriverEntity(
-          id: "1",
-          country: "Egypt",
-          firstName: "Ahmed",
-          lastName: "Ali",
-          vehicleType: "Car",
-          vehicleNumber: "123456",
-          vehicleLicense: "123456",
-          nid: "123456",
-          nidImg: "https://picsum.photos/200/300",
-          email: "fake-email@gmail.com",
-          gender: "Male",
-          phone: "0123456789",
-          photo: "0123456789",
-          role: "Driver",
-          createdAt: "DateTime.timestamp()",
-        ),
+        driver: driverEntity,
         order: state.ordersList?[index],
-        location: const LiveLocationEntity(
-          lat: "30.0444",
-          long: "31.2357",
-          address: "Cairo, Egypt",
+        location:  LiveLocationEntity(
+          lat: liveLocation.latitude.toString(),
+          long: liveLocation.longitude.toString(),
+          address: driverEntity.country,
         ),
       ),
     );
 
     switch (result) {
       case ApiSuccessResult<bool>():
-        emit(state.copyWith(isAcceptSuccess: true));
+        TokenStorage.saveIsAcceptOrder(state.ordersList?[index].id ?? "");
+        emit(state.copyWith(isFinish: true));
       case ApiErrorResult<bool>():
         emit(state.copyWith(errorMessage: result.errorMessage));
     }
   }
-
-  Future<void> testGet(int index) async {
-    final result = await _getOrderFromFirestoreUseCase(
-      orderId: state.ordersList?[index].id ?? "",
-    );
-    switch (result) {
-      case ApiSuccessResult<OrderFirestoreEntity>():
-        print(result.data.toMap());
-        emit(state.copyWith(isAcceptSuccess: true));
-      case ApiErrorResult<OrderFirestoreEntity>():
-        emit(state.copyWith(errorMessage: result.errorMessage));
-    }
-  }
-
-  void testStream(int index) {
-    _streamOrderFromFirestoreUseCase(orderId: state.ordersList?[index].id ?? "").listen((result) {
-      switch (result) {
-        case ApiSuccessResult<OrderFirestoreEntity>():
-          print(result.data.toMap());
-          emit(state.copyWith(isAcceptSuccess: true));
-        case ApiErrorResult<OrderFirestoreEntity>():
-          emit(state.copyWith(errorMessage: result.errorMessage));
-      }
-    });
-  }*/
 }

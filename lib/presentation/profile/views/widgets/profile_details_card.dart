@@ -2,11 +2,13 @@ import 'package:elevate_tracking_app/core/constants/app_colors.dart';
 import 'package:elevate_tracking_app/core/constants/app_images.dart';
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/router/route_names.dart';
-import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
+
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../domain/entites/driver_entity.dart';
 
 class ProfileDetailsCard extends StatelessWidget {
   final DriverEntity driverEntity;

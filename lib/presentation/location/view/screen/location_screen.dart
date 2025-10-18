@@ -1,4 +1,5 @@
 import 'package:elevate_tracking_app/core/custom_widget/custom_dialog.dart';
+import 'package:elevate_tracking_app/core/models/track_screen_model.dart';
 import 'package:elevate_tracking_app/presentation/location/view/widget/location_bottom_sheet.dart';
 import 'package:elevate_tracking_app/presentation/location/view/widget/location_view_body.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,9 @@ import '../../view_model/location_events.dart';
 import '../../view_model/location_view_model.dart';
 
 class LocationScreen extends StatefulWidget {
-  const LocationScreen({super.key});
+  final TrackScreenModel trackScreenModel;
+
+  const LocationScreen({super.key, required this.trackScreenModel});
 
   @override
   State<LocationScreen> createState() => _LocationScreenState();
@@ -25,7 +28,10 @@ class _LocationScreenState extends State<LocationScreen> {
     super.initState();
     locationViewModel = getIt<LocationViewModel>();
     locationViewModel.doIntent(
-      GetOrderLocationEvent(orderId: "68efde9d7fee68a4c2ec2e18", isUser: true),
+      GetOrderLocationEvent(
+        orderId: widget.trackScreenModel.orderId,
+        isUser: widget.trackScreenModel.isUser,
+      ),
     );
   }
 

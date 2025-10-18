@@ -1,5 +1,4 @@
 import 'package:elevate_tracking_app/core/router/route_names.dart';
-import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entites/driver_order_entity_driver_related.dart';
 import 'package:elevate_tracking_app/presentation/application_approved/views/screen/application_approved_screen.dart';
 import 'package:elevate_tracking_app/presentation/auth/apply/view/screen/apply_view.dart';
@@ -12,8 +11,12 @@ import 'package:elevate_tracking_app/presentation/profile/views/screen/edit_prof
 import 'package:elevate_tracking_app/presentation/profile/views/screen/edit_vehicle_info_screen.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/screen/profile_screen.dart';
 import 'package:go_router/go_router.dart';
+import '../../domain/entites/driver_entity.dart';
 import '../../presentation/auth/change_password/view/change_password_view.dart';
 import '../../presentation/auth/forget_password/views/screen/forget_password_screen.dart';
+import '../../presentation/location/view/screen/location_screen.dart';
+import '../../presentation/order_details/view/screen/order_details_view.dart';
+import '../models/track_screen_model.dart';
 
 abstract class AppRouter {
   static final List<GoRoute> routes = [
@@ -73,11 +76,17 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: RouteNames.locationScreen,
-      builder: (context, state) => const LocationScreen(),
+      builder: (context, state) {
+        final TrackScreenModel trackScreenModel = state.extra as TrackScreenModel;
+        return LocationScreen(trackScreenModel: trackScreenModel);
+      },
     ),
     GoRoute(
       path: RouteNames.orderDetails,
-      builder: (context, state) => const OrderDetailsView(),
+      builder: (context, state) {
+        final String orderId = state.extra as String;
+        return OrderDetailsView(orderId: orderId);
+      },
     ),
   ];
 

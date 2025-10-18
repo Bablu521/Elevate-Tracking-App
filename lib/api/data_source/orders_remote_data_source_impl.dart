@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elevate_tracking_app/api/client/api_client.dart';
 import 'package:elevate_tracking_app/api/mapper/orders_mapper.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
@@ -5,6 +6,7 @@ import 'package:elevate_tracking_app/core/api_result/safe_api_call.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/data_source/orders_remote_data_source.dart';
+import '../../domain/entites/order_firestore_entity.dart';
 import '../../domain/entities/pending_orders_entity.dart';
 import '../../domain/entities/start_order_entity.dart';
 import 'package:elevate_tracking_app/api/mapper/driver_orders_driver_related_mapper.dart';
@@ -13,6 +15,7 @@ import 'package:elevate_tracking_app/domain/entites/driver_order_entity_driver_r
 @Injectable(as: OrdersRemoteDataSource)
 class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
   final ApiClient _apiClient;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   OrdersRemoteDataSourceImpl(this._apiClient);
 

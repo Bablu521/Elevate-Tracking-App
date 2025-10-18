@@ -27,4 +27,19 @@ abstract class TokenStorage {
     await _storage.delete(key: ConstKeys.keyUserToken);
   }
 
+  static Future<String?> getIsAcceptOrder() async {
+    return await _storage.read(key: "IsAcceptOrder");
+  }
+
+  static Future<void> saveIsAcceptOrder(String orderId) async {
+    try {
+      await _storage.write(key: "IsAcceptOrder", value: orderId);
+    } catch (e) {
+      log('SecureStorage error: $e');
+    }
+  }
+
+  static Future<void> deleteIsAcceptOrder() async {
+    await _storage.delete(key: "IsAcceptOrder");
+  }
 }

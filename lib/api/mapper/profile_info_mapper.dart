@@ -4,12 +4,13 @@ import 'package:elevate_tracking_app/api/models/requests/auth/update_profile_inf
 import 'package:elevate_tracking_app/api/models/responses/upload_profile_image_response_dto/upload_profile_image_response_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/vehicle_dto.dart';
 import 'package:elevate_tracking_app/api/models/responses/logout_response_dto.dart';
-import 'package:elevate_tracking_app/domain/entities/driver_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/logout_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/requests/update_profile_info_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/requests/update_vehicle_request_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/upload_profile_image_response_entity.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
+
+import '../../domain/entites/driver_entity.dart';
 
 
 extension DriverMapper on DriverDto {
@@ -29,7 +30,7 @@ extension DriverMapper on DriverDto {
       phone: phone,
       photo: photo,
       role: role,
-      createdAt: createdAt,
+      createdAt: createdAt.toString(),
     );
   }
 }
