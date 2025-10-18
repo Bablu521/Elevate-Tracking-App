@@ -1,6 +1,5 @@
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationManager {
   static Future<void> _checkServiceEnabled() async {
