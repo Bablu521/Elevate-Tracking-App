@@ -1,3 +1,4 @@
+import 'package:elevate_tracking_app/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -48,6 +49,7 @@ class HomeInfoCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 8.w,
             children: [
+              (image.isNotEmpty && image.startsWith('http'))?
               ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: CustomCachedNetworkImage(
@@ -56,7 +58,13 @@ class HomeInfoCard extends StatelessWidget {
                   imageUrl: image,
                   fit: BoxFit.cover,
                 ),
-              ),
+              ): const CircleAvatar(
+                      radius: 22,
+                      backgroundColor: Colors.transparent,
+                      backgroundImage: AssetImage(
+                        AppImages.defaultProfileImage,
+                      ),
+                    ),
               Expanded(
                 child: Column(
                   spacing: 8.h,

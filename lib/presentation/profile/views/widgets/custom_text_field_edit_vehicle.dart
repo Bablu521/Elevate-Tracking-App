@@ -4,7 +4,6 @@ import 'package:elevate_tracking_app/core/constants/app_icons.dart';
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/utils/validations.dart';
 import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
-import 'package:elevate_tracking_app/domain/entities/vehicles_entity.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/profile/view_models/edit_vehicle_view_model/edit_vehicle_view_model.dart';
 import 'package:flutter/material.dart';

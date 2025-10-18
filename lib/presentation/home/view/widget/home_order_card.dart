@@ -56,7 +56,7 @@ class HomeOrderCard extends StatelessWidget {
             image: orderEntity.user?.photo ?? "",
             name: orderEntity.user?.firstName ?? "",
             address:
-                "${orderEntity.shippingAddress?.street ?? ""}, ${orderEntity.shippingAddress?.city ?? ""}",
+                "${orderEntity.shippingAddress?.street ?? AppLocalizations.of(context).fakeStreet}, ${orderEntity.shippingAddress?.city ?? AppLocalizations.of(context).fakeCity}",
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

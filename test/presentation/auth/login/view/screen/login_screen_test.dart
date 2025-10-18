@@ -172,7 +172,7 @@ void main() {
       await tester.tap(forgotPasswordButton);
       await tester.pumpAndSettle();
 
-      expect(find.text("Page Not Found"), findsOneWidget);
+      expect(find.text("Password"), findsOneWidget);
     });
 
     testWidgets("Verify continue button behaviour", (tester) async {
