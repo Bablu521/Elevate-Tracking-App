@@ -63,6 +63,7 @@ class _LocationScreenState extends State<LocationScreen> {
               ? LocationBottomSheet(
                   orderFirestoreEntity: state.order,
                   isUser: true,
+                  locationViewModel: locationViewModel,
                 )
               : null,
         );

@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:injectable/injectable.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/utils/location_manager.dart';
 import '../../../domain/entites/live_location_entity.dart';
@@ -52,6 +53,10 @@ class LocationViewModel extends Cubit<LocationState> {
     switch (events) {
       case GetOrderLocationEvent():
         _getOrder(events.orderId, events.isUser);
+      case LunchCallLocationEvent():
+        _callNumber(events.phoneNumber);
+      case LunchWhatsAppLocationEvent():
+        _openWhatsApp(phone: events.phoneNumber);
     }
   }
 
@@ -217,6 +222,31 @@ class LocationViewModel extends Cubit<LocationState> {
       infoWindow: InfoWindow(title: title),
       icon: icon,
     );
+  }
+
+  Future<void> _openWhatsApp({
+    required String phone,
+    String message = '',
+  }) async {
+    final Uri whatsappUri = Uri.parse(
+      "https://wa.me/$phone?text=${Uri.encodeComponent(message)}",
+    );
+
+    if (await canLaunchUrl(whatsappUri)) {
+      await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
+    } else {
+      throw Exception("Could not launch WhatsApp");
+    }
+  }
+
+  Future<void> _callNumber(String phoneNumber) async {
+    final Uri callUri = Uri(scheme: 'tel', path: phoneNumber);
+
+    if (await canLaunchUrl(callUri)) {
+      await launchUrl(callUri, mode: LaunchMode.externalApplication);
+    } else {
+      throw Exception('Could not launch dialer');
+    }
   }
 
   @override

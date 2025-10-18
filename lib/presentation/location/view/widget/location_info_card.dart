@@ -1,15 +1,19 @@
+import 'package:elevate_tracking_app/presentation/location/view_model/location_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_icons.dart';
 import '../../../../core/custom_widget/custom_cached_network_image.dart';
+import '../../view_model/location_events.dart';
 
 class LocationInfoCard extends StatelessWidget {
   final String title;
   final String image;
   final String name;
   final String address;
+  final String phone;
+  final LocationViewModel locationViewModel;
 
   const LocationInfoCard({
     super.key,
@@ -17,6 +21,8 @@ class LocationInfoCard extends StatelessWidget {
     required this.image,
     required this.name,
     required this.address,
+    required this.phone,
+    required this.locationViewModel,
   });
 
   @override
@@ -99,10 +105,22 @@ class LocationInfoCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 spacing: 4.w,
                 children: [
-                  Image.asset(AppIcons.iconCall),
-                  Image.asset(AppIcons.iconWhatsapp),
+                  GestureDetector(
+                    child: Image.asset(AppIcons.iconCall),
+                    onTap: () {
+                      locationViewModel.doIntent(LunchCallLocationEvent(phone));
+                    },
+                  ),
+                  GestureDetector(
+                    child: Image.asset(AppIcons.iconWhatsapp),
+                    onTap: () {
+                      locationViewModel.doIntent(
+                        LunchWhatsAppLocationEvent(phone),
+                      );
+                    },
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),

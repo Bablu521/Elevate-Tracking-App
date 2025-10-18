@@ -1,3 +1,4 @@
+import 'package:elevate_tracking_app/presentation/location/view_model/location_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:solid_bottom_sheet/solid_bottom_sheet.dart';
@@ -10,11 +11,13 @@ import 'location_info_card.dart';
 class LocationBottomSheet extends StatelessWidget {
   final OrderFirestoreEntity? orderFirestoreEntity;
   final bool isUser;
+  final LocationViewModel locationViewModel;
 
   const LocationBottomSheet({
     super.key,
     required this.orderFirestoreEntity,
     required this.isUser,
+    required this.locationViewModel,
   });
 
   @override
@@ -61,12 +64,16 @@ class LocationBottomSheet extends StatelessWidget {
         name: orderFirestoreEntity?.order?.user?.firstName ?? "",
         address:
             "${orderFirestoreEntity?.order?.shippingAddress?.street ?? ""}, ${orderFirestoreEntity?.order?.shippingAddress?.city ?? ""}",
+        phone: orderFirestoreEntity?.order?.shippingAddress?.phone ?? "",
+        locationViewModel: locationViewModel,
       ),
       LocationInfoCard(
         title: AppLocalizations.of(context).pickupAddress,
         image: orderFirestoreEntity?.order?.store?.image ?? "",
         name: orderFirestoreEntity?.order?.store?.name ?? "",
         address: orderFirestoreEntity?.order?.store?.address ?? "",
+        phone: orderFirestoreEntity?.order?.store?.phoneNumber ?? "",
+        locationViewModel: locationViewModel,
       ),
     ];
   }

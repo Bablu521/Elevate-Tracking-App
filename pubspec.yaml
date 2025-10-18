@@ -57,6 +57,7 @@ dependencies:
   firebase_core: ^4.1.1
   cloud_firestore: ^6.0.2
   solid_bottom_sheet: ^0.1.13
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
