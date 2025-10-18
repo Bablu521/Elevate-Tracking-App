@@ -53,5 +53,9 @@
   "accept": "Accept",
   "egp": "EGP",
   "noOrders": "No Orders",
-  "orderAcceptedSuccessfully": "Order accepted successfully"
+  "orderAcceptedSuccessfully": "Order accepted successfully",
+  "yourLocation": "Your Location",
+  "liveLocation" : "Live Location",
+  "user": "User",
+  "flowery": "Flowery"
 }

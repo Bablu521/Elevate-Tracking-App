@@ -64,9 +64,11 @@ class OrderEntity extends Equatable {
         map['orderItems'],
       ).map((item) => OrderItemEntity.fromMap(item)).toList(),
       totalPrice: map['totalPrice'] as int?,
-      shippingAddress: ShippingAddressEntity.fromMap(
-        Map<String, dynamic>.from(map['shippingAddress']),
-      ),
+      shippingAddress: map['shippingAddress'] != null
+          ? ShippingAddressEntity.fromMap(
+              Map<String, dynamic>.from(map['shippingAddress']),
+            )
+          : _fakeShippingAddress,
       paymentType: map['paymentType'] as String?,
       isPaid: map['isPaid'] as bool?,
       isDelivered: map['isDelivered'] as bool?,
@@ -78,6 +80,14 @@ class OrderEntity extends Equatable {
       store: StoreEntity.fromMap(Map<String, dynamic>.from(map['store'])),
     );
   }
+
+  static final _fakeShippingAddress = const ShippingAddressEntity(
+    street: '456 Oak Avenue',
+    city: 'Metropolis',
+    phone: '555-555-5555',
+    lat: '34.0522',
+    long: '-118.2437',
+  );
 
   @override
   List<Object?> get props => [

@@ -49,5 +49,7 @@ abstract class AppIcons {
   static const String iconWhatsapp = "assets/icons/whatsapp.png";
 
   static const String iconX1 = "assets/icons/X1.png";
+
+  static const String iconMarker = "assets/icons/markerIcon.png";
 }
 

@@ -23,10 +23,23 @@ class OrderFirestoreEntity extends Equatable {
     return OrderFirestoreEntity(
       driver: DriverEntity.fromMap(Map<String, dynamic>.from(map['driver'])),
       order: OrderEntity.fromMap(Map<String, dynamic>.from(map['order'])),
-      location: LiveLocationEntity.fromMap(Map<String, dynamic>.from(map['location'])),
+      location: LiveLocationEntity.fromMap(
+        Map<String, dynamic>.from(map['location']),
+      ),
     );
   }
 
+  OrderFirestoreEntity copyWith({
+    DriverEntity? driver,
+    OrderEntity? order,
+    LiveLocationEntity? location,
+  }) {
+    return OrderFirestoreEntity(
+      driver: driver ?? this.driver,
+      order: order ?? this.order,
+      location: location ?? this.location,
+    );
+  }
 
   @override
   List<Object?> get props => [driver, order, location];
