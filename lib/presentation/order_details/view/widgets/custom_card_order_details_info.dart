@@ -6,6 +6,8 @@ import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/constants/app_images.dart';
+
 class CustomCardOrderDetailsInfo extends StatelessWidget {
   const CustomCardOrderDetailsInfo({
     super.key,
@@ -14,7 +16,9 @@ class CustomCardOrderDetailsInfo extends StatelessWidget {
     this.orderPrice,
     this.amount,
   });
+
   final String? imagePath, orderName, orderPrice, amount;
+
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context);
@@ -30,17 +34,25 @@ class CustomCardOrderDetailsInfo extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipOval(
-              key: const Key(
-                WidgetsKeys.kOrderDetailsScreenOrderDetailsCardImage,
-              ),
-              child: CustomCachedNetworkImage(
-                imageUrl: imagePath,
-                height: 44.h,
-                width: 44.w,
-                fit: BoxFit.cover,
-              ),
-            ),
+            (imagePath != null &&
+                    imagePath!.isNotEmpty &&
+                    imagePath!.startsWith('http'))
+                ? ClipOval(
+                    key: const Key(
+                      WidgetsKeys.kOrderDetailsScreenOrderDetailsCardImage,
+                    ),
+                    child: CustomCachedNetworkImage(
+                      imageUrl: imagePath,
+                      height: 44.h,
+                      width: 44.w,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                : const CircleAvatar(
+                    radius: 22,
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: AssetImage(AppImages.imageFloweryLogo),
+                  ),
             SizedBox(width: 8.w),
             Flexible(
               child: Column(

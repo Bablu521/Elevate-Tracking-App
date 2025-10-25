@@ -1,5 +1,6 @@
 import 'package:elevate_tracking_app/core/constants/widgets_keys.dart';
 import 'package:elevate_tracking_app/core/di/di.dart';
+import 'package:elevate_tracking_app/core/router/route_names.dart';
 import 'package:elevate_tracking_app/generated/l10n.dart';
 import 'package:elevate_tracking_app/presentation/order_details/view/widgets/order_details_body_builder.dart';
 import 'package:elevate_tracking_app/presentation/order_details/view_model/order_details_event.dart';
@@ -10,6 +11,7 @@ import 'package:go_router/go_router.dart';
 
 class OrderDetailsView extends StatelessWidget {
   final String orderId;
+
   const OrderDetailsView({super.key, required this.orderId});
 
   @override
@@ -35,13 +37,21 @@ class OrderDetailsView extends StatelessWidget {
         ),
       ),
       body: BlocProvider(
-        create: (context) => getIt.get<OrderDetailsViewModelCubit>()
-          ..doIntent(
-            OrderDetailsGetOrderFromFireBase(
-              orderId: orderId,
+        create: (context) =>
+            getIt.get<OrderDetailsViewModelCubit>()
+              ..doIntent(OrderDetailsGetOrderFromFireBase(orderId: orderId)),
+        child:
+            BlocListener<
+              OrderDetailsViewModelCubit,
+              OrderDetailsViewModelState
+            >(
+              listener: (context, state) {
+                if (state.isDelivered) {
+                  context.push(RouteNames.mainHome);
+                }
+              },
+              child: const OrderDetailsBodyBuilder(),
             ),
-          ),
-        child: const OrderDetailsBodyBuilder(),
       ),
     );
   }

@@ -10,6 +10,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../core/utils/token_storage/token_storage.dart';
 part 'order_details_view_model_state.dart';
 
 @injectable
@@ -96,7 +98,10 @@ class OrderDetailsViewModelCubit extends Cubit<OrderDetailsViewModelState> {
     );
     switch (result) {
       case ApiSuccessResult<bool>():
-        emit(state.copyWith(updateOrderStatus: BaseState.success(result.data)));
+        if (isDelivered) {
+          TokenStorage.deleteIsAcceptOrder();
+        }
+        emit(state.copyWith(updateOrderStatus: BaseState.success(result.data), isDelivered: isDelivered));
       case ApiErrorResult<bool>():
         emit(
           state.copyWith(

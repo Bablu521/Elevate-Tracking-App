@@ -11,6 +11,7 @@ import 'package:elevate_tracking_app/domain/entities/upload_profile_image_respon
 import 'package:elevate_tracking_app/domain/entities/vehicle_entity.dart';
 
 import '../../domain/entites/driver_entity.dart';
+import '../../domain/entities/vehicles_entity.dart';
 
 
 extension DriverMapper on DriverDto {
@@ -77,6 +78,19 @@ extension UpdateVehicleRequestMapper on UpdateVehicleRequestEntity {
       vehicleNumber: vehicleNumber,
       vehicleType: vehicleType,
       vehicleLicense: vehicleLicense,
+    );
+  }
+}
+
+extension VehiclesMapper on VehiclesEntity {
+  VehicleEntity toVehicleEntity() {
+    return VehicleEntity(
+      id: id,
+      type: type,
+      image: image,
+      createdAt: DateTime.timestamp(),
+      updatedAt: DateTime.timestamp(),
+      v: 0,
     );
   }
 }

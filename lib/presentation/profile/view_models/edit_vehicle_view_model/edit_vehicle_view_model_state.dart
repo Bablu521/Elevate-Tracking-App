@@ -6,11 +6,11 @@ class EditVehicleViewModelState extends Equatable {
     this.vehicleLicenseImagePath,
     this.updateData,
   });
-  final BaseState<List<VehiclesEntity>>? allVehicleList;
+  final BaseState<List<VehicleEntity>>? allVehicleList;
   final BaseState<DriverEntity>? updateData;
   final String? vehicleLicenseImagePath;
   EditVehicleViewModelState copyWith({
-    BaseState<List<VehiclesEntity>>? allVehicleList,
+    BaseState<List<VehicleEntity>>? allVehicleList,
     BaseState<DriverEntity>? updateData,
     String? vehicleLicenseImagePath,
   }) {

@@ -1,4 +1,7 @@
 import 'dart:io';
+
+import 'package:collection/collection.dart';
+import 'package:elevate_tracking_app/api/mapper/profile_info_mapper.dart';
 import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/base_state/base_state.dart';
 import 'package:elevate_tracking_app/domain/entities/requests/update_vehicle_request_entity.dart';
@@ -14,9 +17,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart' as p;
-import 'package:collection/collection.dart';
 
 import '../../../../domain/entites/driver_entity.dart';
+
 part 'edit_vehicle_view_model_state.dart';
 
 @injectable
@@ -27,8 +30,10 @@ class EditVehicleViewModel extends Cubit<EditVehicleViewModelState> {
     controllerVehicleNumber.addListener(checkEnableButton);
     controllerVehicleType.addListener(checkEnableButton);
   }
+
   final GetAllVehiclesUseCase _allVehiclesUseCase;
   final UpdateVehicleUseCase _updateVehicleUseCase;
+
   Future<void> doIntent(EditVehicleEvent event) async {
     switch (event) {
       case EditVehicleInitializeAllDataEvent():
@@ -73,7 +78,13 @@ class EditVehicleViewModel extends Cubit<EditVehicleViewModelState> {
     final result = await _allVehiclesUseCase.call();
     switch (result) {
       case ApiSuccessResult<List<VehiclesEntity>>():
-        emit(state.copyWith(allVehicleList: BaseState.success(result.data)));
+        emit(
+          state.copyWith(
+            allVehicleList: BaseState.success(
+              result.data.map((v) => v.toVehicleEntity()).toList(),
+            ),
+          ),
+        );
       case ApiErrorResult<List<VehiclesEntity>>():
         emit(
           state.copyWith(allVehicleList: BaseState.error(result.errorMessage)),
@@ -95,7 +106,7 @@ class EditVehicleViewModel extends Cubit<EditVehicleViewModelState> {
     final vehicle = state.allVehicleList?.data?.firstWhereOrNull(
       (v) => v.id == vehicleId,
     );
-    selectedVehicle.value = vehicle as VehicleEntity;
+    selectedVehicle.value = vehicle;
     controllerVehicleType.text =
         vehicle?.type ?? AppLocalizations().vehicleNotFound;
   }

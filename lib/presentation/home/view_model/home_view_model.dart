@@ -62,7 +62,7 @@ class HomeViewModel extends Cubit<HomeState> {
       emit(state.copyWith(isFinish: true, orderId: isAcceptOrder));
       return;
     }
-    emit(const HomeState(isLoading: true));
+    emit(state.copyWith(isLoading: true));
     final driverData = await _getLoggedDriverDataUseCase();
     switch (driverData) {
       case ApiSuccessResult<DriverEntity>():
@@ -155,7 +155,7 @@ class HomeViewModel extends Cubit<HomeState> {
     switch (result) {
       case ApiSuccessResult<bool>():
         TokenStorage.saveIsAcceptOrder(state.ordersList?[index].id ?? "");
-        emit(state.copyWith(isFinish: true));
+        emit(state.copyWith(isFinish: true, orderId: state.ordersList?[index].id));
       case ApiErrorResult<bool>():
         emit(state.copyWith(errorMessage: result.errorMessage));
     }
