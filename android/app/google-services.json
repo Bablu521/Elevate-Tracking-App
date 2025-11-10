@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "32003978433",
+    "project_id": "elevate-tracking-app",
+    "storage_bucket": "elevate-tracking-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32003978433:android:b4face5368c51028fa1040",
+        "android_client_info": {
+          "package_name": "com.example.elevate_tracking_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7yQ4xR1xr14wnkhzCO8UqvQgvRWGFFks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
