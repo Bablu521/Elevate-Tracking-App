@@ -1,8 +1,10 @@
 import 'package:elevate_tracking_app/core/router/route_names.dart';
+import 'package:elevate_tracking_app/domain/entites/driver_order_entity_driver_related.dart';
 import 'package:elevate_tracking_app/presentation/application_approved/views/screen/application_approved_screen.dart';
 import 'package:elevate_tracking_app/presentation/home/views/screen/home_screen.dart';
 import 'package:elevate_tracking_app/presentation/main_home/views/screen/main_home_screen.dart';
 import 'package:elevate_tracking_app/presentation/onboarding/views/screen/onboarding_screen.dart';
+import 'package:elevate_tracking_app/presentation/orders/views/screen/my_orders_details_screen.dart';
 import 'package:elevate_tracking_app/presentation/orders/views/screen/orders_screen.dart';
 import 'package:elevate_tracking_app/presentation/profile/views/screen/profile_screen.dart';
 import 'package:elevate_tracking_app/presentation/auth/login/view/screen/login_screen.dart';
@@ -38,12 +40,19 @@ abstract class AppRouter {
       path: RouteNames.profile,
       builder: (context, state) => const ProfileScreen(),
     ),
+    GoRoute(
+      path: RouteNames.myOrdersDetails,
+      builder: (context, state) {
+        final DriverOrderEntityDriverRelated driverOrderEntityDriverRelated = state.extra as DriverOrderEntityDriverRelated;
+        return MyOrdersDetailsScreen(driverOrderEntityDriverRelated: driverOrderEntityDriverRelated);
+      },
+    ),
 
   ];
 
   static GoRouter router(String? token) {
     return GoRouter(
-      initialLocation: token == null ? RouteNames.onboarding : RouteNames.home,
+      initialLocation: token == null ? RouteNames.onboarding : RouteNames.mainHome,
       routes: routes,
     );
   }

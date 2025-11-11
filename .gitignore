@@ -99,3 +99,7 @@ lib/generated/l10n.dart
 
 # Ignore dependency lock file
 *.lock
+
+# "JSON to Dart Model" generator tracker files locations.
+/.json_models/
+models.jsonc
