@@ -20,7 +20,7 @@ class CustomPageView extends StatelessWidget {
       children: [
         const HomeScreen(),
         const OrdersScreen(),
-        const ProfileScreen(),
+        ProfileScreen(),
       ],
     );
   }

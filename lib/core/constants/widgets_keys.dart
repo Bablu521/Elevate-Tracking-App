@@ -16,4 +16,21 @@ abstract final class WidgetsKeys {
       "login_screen_forgot_password_button";
   static const String kLoginScreenContinueButton =
       "login_screen_continue_button";
+  static const String kProfileScreenErrorMessage =
+      "profile_screen_error_message";
+  static const String kProfileScreenLoadingIndicator =
+      "profile_screen_loading_indicator";
+  static const String kProfileScreenForwardIconToEditProfileInfo =
+      "profile_screen_forward_icon_to_edit_profile_info";
+  static const String kProfileScreenForwardIconToEditVehicleInfo =
+      "profile_screen_forward_icon_to_edit_vehicle_info";
+  static const String kProfileScreenLogoutIcon =
+      "profile_screen_logout_icon";
+  static const String kProfileScreenLogoutDialog = "profile_screen_logout_dialog";
+  static const String kProfileScreenLogoutButton = "profile_screen_logout_button";
+  static const String kEditProfileInfoScreenSuccessSnackBar =
+      "edit_profile_info_screen_success_snack_bar";
+  static const String kEditProfileInfoScreenFailureSnackBar =
+      "edit_profile_info_screen_failure_snack_bar";
+
 }

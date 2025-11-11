@@ -76,4 +76,20 @@ void main() {
       });
     });
   });
+  group("test logout", () {
+    late MockFlutterSecureStorage mockStorage;
+    late AuthLocalDataSourceImpl dataSource;
+    setUp(() {
+      mockStorage = MockFlutterSecureStorage();
+      dataSource = AuthLocalDataSourceImpl(mockStorage);
+    });
+    test("should save token correctly", () async {
+      // Arrange
+      // Act
+      await dataSource.userLogout();
+
+      // Assert
+      verify(mockStorage.delete(key: ConstKeys.keyUserToken)).called(1);
+    });
+  });
 }
