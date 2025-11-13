@@ -23,7 +23,7 @@ class MainHomeScreen extends StatelessWidget {
         return Scaffold(
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: mainHomeViewModel.state.selectedIndex,
-            onTap: (index){
+            onTap: (index) {
               mainHomeViewModel.doIntent(BottomNavBarTappedEvent(index));
             },
             selectedItemColor: AppColors.mainColor,

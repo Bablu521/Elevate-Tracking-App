@@ -1,22 +1,60 @@
 import 'package:elevate_tracking_app/api/data_source/auth_local_data_source_impl.dart';
+import 'package:elevate_tracking_app/core/api_result/api_result.dart';
 import 'package:elevate_tracking_app/core/constants/const_keys.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:elevate_tracking_app/domain/entites/country_entity.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../dummy/apply_fixture.dart';
+import '../../dummy/fake_file_json.dart';
 import '../../dummy/login_dummy_data.dart';
-import 'auth_local_data_source_impl_test.mocks.dart';
+import '../../presentation/auth/login/view/screen/login_screen_test.mocks.dart';
 
-@GenerateMocks([FlutterSecureStorage])
+@GenerateMocks([AssetBundle])
 void main() {
+  group("test get all country", () {
+    late AuthLocalDataSourceImpl dataSource;
+    late FakeAssetBundle fakeBundle;
+    late MockFlutterSecureStorage mockStorage;
+    setUp(() {
+      mockStorage = MockFlutterSecureStorage();
+      fakeBundle = ApplyFixture.fakeBundle;
+      dataSource = AuthLocalDataSourceImpl(mockStorage, fakeBundle);
+    });
+
+    test('returns List<CountryEntity> when fixture is valid', () async {
+      final result = await dataSource.getAllCountry();
+      expect(result, isA<ApiSuccessResult<List<CountryEntity>>>());
+      if (result is ApiSuccessResult<List<CountryEntity>>) {
+        final countries = result.data;
+        expect(countries, isNotEmpty);
+        expect(countries.first.name, equals('Turkey'));
+        expect(countries.first.flag, equals('🇹🇷'));
+      } else {
+        fail('Expected success result');
+      }
+    });
+
+    test('returns error when asset is missing', () async {
+      final emptyBundle = FakeAssetBundle({});
+      final ds = AuthLocalDataSourceImpl(mockStorage, emptyBundle);
+
+      final result = await ds.getAllCountry();
+
+      expect(result, isA<ApiErrorResult>());
+    });
+  });
   group("test AuthLocalDataSourceImpl", () {
+    late FakeAssetBundle fakeBundle;
     late MockFlutterSecureStorage mockStorage;
     late AuthLocalDataSourceImpl dataSource;
 
     setUp(() {
+      fakeBundle = ApplyFixture.fakeBundle;
       mockStorage = MockFlutterSecureStorage();
-      dataSource = AuthLocalDataSourceImpl(mockStorage);
+      dataSource = AuthLocalDataSourceImpl(mockStorage, fakeBundle);
     });
 
     group("saveUserRememberMe", () {

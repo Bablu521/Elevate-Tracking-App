@@ -1,0 +1,232 @@
+[
+  {
+    "isoCode": "EG",
+    "name": "Egypt",
+    "phoneCode": "20",
+    "flag": "🇪🇬",
+    "flagUrl": "https://flagcdn.com/w320/eg.png",
+    "currency": "EGP",
+    "latitude": "27.00000000",
+    "longitude": "30.00000000"
+  },
+  {
+    "isoCode": "SA",
+    "name": "Saudi Arabia",
+    "phoneCode": "966",
+    "flag": "🇸🇦",
+    "flagUrl": "https://flagcdn.com/w320/sa.png",
+    "currency": "SAR",
+    "latitude": "25.00000000",
+    "longitude": "45.00000000"
+  },
+  {
+    "isoCode": "AE",
+    "name": "United Arab Emirates",
+    "phoneCode": "971",
+    "flag": "🇦🇪",
+    "flagUrl": "https://flagcdn.com/w320/ae.png",
+    "currency": "AED",
+    "latitude": "24.00000000",
+    "longitude": "54.00000000"
+  },
+  {
+    "isoCode": "QA",
+    "name": "Qatar",
+    "phoneCode": "974",
+    "flag": "🇶🇦",
+    "flagUrl": "https://flagcdn.com/w320/qa.png",
+    "currency": "QAR",
+    "latitude": "25.50000000",
+    "longitude": "51.25000000"
+  },
+  {
+    "isoCode": "KW",
+    "name": "Kuwait",
+    "phoneCode": "965",
+    "flag": "🇰🇼",
+    "flagUrl": "https://flagcdn.com/w320/kw.png",
+    "currency": "KWD",
+    "latitude": "29.50000000",
+    "longitude": "47.75000000"
+  },
+  {
+    "isoCode": "BH",
+    "name": "Bahrain",
+    "phoneCode": "973",
+    "flag": "🇧🇭",
+    "flagUrl": "https://flagcdn.com/w320/bh.png",
+    "currency": "BHD",
+    "latitude": "26.00000000",
+    "longitude": "50.55000000"
+  },
+  {
+    "isoCode": "OM",
+    "name": "Oman",
+    "phoneCode": "968",
+    "flag": "🇴🇲",
+    "flagUrl": "https://flagcdn.com/w320/om.png",
+    "currency": "OMR",
+    "latitude": "21.00000000",
+    "longitude": "57.00000000"
+  },
+  {
+    "isoCode": "JO",
+    "name": "Jordan",
+    "phoneCode": "962",
+    "flag": "🇯🇴",
+    "flagUrl": "https://flagcdn.com/w320/jo.png",
+    "currency": "JOD",
+    "latitude": "31.00000000",
+    "longitude": "36.00000000"
+  },
+  {
+    "isoCode": "LB",
+    "name": "Lebanon",
+    "phoneCode": "961",
+    "flag": "🇱🇧",
+    "flagUrl": "https://flagcdn.com/w320/lb.png",
+    "currency": "LBP",
+    "latitude": "33.83333333",
+    "longitude": "35.83333333"
+  },
+  {
+    "isoCode": "SY",
+    "name": "Syria",
+    "phoneCode": "963",
+    "flag": "🇸🇾",
+    "flagUrl": "https://flagcdn.com/w320/sy.png",
+    "currency": "SYP",
+    "latitude": "35.00000000",
+    "longitude": "38.00000000"
+  },
+  {
+    "isoCode": "IQ",
+    "name": "Iraq",
+    "phoneCode": "964",
+    "flag": "🇮🇶",
+    "flagUrl": "https://flagcdn.com/w320/iq.png",
+    "currency": "IQD",
+    "latitude": "33.00000000",
+    "longitude": "44.00000000"
+  },
+  {
+    "isoCode": "YE",
+    "name": "Yemen",
+    "phoneCode": "967",
+    "flag": "🇾🇪",
+    "flagUrl": "https://flagcdn.com/w320/ye.png",
+    "currency": "YER",
+    "latitude": "15.00000000",
+    "longitude": "48.00000000"
+  },
+  {
+    "isoCode": "SD",
+    "name": "Sudan",
+    "phoneCode": "249",
+    "flag": "🇸🇩",
+    "flagUrl": "https://flagcdn.com/w320/sd.png",
+    "currency": "SDG",
+    "latitude": "15.00000000",
+    "longitude": "30.00000000"
+  },
+  {
+    "isoCode": "MA",
+    "name": "Morocco",
+    "phoneCode": "212",
+    "flag": "🇲🇦",
+    "flagUrl": "https://flagcdn.com/w320/ma.png",
+    "currency": "MAD",
+    "latitude": "32.00000000",
+    "longitude": "-5.00000000"
+  },
+  {
+    "isoCode": "DZ",
+    "name": "Algeria",
+    "phoneCode": "213",
+    "flag": "🇩🇿",
+    "flagUrl": "https://flagcdn.com/w320/dz.png",
+    "currency": "DZD",
+    "latitude": "28.00000000",
+    "longitude": "3.00000000"
+  },
+  {
+    "isoCode": "TN",
+    "name": "Tunisia",
+    "phoneCode": "216",
+    "flag": "🇹🇳",
+    "flagUrl": "https://flagcdn.com/w320/tn.png",
+    "currency": "TND",
+    "latitude": "34.00000000",
+    "longitude": "9.00000000"
+  },
+  {
+    "isoCode": "LY",
+    "name": "Libya",
+    "phoneCode": "218",
+    "flag": "🇱🇾",
+    "flagUrl": "https://flagcdn.com/w320/ly.png",
+    "currency": "LYD",
+    "latitude": "25.00000000",
+    "longitude": "17.00000000"
+  },
+  {
+    "isoCode": "PS",
+    "name": "Palestine",
+    "phoneCode": "970",
+    "flag": "🇵🇸",
+    "flagUrl": "https://flagcdn.com/w320/ps.png",
+    "currency": "ILS",
+    "latitude": "31.90000000",
+    "longitude": "35.20000000"
+  },
+  {
+    "isoCode": "US",
+    "name": "United States",
+    "phoneCode": "1",
+    "flag": "🇺🇸",
+    "flagUrl": "https://flagcdn.com/w320/us.png",
+    "currency": "USD",
+    "latitude": "38.00000000",
+    "longitude": "-97.00000000"
+  },
+  {
+    "isoCode": "GB",
+    "name": "United Kingdom",
+    "phoneCode": "44",
+    "flag": "🇬🇧",
+    "flagUrl": "https://flagcdn.com/w320/gb.png",
+    "currency": "GBP",
+    "latitude": "54.00000000",
+    "longitude": "-2.00000000"
+  },
+  {
+    "isoCode": "FR",
+    "name": "France",
+    "phoneCode": "33",
+    "flag": "🇫🇷",
+    "flagUrl": "https://flagcdn.com/w320/fr.png",
+    "currency": "EUR",
+    "latitude": "46.00000000",
+    "longitude": "2.00000000"
+  },
+  {
+    "isoCode": "DE",
+    "name": "Germany",
+    "phoneCode": "49",
+    "flag": "🇩🇪",
+    "flagUrl": "https://flagcdn.com/w320/de.png",
+    "currency": "EUR",
+    "latitude": "51.00000000",
+    "longitude": "9.00000000"
+  },
+  {
+    "isoCode": "TR",
+    "name": "Turkey",
+    "phoneCode": "90",
+    "flag": "🇹🇷",
+    "flagUrl": "https://flagcdn.com/w320/tr.png",
+    "currency": "TRY",
+    "latitude": "39.00000000",
+    "longitude": "35.00000000"
+  }
+]
