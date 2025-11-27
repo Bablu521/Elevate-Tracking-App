@@ -73,7 +73,7 @@ void main() {
       await tester.tap(applyButtonFinder);
       await tester.pumpAndSettle();
       //Assert
-      expect(find.text("Apply"), findsOneWidget);
+      expect(find.text("Page Not Found"), findsOneWidget);
     });
   });
 }

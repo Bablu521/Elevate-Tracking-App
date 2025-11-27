@@ -44,5 +44,18 @@
   "enterYourEmail": "Enter your email",
   "enterYourPassword": "Enter your password",
   "continueWord": "Continue",
-  "error": "Error"
+  "error": "Error",
+  "floweryRider": "Flowery Rider",
+  "flowerOrder": "Flower order",
+  "pickupAddress": "Pickup address",
+  "userAddress": "User address",
+  "reject": "Reject",
+  "accept": "Accept",
+  "egp": "EGP",
+  "noOrders": "No Orders",
+  "orderAcceptedSuccessfully": "Order accepted successfully",
+  "yourLocation": "Your Location",
+  "liveLocation" : "Live Location",
+  "user": "User",
+  "flowery": "Flowery"
 }

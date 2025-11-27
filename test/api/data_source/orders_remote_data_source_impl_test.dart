@@ -1,0 +1,94 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elevate_tracking_app/api/client/api_client.dart';
+import 'package:elevate_tracking_app/api/data_source/orders_remote_data_source_impl.dart';
+import 'package:elevate_tracking_app/api/mapper/orders_mapper.dart';
+import 'package:elevate_tracking_app/core/api_result/api_result.dart';
+import 'package:elevate_tracking_app/domain/entites/pending_orders_entity.dart';
+import 'package:elevate_tracking_app/domain/entites/start_order_entity.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+
+import '../../dummy/orders_dummy_data.dart';
+import 'orders_remote_data_source_impl_test.mocks.dart';
+
+@GenerateMocks([ApiClient, FirebaseFirestore])
+void main() {
+  final dummyData = OrdersDummyData();
+
+  group("test OrdersRemoteDataSourceImpl", () {
+    late MockApiClient mockApiClient;
+    late MockFirebaseFirestore mockFirebaseFirestore;
+    late OrdersRemoteDataSourceImpl dataSource;
+
+    setUp(() {
+      mockApiClient = MockApiClient();
+      mockFirebaseFirestore = MockFirebaseFirestore();
+      dataSource = OrdersRemoteDataSourceImpl(mockApiClient, mockFirebaseFirestore);
+    });
+
+    group("test getOrders", () {
+      test(
+        "when call getOrders should return PendingOrdersEntity with right data",
+        () async {
+          final expectedResult = dummyData.ordersResponse;
+          when(
+            mockApiClient.getOrders(null),
+          ).thenAnswer((_) async => expectedResult);
+
+          final result = await dataSource.getOrders(null);
+
+          verify(mockApiClient.getOrders(null)).called(1);
+
+          expect(result, isA<ApiSuccessResult<PendingOrdersEntity>>());
+          result as ApiSuccessResult<PendingOrdersEntity>;
+          expect(result.data, expectedResult.toEntity());
+        },
+      );
+
+      test("when getOrders failed should return error result", () async {
+        final expectedError = "fake-error";
+        when(mockApiClient.getOrders(null)).thenThrow(Exception(expectedError));
+        final result = await dataSource.getOrders(null);
+        verify(mockApiClient.getOrders(null)).called(1);
+        expect(result, isA<ApiErrorResult<PendingOrdersEntity>>());
+        result as ApiErrorResult<PendingOrdersEntity>;
+        expect(result.errorMessage, contains(expectedError));
+      });
+    });
+
+    group("test startOrder", () {
+      test(
+        "when call startOrder should return StartOrderEntity with right data",
+        () async {
+          final expectedOrderId = "fake-order-id";
+          final expectedResult = dummyData.startOrderResponse;
+          when(
+            mockApiClient.startOrder(expectedOrderId),
+          ).thenAnswer((_) async => expectedResult);
+
+          final result = await dataSource.startOrder(expectedOrderId);
+
+          verify(mockApiClient.startOrder(expectedOrderId)).called(1);
+
+          expect(result, isA<ApiSuccessResult<StartOrderEntity>>());
+          result as ApiSuccessResult<StartOrderEntity>;
+          expect(result.data, expectedResult.orders?.toEntity());
+        },
+      );
+
+      test("when startOrder failed should return error result", () async {
+        final expectedOrderId = "fake-order-id";
+        final expectedError = "fake-error";
+        when(
+          mockApiClient.startOrder(expectedOrderId),
+        ).thenThrow(Exception(expectedError));
+        final result = await dataSource.startOrder(expectedOrderId);
+        verify(mockApiClient.startOrder(expectedOrderId)).called(1);
+        expect(result, isA<ApiErrorResult<StartOrderEntity>>());
+        result as ApiErrorResult<StartOrderEntity>;
+        expect(result.errorMessage, contains(expectedError));
+      });
+    });
+  });
+}

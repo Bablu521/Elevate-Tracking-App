@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "795578737478",
+    "project_id": "fir-app-distribution-33bfe",
+    "storage_bucket": "fir-app-distribution-33bfe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795578737478:android:c344d0b351e151d0e1bb47",
+        "android_client_info": {
+          "package_name": "com.example.elevate_ecommerce_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_PztdFpXnsft2wNBj_3DfkQELDcY4cgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795578737478:android:0f68939309ee7dc5e1bb47",
+        "android_client_info": {
+          "package_name": "com.example.elevate_tracking_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_PztdFpXnsft2wNBj_3DfkQELDcY4cgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

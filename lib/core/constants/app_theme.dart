@@ -91,7 +91,7 @@ abstract class AppTheme {
         disabledBackgroundColor: AppColors.black[30],
         foregroundColor: AppColors.white,
         textStyle: getTextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100))
       ),
     ),
 

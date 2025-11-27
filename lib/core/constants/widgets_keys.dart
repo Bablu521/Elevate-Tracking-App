@@ -16,4 +16,5 @@ abstract final class WidgetsKeys {
       "login_screen_forgot_password_button";
   static const String kLoginScreenContinueButton =
       "login_screen_continue_button";
+  static const String kHomePageListView = "home_page_list_view";
 }
