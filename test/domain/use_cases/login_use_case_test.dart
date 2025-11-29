@@ -11,17 +11,20 @@ import 'login_use_case_test.mocks.dart';
 
 @GenerateMocks([AuthRepo])
 void main() {
-  group("test LoginUseCase", () {
-    late MockAuthRepo mockAuthRepo;
-    late LoginUseCase loginUseCase;
+  group ( " test LoginUseCase " , () {
+    late MockAuthRepo mockAuthRepo ;
+    late LoginUseCase loginUseCase ;
+
     setUp(() {
+
       mockAuthRepo = MockAuthRepo();
       loginUseCase = LoginUseCase(mockAuthRepo);
+
     });
 
     final loginRequestEntity = LoginDummyData().fakeLoginRequestEntity;
 
-    test("when call should return LoginEntity with right data", () async {
+    test ( " when call should return LoginEntity with right data " , () async {
       final expectedEntity = LoginDummyData().fakeLoginEntity;
       final expectedResult = ApiSuccessResult<LoginEntity>(expectedEntity);
 
@@ -39,7 +42,7 @@ void main() {
       expect(result.data, expectedEntity);
     });
 
-    test("when call failed should return error result", () async {
+    test ( " when call failed should return error result " , () async {
       final expectedError = "fake-error";
       final expectedResult = ApiErrorResult<LoginEntity>(expectedError);
 

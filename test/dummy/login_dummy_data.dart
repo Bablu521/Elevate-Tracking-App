@@ -15,3 +15,4 @@ class LoginDummyData {
 
   LoginEntity get fakeLoginEntity => fakeLoginResponse.toEntity();
 }
+
